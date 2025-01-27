@@ -1,4 +1,5 @@
 import pygame
+import random, secrets
 
 BACKGROUND_IMAGE = "fruits/assets/background.jpg"
 
@@ -28,43 +29,99 @@ class Fruits():
         self.height = height
         self.width = height
         self.size = (self.width, self.height)
+
         self.image =  pygame.transform.scale(pygame.image.load(image), (self.size))
-        self.rect = self.image.get_rect(x=self.x, y=self.y)
+
         self.letter = letter
-        self.vel = 35
+        self.vel = 30
+        self.max_vel = 150
+        self.movement = 0
+
+    def fall(self):
+        if self.y < screen.height:
+            self.movement += 2
+
+        if self.movement < (self.max_vel - self.vel) / 2:
+            self.vel += self.movement
+
+        self.y += self.vel
 
     def text_render(self):
         font_size = round(self.width // 1.5) 
         font = pygame.font.Font(FONT, font_size )
-
         text = font.render(self.letter, True, (0, 0, 0))
-
         screen.screen.blit(text, (self.x + self.width // 4 , self.y + self.height // 9))
 
     def draw(self):
-        # pygame.draw.rect(screen.screen, (0,0,0), (self.x, self.y, self.width, self.height))
+        self.rect = self.image.get_rect(x=self.x, y=self.y)
         screen.screen.blit(self.image, self.rect)
+        self.text_render()
+
+def create_fruits():
+    # fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple"]
+    fruits_list = ["limon", "strawberry", "apple"]
+    index = secrets.randbelow(len(fruits_list))
+
+    random_height = random.randrange(50, 150)
+    random_x_position = secrets.randbelow(screen.width)
+    match fruits_list[index]:
+        # case "watermelon":
+        #     pass
+        # case "orange":
+        #     pass
+        # case "coconut":
+        #     pass
+        case "limon":
+            fruit = Fruits(random_x_position, -(random_height), random_height, LIMON_IMAGE, "L")
+        # case "kiwi":
+        #     pass
+        case "apple":
+            fruit = Fruits(random_x_position, -(random_height), random_height, APPLE_IMAGE, "A")
+        case "strawberry":
+            fruit = Fruits(random_x_position, -(random_height), random_height, STRAWBERRY_IMAGE, "S")
+        
+    return fruit
+
+            
 
 
-
+ 
 screen = Screen(1080, 720)
-
-apple = Fruits(540, 0, 100, APPLE_IMAGE, "A")
-
+# fruit = Fruits(540, -100, 100, APPLE_IMAGE, "A")
 pygame.init()
 pygame.font.init()
+clock = pygame.time.Clock()
+
+fruits = []
 
 run = True
+
+is_create_fruit = True
 while run:
 
-    
-
-    pygame.time.delay(60)
+    clock.tick(60)
+    # pygame.time.delay(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT: # QUIT => listen to close button of window
             run = False
+    keys = pygame.key.get_pressed()
+
+    if is_create_fruit:
+        fruit = create_fruits()
+        fruits.append(fruit)
+        
+        # if len(fruits) > 10:
+        #     is_create_fruit = False
+
     screen.background()
-    apple.draw()
-    apple.text_render()
+    # fruit = create_fruits()
+
+    for fruit in fruits:
+        fruit.draw()    
+        fruit.fall()
+    # print("ceci est un fruit : ")
+    # print(fruit)
+    
     
     pygame.display.update() 
+    
