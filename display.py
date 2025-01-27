@@ -1,11 +1,15 @@
 import pygame
 import random, secrets
 
-BACKGROUND_IMAGE = "fruits/assets/background.jpg"
+BACKGROUND_IMAGE = "fruits/assets/background_name_v2.jpg"
 
-APPLE_IMAGE = "fruits/assets/apple.JPG"
-LIMON_IMAGE = "fruits/assets/limon.JPG"
-STRAWBERRY_IMAGE = "fruits/assets/strawberry.JPG"
+APPLE_IMAGE = "fruits/assets/apple_full.png"
+COCONUT_IMAGE = "fruits/assets/coconut_full.png"
+KIWI_IMAGE = "fruits/assets/kiwi_full.png"
+LIMON_IMAGE = "fruits/assets/limon_full.png"
+MELON_IMAGE = "fruits/assets/melon_full.png"
+ORANGE_IMAGE = "fruits/assets/orange_full.png"
+WATERMELON_IMAGE = "fruits/assets/watermelon_full.png"
 
 FONT = "fruits/assets/Coolvetica Rg.otf"
 
@@ -23,14 +27,16 @@ class Screen():
         self.screen.blit(background, (0, 0)) # put a background picture instead of color
 
 class Fruits():
-    def __init__(self, x, y, height, image, letter):
+    def __init__(self, x, y, size, image, rotation, letter):
         self.x = x
         self.y = y
-        self.height = height
-        self.width = height
+        self.height = size
+        self.width = size
         self.size = (self.width, self.height)
 
         self.image =  pygame.transform.scale(pygame.image.load(image), (self.size))
+        self.rotation = rotation
+        # self.rotation = pygame.transform.rotate(self.image, rotation)
 
         # self.image_center = pygame.Rect(self.x, self.y, self.width, self.height).center
         # (center = (self.width/2, self.height/2))
@@ -51,7 +57,7 @@ class Fruits():
         self.y += self.vel
 
     def text_render(self):
-        font_size = round(self.width // 2)
+        font_size = round(self.width // 3)
         font = pygame.font.Font(FONT, font_size)
         
         text = font.render(self.letter, True, (0, 0, 0))
@@ -76,27 +82,30 @@ class Fruits():
         self.text_render()
 
 def create_fruits():
-    # fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple"]
-    fruits_list = ["limon", "strawberry", "apple"]
+    fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple"]
+    # fruits_list = ["limon", "strawberry", "apple"]
     index = secrets.randbelow(len(fruits_list))
-    random_height = random.randrange(50, 150)
+    random_size = random.randrange(75, 200)
+    random_rotation = random.randrange(-15, 15)
     random_x_position = secrets.randbelow(screen.width)
 
     match fruits_list[index]:
-        # case "watermelon":
-        #     pass
-        # case "orange":
-        #     pass
-        # case "coconut":
-        #     pass
+        case "watermelon":
+            fruit = Fruits(random_x_position, -(random_size), random_size, WATERMELON_IMAGE, random_rotation, "W")
+        case "orange":
+            fruit = Fruits(random_x_position, -(random_size), random_size, ORANGE_IMAGE,random_rotation, "O")
+        case "coconut":
+            fruit = Fruits(random_x_position, -(random_size), random_size, COCONUT_IMAGE,random_rotation, "C")
+        case "melon":
+            fruit = Fruits(random_x_position, -(random_size), random_size, MELON_IMAGE,random_rotation, "M")
         case "limon":
-            fruit = Fruits(random_x_position, -(random_height), random_height, LIMON_IMAGE, "L")
-        # case "kiwi":
-        #     pass
+            fruit = Fruits(random_x_position, -(random_size), random_size, LIMON_IMAGE,random_rotation, "L")
+        case "kiwi":
+            fruit = Fruits(random_x_position, -(random_size), random_size, KIWI_IMAGE,random_rotation, "K")
         case "apple":
-            fruit = Fruits(random_x_position, -(random_height), random_height, APPLE_IMAGE, "A")
-        case "strawberry":
-            fruit = Fruits(random_x_position, -(random_height), random_height, STRAWBERRY_IMAGE, "S")
+            fruit = Fruits(random_x_position, -(random_size), random_size, APPLE_IMAGE,random_rotation, "A")
+        # case "strawberry":
+        #     fruit = Fruits(random_x_position, -(random_height), random_height, WATERMELON_IMAGE, "S")
         
     return fruit
 
@@ -113,8 +122,8 @@ clock = pygame.time.Clock()
 fruits = []
 
 run = True
-
 is_create_fruit = True
+
 while run:
 
     clock.tick(60)
