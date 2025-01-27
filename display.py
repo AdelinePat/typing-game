@@ -17,7 +17,7 @@ class Screen():
         self.screen = pygame.display.set_mode(self.size)
 
     def background(self):
-        pygame.display.set_caption("Slice Fruits")
+        pygame.display.set_caption("Fruit Slicer")
         background = pygame.transform.scale(pygame.image.load(BACKGROUND_IMAGE), (self.size))
 
         self.screen.blit(background, (0, 0)) # put a background picture instead of color
@@ -32,7 +32,11 @@ class Fruits():
 
         self.image =  pygame.transform.scale(pygame.image.load(image), (self.size))
 
+        # self.image_center = pygame.Rect(self.x, self.y, self.width, self.height).center
+        # (center = (self.width/2, self.height/2))
+
         self.letter = letter
+
         self.vel = 30
         self.max_vel = 150
         self.movement = 0
@@ -47,10 +51,24 @@ class Fruits():
         self.y += self.vel
 
     def text_render(self):
-        font_size = round(self.width // 1.5) 
-        font = pygame.font.Font(FONT, font_size )
+        font_size = round(self.width // 2)
+        font = pygame.font.Font(FONT, font_size)
+        
         text = font.render(self.letter, True, (0, 0, 0))
-        screen.screen.blit(text, (self.x + self.width // 4 , self.y + self.height // 9))
+        text_shadow = font.render(self.letter, True, (255,255,255))
+
+        # get image center
+        image_center = pygame.Rect(self.x, self.y, self.width, self.height).center
+        text_box = text.get_rect(center = image_center)
+
+        # screen.screen.blit(text, (self.x + self.width // 4 , self.y + self.height // 9))
+        screen.screen.blit(text_shadow, (text_box[0]+2, text_box[1]+2))
+        screen.screen.blit(text_shadow, (text_box[0]-2, text_box[1]-2))
+        screen.screen.blit(text_shadow, (text_box[0]-2, text_box[1]+2))
+        screen.screen.blit(text_shadow, (text_box[0]+2, text_box[1]-2))
+
+        screen.screen.blit(text, text_box)
+        
 
     def draw(self):
         self.rect = self.image.get_rect(x=self.x, y=self.y)
@@ -61,9 +79,9 @@ def create_fruits():
     # fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple"]
     fruits_list = ["limon", "strawberry", "apple"]
     index = secrets.randbelow(len(fruits_list))
-
     random_height = random.randrange(50, 150)
     random_x_position = secrets.randbelow(screen.width)
+
     match fruits_list[index]:
         # case "watermelon":
         #     pass
@@ -110,8 +128,8 @@ while run:
         fruit = create_fruits()
         fruits.append(fruit)
         
-        # if len(fruits) > 10:
-        #     is_create_fruit = False
+        if len(fruits) > 20:
+            fruits.pop(0)
 
     screen.background()
     # fruit = create_fruits()
