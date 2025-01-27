@@ -9,6 +9,7 @@ KIWI_IMAGE = "fruits/assets/kiwi_full.png"
 LIMON_IMAGE = "fruits/assets/limon_full.png"
 MELON_IMAGE = "fruits/assets/melon_full.png"
 ORANGE_IMAGE = "fruits/assets/orange_full.png"
+PINEAPPLE_IMAGE = "fruits/assets/pineapple_full.png"
 WATERMELON_IMAGE = "fruits/assets/watermelon_full.png"
 
 FONT = "fruits/assets/Coolvetica Rg.otf"
@@ -33,10 +34,13 @@ class Fruits():
         self.height = size
         self.width = size
         self.size = (self.width, self.height)
+        self.rotation = rotation
 
         self.image =  pygame.transform.scale(pygame.image.load(image), (self.size))
-        self.rotation = rotation
-        # self.rotation = pygame.transform.rotate(self.image, rotation)
+        # self.image = pygame.image.load(image)
+        # self.image = pygame.transform.rotozoom(self.image, self.rotation, self.size)
+
+        
 
         # self.image_center = pygame.Rect(self.x, self.y, self.width, self.height).center
         # (center = (self.width/2, self.height/2))
@@ -50,7 +54,6 @@ class Fruits():
     def fall(self):
         if self.y < screen.height:
             self.movement += 2
-
         if self.movement < (self.max_vel - self.vel) / 2:
             self.vel += self.movement
 
@@ -82,7 +85,7 @@ class Fruits():
         self.text_render()
 
 def create_fruits():
-    fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple"]
+    fruits_list = ["watermelon", "orange", "coconut", "melon", "limon", "kiwi", "apple", "pineapple"]
     # fruits_list = ["limon", "strawberry", "apple"]
     index = secrets.randbelow(len(fruits_list))
     random_size = random.randrange(75, 200)
@@ -104,6 +107,8 @@ def create_fruits():
             fruit = Fruits(random_x_position, -(random_size), random_size, KIWI_IMAGE,random_rotation, "K")
         case "apple":
             fruit = Fruits(random_x_position, -(random_size), random_size, APPLE_IMAGE,random_rotation, "A")
+        case "pineapple":
+            fruit = Fruits(random_x_position, -(random_size), random_size, PINEAPPLE_IMAGE,random_rotation, "A")
         # case "strawberry":
         #     fruit = Fruits(random_x_position, -(random_height), random_height, WATERMELON_IMAGE, "S")
         
@@ -122,7 +127,7 @@ clock = pygame.time.Clock()
 fruits = []
 
 run = True
-is_create_fruit = True
+is_create_fruit = True  
 
 while run:
 
