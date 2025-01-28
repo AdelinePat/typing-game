@@ -1,6 +1,6 @@
 import pygame, random, secrets 
-from Screen import Screen
-from __settings__ import FONT
+from class_folder.Screen import Screen
+from __settings__ import MAIN_FONT
 
 class Fruits():
     def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen):
@@ -39,7 +39,7 @@ class Fruits():
     def text_render(self):
         self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
         font_size = round(self.width // 3)
-        font = pygame.font.Font(FONT, font_size)
+        font = pygame.font.Font(MAIN_FONT, font_size)
         
         text = font.render(self.letter, True, "white")
         text_shadow = font.render(self.letter, True, self.color)

@@ -1,16 +1,19 @@
 
-BACKGROUND_IMAGE = "fruits/assets/background_name_v2.jpg"
+BACKGROUND_IMAGE = "assets/backgrounds/background_name_v2.jpg"
+MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
+STYLE_FONT = "assets/fonts/slice n dice.ttf"
+
 FPS_EASY = 10
 FPS_HARD = 40
 
-APPLE_IMAGE = "fruits/assets/apple_full.png"
-COCONUT_IMAGE = "fruits/assets/coconut_full.png"
-KIWI_IMAGE = "fruits/assets/kiwi_full.png"
-LIMON_IMAGE = "fruits/assets/limon_full.png"
-MELON_IMAGE = "fruits/assets/melon_full.png"
-ORANGE_IMAGE = "fruits/assets/orange_full.png"
-PINEAPPLE_IMAGE = "fruits/assets/pineapple_full.png"
-WATERMELON_IMAGE = "fruits/assets/watermelon_full.png"
+APPLE_IMAGE = "assets/fruits/apple_full.png"
+COCONUT_IMAGE = "assets/fruits/coconut_full.png"
+KIWI_IMAGE = "assets/fruits/kiwi_full.png"
+LIMON_IMAGE = "assets/fruits/limon_full.png"
+MELON_IMAGE = "assets/fruits/melon_full.png"
+ORANGE_IMAGE = "assets/fruits/orange_full.png"
+PINEAPPLE_IMAGE = "assets/fruits/pineapple_full.png"
+WATERMELON_IMAGE = "assets/fruits/watermelon_full.png"
 
 
 FRUIT_DICT = {
@@ -47,4 +50,3 @@ FRUIT_DICT = {
             },
 }
 
-FONT = "fruits/assets/Coolvetica Rg.otf"
