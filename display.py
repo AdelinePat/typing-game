@@ -36,7 +36,7 @@ screen.screen.blit(actual_background, (0, 0))
 
 while run:
 
-    clock.tick(60)
+    clock.tick(40)
     
     # pygame.time.delay(60)
     for event in pygame.event.get():

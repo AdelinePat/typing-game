@@ -21,12 +21,13 @@ class Fruits():
         self.rect_image = self.image.get_rect(center = self.box_center)
         self.letter = letter
 
-        self.vel = 1
-        self.max_vel = 150
-        self.movement = 0
+        # self.vel = 1
+        # self.max_vel = 150
+        # self.movement = 0
 
         self.vel_x = random.randrange(-4, 4)
-        self.vel_y = (random.randrange(self.screen_height//2, (self.screen_height-50)))*-1
+        # self.vel_y = (random.randrange(self.screen_height//2, (self.screen_height-50)))*-1
+        self.vel_y = (random.randrange(150, 275))*-1
 
     def fall(self):
         if self.y > (self.screen_height + self.height + 1):
@@ -34,7 +35,7 @@ class Fruits():
         else:
             self.y += self.vel_y
             self.x += self.vel_x
-            self.vel_y += 1 + abs(self.vel_y*0.8)
+            self.vel_y += 1 + abs(self.vel_y*0.3)
 
     def text_render(self):
         self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
