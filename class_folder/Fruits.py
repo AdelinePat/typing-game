@@ -13,20 +13,12 @@ class Fruits():
         self.color = color
         self.screen_height = screen_height
         self.screen_screen = screen_screen
-
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         
         self.image =  pygame.transform.smoothscale(pygame.image.load(image).convert_alpha(), (self.surface))
-        self.image_rotate = pygame.transform.rotozoom(self.image, self.rotation, 1)
-        self.rect_image = self.image.get_rect(center = self.box_center)
+        
         self.letter = letter
-
-        # self.vel = 1
-        # self.max_vel = 150
-        # self.movement = 0
-
         self.vel_x = random.randrange(-4, 4)
-        # self.vel_y = (random.randrange(self.screen_height//2, (self.screen_height-50)))*-1
         self.vel_y = (random.randrange(150, 275))*-1
 
     def fall(self):
@@ -41,17 +33,24 @@ class Fruits():
         self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
         font_size = round(self.width // 3)
         font = pygame.font.Font(MAIN_FONT, font_size)
-        
         text = font.render(self.letter, True, "white")
         text_shadow = font.render(self.letter, True, self.color)
-
         text_box = text.get_rect(center = self.box_center)
+        return text, text_shadow
 
-        text_rotate = pygame.transform.rotate(text, self.rotation)
-        text_shadow_rotate = pygame.transform.rotate(text_shadow, self.rotation)
+    def rotate_element(self, element):
+        element_rotate = pygame.transform.rotate(element, self.rotation)
+        element_rect = element_rotate.get_rect(center = self.box_center)
+        return element_rotate, element_rect
 
-        text_box_rotate = text_rotate.get_rect(center = self.box_center)
-        text_box_shadow_rotate = text_shadow_rotate.get_rect(center = self.box_center)
+    def draw(self):
+        text, text_shadow = self.text_render()
+
+        image_rotate, rect_image = self.rotate_element(self.image)
+        text_shadow_rotate, text_box_shadow_rotate = self.rotate_element(text_shadow)
+        text_rotate, text_box_rotate = self.rotate_element(text)
+
+        self.screen_screen.blit(image_rotate, rect_image)
 
         self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]+2))
         self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]-2, text_box_shadow_rotate[1]-2))
@@ -59,10 +58,3 @@ class Fruits():
         self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]-2))
 
         self.screen_screen.blit(text_rotate, text_box_rotate)
-        
-
-    def draw(self):
-        self.box_center = (self.x + self.width //2, self.y + self.height // 2)
-        self.rect = self.image_rotate.get_rect(x=self.x, y=self.y, center=self.box_center)
-        self.screen_screen.blit(self.image_rotate, self.rect)
-        self.text_render()
