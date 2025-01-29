@@ -43,6 +43,7 @@ screen.screen.blit(actual_background, (0, 0))
 while run:
 
     timer = clock.tick(10)
+    # timer = time.time()
     
     # TIMER_FRUIT = 1
     # last_fruit_spawn = time.time()
@@ -55,13 +56,14 @@ while run:
         # if event == pygame.KEYDOWN:
         if event.type == KEYDOWN:
             letter = pygame.key.name(event.key)
-            print(f"letter init {letter}")
-            if event.key == pygame.key.key_code(letter):
-                if len(fruits) > 0:
-                    if fruit.letter.lower() == letter:
-                        index = fruits.index(fruit)
-                        fruits.pop(index)
-                        print(f"letter pressed {letter}")
+            # print(f"letter init {letter}")
+            for fruit in fruits:
+                if event.key == pygame.key.key_code(letter):
+                    if len(fruits) > 0:
+                        if fruit.letter.lower() == letter:
+                            index = fruits.index(fruit)
+                            fruits.pop(index)
+                            # print(f"letter pressed {letter}")
                         # print("blabla")
 
             # if event.key == pygame.K_b:
@@ -90,10 +92,10 @@ while run:
     screen.screen.blit(actual_background, (0, 0))
     
     
-
     for fruit in fruits:
         if len(fruits) > 0:
             fruit.draw()
+            # if timer % 3 == 0:
             fruit.fall()
     
     pygame.display.update() 
