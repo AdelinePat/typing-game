@@ -3,7 +3,7 @@ BACKGROUND_IMAGE = "assets/backgrounds/background_name_v2.jpg"
 MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
 STYLE_FONT = "assets/fonts/slice n dice.ttf"
 
-FPS_EASY = 10
+FPS_EASY = 20
 FPS_HARD = 40
 
 APPLE_IMAGE = "assets/fruits/apple_full.png"
@@ -15,7 +15,7 @@ ORANGE_IMAGE = "assets/fruits/orange_full.png"
 PINEAPPLE_IMAGE = "assets/fruits/pineapple_full.png"
 WATERMELON_IMAGE = "assets/fruits/watermelon_full.png"
 
-
+ 
 FRUIT_DICT = {
     "apple" : {"image" : APPLE_IMAGE,
             #    "color": (254,54,54)
