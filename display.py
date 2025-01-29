@@ -14,7 +14,7 @@ def create_fruits():
     image = FRUIT_DICT[fruits_list[index]]["image"]
     color = FRUIT_DICT[fruits_list[index]]["color"]
     random_size = random.randrange(100, 175)
-    random_rotation = random.randrange(-25, 25)
+    random_rotation = random.randrange(-60, 60)
     random_x_position = random.randrange(random_size//4, (screen.width - random_size))
 
     string.ascii_letters

@@ -50,12 +50,15 @@ class Fruits():
         text_rotate = pygame.transform.rotate(text, self.rotation)
         text_shadow_rotate = pygame.transform.rotate(text_shadow, self.rotation)
 
-        self.screen_screen.blit(text_shadow_rotate, (text_box[0]+2, text_box[1]+2))
-        self.screen_screen.blit(text_shadow_rotate, (text_box[0]-2, text_box[1]-2))
-        self.screen_screen.blit(text_shadow_rotate, (text_box[0]-2, text_box[1]+2))
-        self.screen_screen.blit(text_shadow_rotate, (text_box[0]+2, text_box[1]-2))
+        text_box_rotate = text_rotate.get_rect(center = self.box_center)
+        text_box_shadow_rotate = text_shadow_rotate.get_rect(center = self.box_center)
 
-        self.screen_screen.blit(text_rotate, text_box)
+        self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]+2))
+        self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]-2, text_box_shadow_rotate[1]-2))
+        self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]-2, text_box_shadow_rotate[1]+2))
+        self.screen_screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]-2))
+
+        self.screen_screen.blit(text_rotate, text_box_rotate)
         
 
     def draw(self):
