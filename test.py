@@ -9,6 +9,6 @@ index = secrets.randbelow(len(fruits_list))
 # print(FRUIT_DICT["apple"]["color"])
 # print(index)
 
-test = FRUIT_DICT[fruits_list[index]]["image"]
+test = fruits_list[index]
 
 print(test)

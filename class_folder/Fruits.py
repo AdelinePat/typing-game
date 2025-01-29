@@ -3,7 +3,8 @@ from class_folder.Screen import Screen
 from __settings__ import MAIN_FONT
 
 class Fruits():
-    def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen):
+    def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen, name):
+        self.name = name
         self.x = x
         self.y = y
         self.height = size
