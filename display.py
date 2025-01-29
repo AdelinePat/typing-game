@@ -79,7 +79,7 @@ while run:
     # keys = pygame.key.get_pressed()
     
     # # if timer - last_fruit_spawn >= TIMER_FRUIT:
-    if is_create_fruit and timer % 3 == 0: #secrets.randbelow(100) > 50:
+    if is_create_fruit: #and timer % 3 == 0: #secrets.randbelow(100) > 50:
         fruit = create_fruits()
         # last_fruit_spawn = timer
         fruits.append(fruit)

@@ -12,7 +12,8 @@ KIWI_IMAGE = "assets/fruits/kiwi_full.png"
 LIMON_IMAGE = "assets/fruits/limon_full.png"
 MELON_IMAGE = "assets/fruits/melon_full.png"
 ORANGE_IMAGE = "assets/fruits/orange_full.png"
-PINEAPPLE_IMAGE = "assets/fruits/pineapple_full.png"
+PEAR_IMAGE = "assets/fruits/pear_full.png"
+PINEAPPLE_IMAGE = "assets/fruits/pineapple_full_2.png"
 WATERMELON_IMAGE = "assets/fruits/watermelon_full.png"
 
  
@@ -39,7 +40,10 @@ FRUIT_DICT = {
     "orange": {"image" : ORANGE_IMAGE,
                 # "color" : (243,146,1),
                 "color" : (183, 110, 0)
-
+            },
+    "pear": { "image" : PEAR_IMAGE,
+                # "color" : (254,156,3),
+                "color": (172, 138, 45)
             },
     "pineapple" : { "image" : PINEAPPLE_IMAGE,
                 # "color" : (254,156,3),
