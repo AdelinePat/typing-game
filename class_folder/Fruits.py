@@ -51,7 +51,7 @@ class Fruits():
 
     def text_render(self):
         # self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
-        # self.box_center = (self.x + self.width //2, self.y + self.height // 2)
+        self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         font_size = round(self.width // 3)
         font = pygame.font.Font(MAIN_FONT, font_size)
         text = font.render(self.letter, True, "white")
