@@ -1,6 +1,7 @@
 import pygame
 from class_folder.Screen import Screen
 from __settings__ import STYLE_FONT, BUTTON_IMAGE, ASSETS_DICT
+from class_folder.Button import Button
 TEXT_COLOR = (218, 133, 51)
 pygame.init()
 
@@ -18,48 +19,66 @@ timer = pygame.time.Clock()
 main_menu = False
 
 menu_command = 0
-
-
-class Button:
-    def __init__(self,width, height, text, identification, flip, center):
-        self.text = text
-        self.width = width
-        self.height = height
-        self.identification = identification
-        self.surface = (self.width, self.height)
-        self.image = pygame.transform.smoothscale(pygame.image.load(BUTTON_IMAGE).convert_alpha(), (self.surface))
-        # self.center = (self.x + self.width //2, self.y + self.height // 2)
-        self.center = center
-        self.rect = self.image.get_rect(center = self.center)
-        self.flip = flip
-        self.hovered = False
-        
-        # self.button = pygame.Rect(self.x, self.y, 260, 40)
-        self.clicked = False
-
-    def draw(self, color):
-        # pygame.draw.rect(screen.screen, 'orange', self.button, 0, 5)
-        # pygame.draw.rect(screen.screen, 'beige', self.button, 5, 5)
-        screen.screen.blit(self.image, self.rect)
-
-        font_size = round(self.height // 2)
-        font = pygame.font.Font(STYLE_FONT, font_size)
-        dialog = font.render(self.text, True, color)
-
-        dialog_rect = dialog.get_rect(center = self.center)
-        screen.screen.blit(dialog, dialog_rect)
-        
-
-    def check_clicked(self):
-        if self.rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
-            if not self.clicked:
-                self.clicked = True
-                return True
-        else:
-            self.clicked = False
-        return False
-
 clock = pygame.time.Clock()
+
+def display_hearts(strike):
+    life = 3
+    hearts = []
+    life_count = life - strike
+    if life_count > 0 : 
+        life_rect = pygame.Rect(0, 0, 500, 70)
+        heart = pygame.transform.smoothscale(pygame.image.load(ASSETS_DICT["heart"]).convert_alpha(), (50, 50))
+        hearts.append(heart)
+
+        spacing = 0
+        for index in range(life_count):
+            for heart in hearts:
+                heart_rect = heart.get_rect(center = (40 + spacing, life_rect.center[1]), top=20)
+                screen.screen.blit(heart, heart_rect)
+                spacing += 60
+
+def display_score_in_game(score):
+    score_width = 200
+    score_height = 100
+    score_rect = pygame.Rect(0, 0, score_width, score_height)
+    score_image = pygame.transform.smoothscale(pygame.image.load(ASSETS_DICT["plank2"]).convert_alpha(), (score_width, score_height))
+    score_image_rect = score_image.get_rect(top= 10, right= screen.width - 10)
+    screen.screen.blit(score_image, score_image_rect)
+
+    font_size = round((score_height // 3)*2)
+    font = pygame.font.Font(STYLE_FONT, font_size)
+    dialog = font.render(str(score), True, (96, 57, 2))
+
+    dialog_rect = dialog.get_rect(center = score_image_rect.center)
+    screen.screen.blit(dialog, dialog_rect)
+
+
+def game_menu_screen():
+    
+    KEYDOWN = pygame.KEYDOWN
+    counter = 0
+    run = True
+    while run:
+
+        timer = clock.tick(20)
+        counter += 1    
+        # timer = time.time()
+        screen.screen.blit(background_final, (0, 0))
+        strike = 0
+        display_hearts(strike)
+        score = 1234
+        display_score_in_game(score)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: # QUIT => listen to close button of window
+                run = False
+            
+            # if event == pygame.KEYDOWN:
+            if event.type == KEYDOWN:
+                letter = pygame.key.name(event.key)
+                print(letter)
+        
+        pygame.display.update()
 
 def menu_display():
     # screen_rect_center = screen.screen.get_rect().center
@@ -72,13 +91,11 @@ def menu_display():
     
     run = True
     screen.screen.blit(background_final, (0,0))
-
    
     game_menu = "start_menu"
 
     while run:
         # timer.tick(fps)
-
         timer = clock.tick(10)
 
         mouse_position = pygame.mouse.get_pos()
@@ -126,17 +143,17 @@ def menu_display():
                     mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
                 case "game_on":
-                    screen.screen.blit(background_final, (0,0))
-                    game_menu_button.draw("black")
+                    game_menu_screen()
+                    # screen.screen.blit(background_final, (0,0))
+                    # game_menu_button.draw("black")
                     # exit_menu_button.draw("blue")
                 case "exit_menu":
                     run = False
                   
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    game_menu = "start_menu"
+                    game_menu = "main_menu"
 
-    
         # pygame.display.flip()
 
         pygame.display.update() 
@@ -144,48 +161,7 @@ def menu_display():
 
     pygame.quit()
 
-# menu_display()
-
-def display_hearts(strike):
-    life = 3
-    hearts = []
-    life_count = life - strike
-    if life_count > 0 : 
-        life_rect = pygame.Rect(0, 0, 500, 70)
-        heart = pygame.transform.smoothscale(pygame.image.load(ASSETS_DICT["heart"]).convert_alpha(), (50, 50))
-        hearts.append(heart)
-
-        spacing = 0
-        for index in range(life_count):
-            for heart in hearts:
-                heart_rect = heart.get_rect(center = (40 + spacing, life_rect.center[1]))
-                screen.screen.blit(heart, heart_rect)
-                spacing += 60
+menu_display()
 
 
-def game_menu_screen():
-    
-    KEYDOWN = pygame.KEYDOWN
-    counter = 0
-    run = True
-    while run:
-
-        timer = clock.tick(20)
-        counter += 1    
-        # timer = time.time()
-        screen.screen.blit(background_final, (0, 0))
-        strike = 1
-        display_hearts(strike)
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT: # QUIT => listen to close button of window
-                run = False
-            
-            # if event == pygame.KEYDOWN:
-            if event.type == KEYDOWN:
-                letter = pygame.key.name(event.key)
-                print(letter)
-        
-        pygame.display.update()
-
-game_menu_screen()
+# game_menu_screen()

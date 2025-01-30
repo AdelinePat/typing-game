@@ -8,6 +8,7 @@ from class_folder.Fruit_slices import Fruit_slices
 from __settings__ import FPS_EASY, FPS_HARD, FRUIT_DICT
 
 KEYDOWN = pygame.KEYDOWN
+screen = Screen(1080, 720)
 
 def create_fruits():
     fruits_list= list(FRUIT_DICT.keys())
@@ -26,7 +27,7 @@ def create_fruits():
     # fruit = Fruits(random_x_position, screen.height//2, random_size, image, random_rotation, "A", color, screen.height, screen.screen)
     return fruit
  
-screen = Screen(1080, 720)
+
 pygame.init()
 pygame.font.init()
 clock = pygame.time.Clock()
@@ -44,7 +45,7 @@ screen.screen.blit(actual_background, (0, 0))
 counter = 0
 while run:
 
-    timer = clock.tick(10)
+    timer = clock.tick(20)
     counter += 1    
     # timer = time.time()
     screen.screen.blit(actual_background, (0, 0))
@@ -70,27 +71,7 @@ while run:
                             fruits_slices.append(fruit_slices_1)
                             fruits_slices.append(fruit_slices_2)
                             fruits.pop(index)
-                            # fruit_slices.draw()
-                            # fruit_slices.fall(fruit_slices.image_1)
-                            # fruit_slices.fall(fruit_slices.image_2)
-    
-                            # print(f"letter pressed {letter}")
-                        # print("blabla")
-
-            # if event.key == pygame.K_b:
-            #     if fruit.letter.lower() == "b":
-            #         index = fruits.index(fruit)
-            #         fruits.pop(index)
-            #         print("blabla")
-            # if event.key == pygame.K_c:
-            #     if fruit.letter.lower() == "c":
-            #         index = fruits.index(fruit)
-            #         fruits.pop(index)
-            #         print("blabla")
-    # keys = pygame.key.get_pressed()
-    
-    # # if timer - last_fruit_spawn >= TIMER_FRUIT:
-    # print(timer)
+ 
     if is_create_fruit and counter % 30 == 0: #secrets.randbelow(100) > 50:
         # print(f"dans le if : {timer}")
         fruit = create_fruits()
