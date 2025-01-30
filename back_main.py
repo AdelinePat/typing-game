@@ -1,5 +1,5 @@
 import pygame
-from game.Game_methods import Game_methods
+from game.menues.Game_methods import Game_methods
 from game.menues.Game_round import Game_round
 from game.menues.Main_menu import Main_menu
 from game.menues.Game_set_up import Game_set_up

@@ -1,6 +1,6 @@
 import pygame
-from game.class_folder.Screen import Screen
-from game.__settings__ import FPS
+from class_folder.Screen import Screen
+from __settings__ import FPS
 
 class Game_methods:
     screen = Screen(1080, 720)

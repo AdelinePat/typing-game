@@ -1,7 +1,7 @@
 import pygame
 from class_folder.Screen import Screen
 from __settings__ import STYLE_FONT, BUTTON_IMAGE, ASSETS_DICT
-
+pygame.font.init()
 screen = Screen(1080, 720)
 
 class Button:

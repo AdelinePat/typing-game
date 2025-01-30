@@ -3,5 +3,10 @@
         "highscore": 213,
         "slashed_fruits": 688,
         "games_played": 11
+    },
+    "test": {
+        "highscore": 8,
+        "slashed_fruits": 9,
+        "games_played": 2
     }
 }

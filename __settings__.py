@@ -1,20 +1,31 @@
+import pygame
+pygame.display.init()
+
 BACKGROUND_IMAGE = "assets/backgrounds/background_name_v2.jpg"
+FROZEN_EFFECT = "assets/props/frozen_effect.webp"
 MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
 STYLE_FONT = "assets/fonts/slice n dice.ttf"
-
+TEXT_COLOR = (218, 133, 51)
 
 BUTTON_IMAGE = "assets/plank/plank1.png"
 PLANK_SCORE = "assets/plank/plank2.png"
+
+ICECUBE_IMAGE = "assets/bonus_malus/ice_cube1.png"
 ICE_CUBE1 = "assets/bonus_malus/ice_cube1.png"
 ICE_CUBE2 = "assets/bonus_malus/ice_cube2.png"
 ICE_CUBE3 = "assets/bonus_malus/ice_cube3.png"
 ICE_CUBE4 = "assets/bonus_malus/ice_cube4.png"
 HEART = "assets/bonus_malus/heart_v2.png"
+BOMB_IMAGE = "assets/bonus_malus/bomb.png"
 BOMB = "assets/bonus_malus/bomb.png"
 EFFECT1 = "assets/bonus_malus/explosion1.png"
 EFFECT2 = "assets/bonus_malus/explosion2.png"
 EFFECT3 = "assets/bonus_malus/explosion3.png"
 
+ICECUBE_COLOR = (255,255,255)
+BOMB_COLOR = (0,0,0)
+
+FPS = 60
 FPS_EASY = 20
 FPS_HARD = 40
 
@@ -108,3 +119,4 @@ FRUIT_DICT = {
             },
 }
 
+SCORE_PATH = "game/scores/scores.json"

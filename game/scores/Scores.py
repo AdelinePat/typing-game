@@ -1,5 +1,5 @@
 import json, os
-from game.__settings__ import SCORE_PATH
+from __settings__ import SCORE_PATH
 
 class Scores:
     def __init__(self):

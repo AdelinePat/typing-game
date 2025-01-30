@@ -1,5 +1,5 @@
 import pygame, string
-from game.Game_methods import Game_methods
+from game.menues.Game_methods import Game_methods
 
 class Game_set_up(Game_methods):
     def __init__(self):
@@ -24,7 +24,7 @@ class Game_set_up(Game_methods):
                     Game_methods.player = self.user_input
                     return "in_game"
                 case False:
-                    return "main_menu"
+                    return "start_menu"
                 case 'quit':
                     return "off"
             self.clock_tick()

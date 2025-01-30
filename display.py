@@ -6,6 +6,7 @@ from class_folder.Screen import Screen
 from class_folder.Fruits import Fruits
 from class_folder.Fruit_slices import Fruit_slices
 from __settings__ import FPS_EASY, FPS_HARD, FRUIT_DICT
+from display.display_menu_assets import display_hearts, display_score_in_game
 
 KEYDOWN = pygame.KEYDOWN
 screen = Screen(1080, 720)
@@ -13,6 +14,7 @@ screen = Screen(1080, 720)
 def create_fruits():
     fruits_list= list(FRUIT_DICT.keys())
     index = secrets.randbelow(len(fruits_list))
+
     image = FRUIT_DICT[fruits_list[index]]["image"]
     color = FRUIT_DICT[fruits_list[index]]["color"]
 
@@ -39,28 +41,20 @@ run = True
 is_create_fruit = True  
 
 actual_background = screen.background()
-screen.screen.blit(actual_background, (0, 0))
+# screen.screen.blit(actual_background, (0, 0))
 
 
 counter = 0
 while run:
 
-    timer = clock.tick(20)
+    timer = clock.tick(60)
     counter += 1    
-    # timer = time.time()
     screen.screen.blit(actual_background, (0, 0))
-    # TIMER_FRUIT = 1
-    # last_fruit_spawn = time.time()
-    
-    # pygame.time.delay(60)
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: # QUIT => listen to close button of window
+        if event.type == pygame.QUIT:
             run = False
-        
-        # if event == pygame.KEYDOWN:
         if event.type == KEYDOWN:
             letter = pygame.key.name(event.key)
-            # print(f"letter init {letter}")
             for fruit in fruits:
                 if event.key == pygame.key.key_code(letter):
                     if len(fruits) > 0:
@@ -72,32 +66,28 @@ while run:
                             fruits_slices.append(fruit_slices_2)
                             fruits.pop(index)
  
-    if is_create_fruit and counter % 30 == 0: #secrets.randbelow(100) > 50:
-        # print(f"dans le if : {timer}")
+    if is_create_fruit and counter % 30 == 0: 
         fruit = create_fruits()
-        # last_fruit_spawn = timer
         fruits.append(fruit)
-        
         if len(fruits) > 20:
             fruits.pop(0)
-
-    
-    
     
     for fruit in fruits:
         if len(fruits) > 0:
             fruit.draw()
-            # if timer % 3 == 0:
             mode = 0
-            fruit.fall(timer, mode)
+            fruit.fall()
+
     for fruit_slices in fruits_slices:
         if len(fruits_slices) > 0:
-
-    # if fruit_slices:
             fruit_slices.draw()
-            # fruit_slices_2.draw()
             fruit_slices.fall()
-            # fruit_slices_2.fall()
-    
+
+    score = 123
+    life = 9
+    strike = 0
+    display_hearts(life, strike)
+    display_score_in_game(score)
+
     pygame.display.update() 
     

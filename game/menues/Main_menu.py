@@ -1,5 +1,5 @@
 import pygame
-from game.Game_methods import Game_methods
+from game.menues.Game_methods import Game_methods
 
 class Main_menu(Game_methods):
     def __init__(self):
