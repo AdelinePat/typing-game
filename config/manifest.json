@@ -1,0 +1,62 @@
+{
+    "name": "Slicer Fruit",
+    "short_name": "Slicer",
+    "description": "Un jeu qui permet de découper des fruits en tapant les lettres affichées à l'écran, développé avec Pygame.",
+    "version": "1.0.0",
+    "author": "Nom de l'équipe",
+    "contributors": [
+        {
+            "name": "Adeline Patenne",
+            "role": "Chef de projet",
+            "github": "https://github.com/AdelinePat"
+        },
+        {
+            "name": "Jolyne Mangeot",
+            "role": "Back-end",
+            "github": "https://github.com/jolyne-mangeot"
+        },
+        {
+            "name": "Florence Navet",
+            "role": "Front-end",
+            "github": "https://github.com/Florence-Navet"
+        },
+        {
+            "name": "Vanessa Sabatier",
+            "role": "Back-end",
+            "github": "https://github.com/vanessa13001"
+        }
+    ],
+    "repository": "https://github.com/AdelinePat/typing-game",
+    "license": "MIT",
+    "icons": [
+        {
+            "src": "../assets/icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "display": "x",
+    "orientation": "x",
+    "background_color": "x",
+    "theme_color": "x",
+    
+    "game_info": {
+        "max_score": 1000,
+        "max_level": 10,
+        "difficulty_modes": ["Facile", "Normal", "Difficile"],
+        "controls": {
+            "keyboard": {
+                "random_letters": "Taper la lettre affichée pour trancher le fruit",
+                "space": "Pause",
+                "esc": "Quitter"
+            }
+        }
+    },
+    
+    "dependencies": {
+        "pygame": "2.5.2",
+        "numpy": "1.24.3",
+        "requests": "2.28.2"
+    }
+}
+
