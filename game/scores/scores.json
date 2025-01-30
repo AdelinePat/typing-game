@@ -8,5 +8,45 @@
         "highscore": 8,
         "slashed_fruits": 9,
         "games_played": 2
+    },
+    "Aladin": {
+        "highscore": 1058,
+        "slashed_fruits": 1058,
+        "games_played": 139
+    },
+    "baba": {
+        "highscore": 3,
+        "slashed_fruits": 3,
+        "games_played": 1
+    }    ,
+    "Mulan": {
+        "highscore": 8,
+        "slashed_fruits": 9,
+        "games_played": 2
+    },
+    "Kakashi": {
+        "highscore": 1058,
+        "slashed_fruits": 1058,
+        "games_played": 139
+    },
+    "Zoro": {
+        "highscore": 10583,
+        "slashed_fruits": 10583,
+        "games_played": 1
+    },
+    "Sari": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "Ussop": {
+        "highscore": 13,
+        "slashed_fruits": 13,
+        "games_played": 2
+    },
+    "Nanami": {
+        "highscore": 5213,
+        "slashed_fruits": 5213,
+        "games_played": 20
     }
 }

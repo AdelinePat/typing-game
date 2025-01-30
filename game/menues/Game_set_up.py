@@ -1,5 +1,6 @@
 import pygame, string
 from game.menues.Game_methods import Game_methods
+from __settings__ import BACKGROUND_IMAGE
 
 class Game_set_up(Game_methods):
     def __init__(self):
@@ -10,7 +11,7 @@ class Game_set_up(Game_methods):
             self.user_input = Game_methods.player
         else: 
             self.user_input = ''
-        self.current_background = self.screen.background()
+        self.current_background = self.screen.background(BACKGROUND_IMAGE, "Fruits Slicer")
 
     def run(self):
         while True:

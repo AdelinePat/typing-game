@@ -1,26 +1,14 @@
-import pygame
+import pygame,json, os
 from class_folder.Screen import Screen
-from __settings__ import STYLE_FONT, BUTTON_IMAGE, ASSETS_DICT
+from __settings__ import STYLE_FONT, MAIN_FONT, BUTTON_IMAGE, ASSETS_DICT, SCORE_PATH, TEXT_COLOR, TEXT_COLOR_LIGHT
 from class_folder.Button import Button
 
 BUTTON_IMAGE = pygame.image.load(ASSETS_DICT["plank2"])
 HEART_IMAGE = pygame.image.load(ASSETS_DICT["heart"])
-# pygame.init()
 
 width = 1200
 height = 720
-# screen = pygame.display.set_mode((width, height))
-# pygame.display.set_caption("Menu Principal")
-# background_image = pygame.image.load(BACKGROUND_IMAGE)
 screen = Screen(1080, 720)
-# screen.screen.blit(background_final, (0,0))
-# screen.blit(background_image, (0, 0))
-# fps = 60
-# timer = pygame.time.Clock()
-# main_menu = False
-
-# menu_command = 0
-# clock = pygame.time.Clock()
 
 def display_hearts(life, strike):
     hearts = []
@@ -52,6 +40,92 @@ def display_score_in_game(score):
 
     dialog_rect = dialog.get_rect(center = score_image_rect.center)
     screen.screen.blit(dialog, dialog_rect)
+
+def get_buttons():
+    main_menu_button = Button(700, 150, 'Menu Principal', "main_menu", 1, screen.screen.get_rect().center)
+    game_menu_button = Button(450, 100, "Jouer", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
+    mode_menu_button = Button(450, 100, "Mode", "mode_menu", 2, ((screen.width // 2), (screen.height // 8) + (screen.height //4)))
+    score_menu_button = Button(450, 100, "Score", "score_menu", 3, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*2))
+    exit_menu_button = Button(450, 100, "Quitter", "exit_menu", 4, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*3))
+    button_list = [game_menu_button, mode_menu_button, score_menu_button, exit_menu_button]
+
+    return main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list
+
+def load_scores():
+    if not os.path.exists(SCORE_PATH):
+        # Create an empty JSON file if it doesn't exist
+        with open(SCORE_PATH, "w", encoding="UTF-8") as file:
+            json.dump({}, file)
+
+    with open(SCORE_PATH, "r") as file:
+        scores = json.load(file)
+    return scores
+
+    image = FRUIT_DICT[fruits_list[index]]["image"]
+    color = FRUIT_DICT[fruits_list[index]]["color"]
+    
+def display_scores(scores):
+    in_score_button = Button(450, 100, "Score", "in_score", 3, ((screen.width // 2), 70))
+    in_score_button.draw(TEXT_COLOR)
+
+    if not scores:
+        print("y'a pas de scores enregistré")
+    else:
+        
+        all_player_score = list(scores.keys())
+
+        
+        position_x = 20
+        position_y = 150
+        for player_score in all_player_score:
+
+            if position_x < screen.width + 30:
+            # if all_player_score.index(player_score) < 4:
+                display_player_score(scores, player_score, position_x, position_y)
+                position_x += screen.width // 4
+            else:
+            # elif all_player_score.index(player_score) > 4:
+                position_x = 20
+                position_y += screen.height // 4 + 20
+                display_player_score(scores, player_score, position_x, position_y)
+                position_x += screen.width // 4
+
+            
+
+def display_player_score(scores, player, position_x, position_y):
+    box = pygame.Rect(position_x, position_y, (screen.width // 4) - 40 , (screen.height // 4))
+    center = box.center
+
+    # draw_box = pygame.draw.rect(screen.screen, "red", box, 3)
+
+    user = dialog_render(player.capitalize(), STYLE_FONT, 34, TEXT_COLOR)
+    highscore = dialog_render("Highscore : " + str(scores[player]["highscore"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
+    slice = dialog_render("Slashed Fruits : " + str(scores[player]["slashed_fruits"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
+    game = dialog_render("Game Played : " + str(scores[player]["games_played"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
+
+   
+    box_user = user.get_rect(center= (center[0], center[1] - box.height // 2 + 40))
+
+    box_highscore = highscore.get_rect(center= (center[0], center[1] - box.height // 2 + 90))
+
+    box_slice = slice.get_rect(center= (center[0], center[1] - box.height // 2 + 120))
+
+    box_game = game.get_rect(center= (center[0], center[1]- box.height // 2 + 150))
+
+    screen.screen.blit(user, box_user)
+    screen.screen.blit(highscore, box_highscore)
+    screen.screen.blit(slice, box_slice)
+    screen.screen.blit(game, box_game)
+
+
+    
+def dialog_render(text, font, font_size, color):
+    font = pygame.font.Font(font, font_size)
+    dialog = font.render(text, True, color)
+    return dialog
+
+
+
 
 
 # def game_menu_screen():

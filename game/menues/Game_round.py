@@ -1,7 +1,7 @@
 import pygame, random, secrets, string
 from class_folder.Fruits import Fruits
 from class_folder.Fruit_slices import Fruit_slices
-from __settings__ import FRUIT_DICT, ICECUBE_IMAGE, BOMB_IMAGE, ICECUBE_COLOR, BOMB_COLOR
+from __settings__ import FRUIT_DICT, ICECUBE_IMAGE, BOMB_IMAGE, ICECUBE_COLOR, BOMB_COLOR, BACKGROUND_IMAGE
 from game.scores.Player_attributes import Player_attributes
 from game.scores.Scores import Scores
 from game.menues.Game_methods import Game_methods
@@ -26,7 +26,7 @@ class Game_round(Game_methods):
         self.frame = 0
         self.fruits = []
         self.slashed_fruits = []
-        self.current_background = self.screen.background()
+        self.current_background = self.screen.background(BACKGROUND_IMAGE, "Fruits Slicer - Partie en cours")
         self.frozen_effect = self.screen.frozen()
         
     

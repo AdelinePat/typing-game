@@ -1,6 +1,6 @@
 import pygame
 from class_folder.Screen import Screen
-from __settings__ import STYLE_FONT, BUTTON_IMAGE, ASSETS_DICT
+from __settings__ import STYLE_FONT, BUTTON_IMAGE, ASSETS_DICT, BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4
 pygame.font.init()
 screen = Screen(1080, 720)
 
@@ -11,11 +11,21 @@ class Button:
         self.height = height
         self.identification = identification
         self.surface = (self.width, self.height)
-        self.image = pygame.transform.smoothscale(pygame.image.load(ASSETS_DICT["plank1"]).convert_alpha(), (self.surface))
+        self.flip = flip
+        match self.flip:
+            case 1:
+                self.image = pygame.transform.smoothscale(pygame.image.load(ASSETS_DICT["plank1"]).convert_alpha(), (self.surface))
+            case 2:
+                self.image = pygame.transform.smoothscale(BUTTON_IMAGE2.convert_alpha(), (self.surface))
+            case 3:
+                self.image = pygame.transform.smoothscale(BUTTON_IMAGE3.convert_alpha(), (self.surface))
+            case 4:
+                self.image = pygame.transform.smoothscale(BUTTON_IMAGE4.convert_alpha(), (self.surface))
+        
         # self.center = (self.x + self.width //2, self.y + self.height // 2)
         self.center = center
         self.rect = self.image.get_rect(center = self.center)
-        self.flip = flip
+        
         self.hovered = False
         
         # self.button = pygame.Rect(self.x, self.y, 260, 40)

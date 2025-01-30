@@ -1,13 +1,30 @@
 import pygame
 pygame.display.init()
 
-BACKGROUND_IMAGE = "assets/backgrounds/background_name_v2.jpg"
+BACKGROUND_IMAGE = pygame.image.load("assets/backgrounds/background_name_v2.jpg")
+BACKGROUND_IMAGE_MENU = pygame.image.load("assets/backgrounds/background_menu.jpg")
 FROZEN_EFFECT = "assets/props/frozen_effect.webp"
 MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
 STYLE_FONT = "assets/fonts/slice n dice.ttf"
 TEXT_COLOR = (218, 133, 51)
+TEXT_COLOR_LIGHT = (245, 189, 122)
+TEXT_COLOR_DARK = (96, 57, 2)
 
-BUTTON_IMAGE = "assets/plank/plank1.png"
+BUTTON_IMAGE = "assets/plank/plank1.1.png"
+def flip_button_image():
+    img = pygame.image.load(BUTTON_IMAGE)
+    img_copy1 = img.copy()
+    img_copy2 = img.copy()
+    img_copy3 = img.copy()
+
+    img_flip_1 = pygame.transform.flip(img_copy1, True, False)
+    img_flip_2 = pygame.transform.flip(img_copy2, False, True)
+    img_flip_3 = pygame.transform.flip(img_copy3, True, True)
+
+    return img_flip_1, img_flip_2, img_flip_3
+
+BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4 = flip_button_image()
+
 PLANK_SCORE = "assets/plank/plank2.png"
 
 ICECUBE_IMAGE = "assets/bonus_malus/ice_cube1.png"

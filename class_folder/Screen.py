@@ -8,9 +8,9 @@ class Screen():
         self.size = (self.width,self.height)
         self.screen = pygame.display.set_mode(self.size)
 
-    def background(self):
-        pygame.display.set_caption("Fruit Slicer")
-        background = pygame.transform.scale(pygame.image.load(BACKGROUND_IMAGE).convert_alpha(), (self.size))
+    def background(self, background, caption):
+        pygame.display.set_caption(caption)
+        background = pygame.transform.scale(background.convert_alpha(), (self.size))
         return background
         
     def frozen(self):
