@@ -117,10 +117,14 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    game_menu = "start_menu"
 
             match game_menu:
                 case "start_menu":
-                    
+                        screen.screen.blit(background_final, (0,0))         
                         if main_menu_button.rect.collidepoint(mouse_position):
                             main_menu_button.hovered = True
                             main_menu_button.draw("red")
@@ -148,14 +152,24 @@ def main():
                 case "score_menu":
                     screen.screen.blit(background_final, (0,0))
                     score_menu_button.draw("green")
-                    exit_menu_button.draw("brown")
+                    # exit_menu_button.draw("brown")
                 case "mode_menu":
                     screen.screen.blit(background_final, (0,0))
                     mode_menu_button.draw("purple")
-                    exit_menu_button.draw("blue")
+                    # exit_menu_button.draw("blue")
+                case "game_on":
+                    screen.screen.blit(background_final, (0,0))
+                    game_menu_button.draw("black")
+                    # exit_menu_button.draw("blue")
+                case "exit_menu":
+                    run = False
+                
+                    
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    game_menu = "start_menu"
 
-
-            
+        
 
         # pygame.display.flip()
 
