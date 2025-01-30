@@ -3,6 +3,8 @@ BACKGROUND_IMAGE = "assets/backgrounds/background_name_v2.jpg"
 MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
 STYLE_FONT = "assets/fonts/slice n dice.ttf"
 
+BUTTON_IMAGE = "assets/plank/plank1.png"
+
 FPS_EASY = 20
 FPS_HARD = 40
 

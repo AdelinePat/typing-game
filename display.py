@@ -44,7 +44,7 @@ screen.screen.blit(actual_background, (0, 0))
 counter = 0
 while run:
 
-    timer = clock.tick(60)
+    timer = clock.tick(10)
     counter += 1    
     # timer = time.time()
     screen.screen.blit(actual_background, (0, 0))
@@ -65,8 +65,10 @@ while run:
                     if len(fruits) > 0:
                         if fruit.letter.lower() == letter:
                             index = fruits.index(fruit)
-                            fruit_slices = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen)
-                            fruits_slices.append(fruit_slices)
+                            fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen)
+                            fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen)
+                            fruits_slices.append(fruit_slices_1)
+                            fruits_slices.append(fruit_slices_2)
                             fruits.pop(index)
                             # fruit_slices.draw()
                             # fruit_slices.fall(fruit_slices.image_1)
@@ -88,9 +90,9 @@ while run:
     # keys = pygame.key.get_pressed()
     
     # # if timer - last_fruit_spawn >= TIMER_FRUIT:
-    print(timer)
+    # print(timer)
     if is_create_fruit and counter % 30 == 0: #secrets.randbelow(100) > 50:
-        print(f"dans le if : {timer}")
+        # print(f"dans le if : {timer}")
         fruit = create_fruits()
         # last_fruit_spawn = timer
         fruits.append(fruit)
@@ -105,14 +107,16 @@ while run:
         if len(fruits) > 0:
             fruit.draw()
             # if timer % 3 == 0:
-            fruit.fall()
+            mode = 0
+            fruit.fall(timer, mode)
     for fruit_slices in fruits_slices:
         if len(fruits_slices) > 0:
 
     # if fruit_slices:
             fruit_slices.draw()
+            # fruit_slices_2.draw()
             fruit_slices.fall()
-            fruit_slices.fall()
+            # fruit_slices_2.fall()
     
     pygame.display.update() 
     

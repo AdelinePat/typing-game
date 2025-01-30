@@ -15,8 +15,7 @@ class Fruit_slices():
 
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
 
-        self.image_1 = pygame.transform.smoothscale(pygame.image.load(self.image_path).convert_alpha(), (self.surface))
-        self.image_2 = pygame.transform.smoothscale(pygame.image.load(self.image_path).convert_alpha(), (self.surface))
+        self.image = pygame.transform.smoothscale(pygame.image.load(self.image_path).convert_alpha(), (self.surface))
 
         self.vel_y = random.randrange(20, 70)
         self.vel_x = random.randrange(-20, 20)
@@ -36,11 +35,9 @@ class Fruit_slices():
     
     def draw(self):
 
-        image_1_rotate, image_1_rect = self.rotate_element(self.image_1)
-        image_2_rotate, image_2_rect = self.rotate_element(self.image_2)
+        image_rotate, image_rect = self.rotate_element(self.image)
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
-        self.rect = self.image_1.get_rect(center = self.box_center)
+        self.rect = self.image.get_rect(center = self.box_center)
 
-        self.screen.blit(image_1_rotate, image_1_rect)
-        self.screen.blit(image_2_rotate, image_2_rect)
+        self.screen.blit(image_rotate, image_rect)
 
