@@ -39,18 +39,18 @@ class Button:
 
 
 def draw_game():
-    button = Button('Menu Principal', (500, 103))
+    button = Button('Menu Principal', (500, 100))
     button.draw()
     return button.check_clicked()
 
 
 def draw_menu():
     command = 0
-    pygame.draw.rect(screen, 'green', [500, 500, 210, 40])
-    menu_btn = Button("Exit Menu", (500, 350))
-    btn1 = Button("Scores", (500, 180))
-    btn2 = Button("Modes", (500, 240))
-    btn3 = Button("Jouer", (500, 380))
+    # pygame.draw.rect(screen, 'green', [500, 500, 210, 40])
+    menu_btn = Button("Exit Menu", (500, 300))
+    btn1 = Button("Scores", (500, 150))
+    btn2 = Button("Modes", (500, 200))
+    btn3 = Button("Jouer", (500, 250))
     btn1.draw()
     btn2.draw()
     btn3.draw()
