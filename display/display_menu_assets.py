@@ -28,14 +28,15 @@ def display_hearts(life, strike):
     if life_count > 0 : 
         life_rect = pygame.Rect(0, 0, 500, 70)
         heart = pygame.transform.smoothscale(HEART_IMAGE, (50, 50)).convert_alpha()
-        hearts.append(heart)
+        for index in range(life_count):
+            hearts.append(heart)
 
         spacing = 0
-        for index in range(life_count):
-            for heart in hearts:
-                heart_rect = heart.get_rect(center = (40 + spacing, life_rect.center[1]), top=20)
-                screen.screen.blit(heart, heart_rect)
-                spacing += 60
+        # for index in range(life_count):
+        for heart in hearts:
+            heart_rect = heart.get_rect(center = (40 + spacing, life_rect.center[1]), top=20)
+            screen.screen.blit(heart, heart_rect)
+            spacing += 60
 
 def display_score_in_game(score):
     score_width = 200
