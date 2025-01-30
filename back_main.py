@@ -1,32 +1,32 @@
 import pygame
-from game.scores.Player_attributes import *
-from game.in_game import *
-from game.main_menu import *
-from game.game_set_up import *
-from game.game_functions import game_init, game_off
+from game.Game_methods import Game_methods
+from game.menues.Game_round import Game_round
+from game.menues.Main_menu import Main_menu
+from game.menues.Game_set_up import Game_set_up
 
-screen,clock = game_init()
 def main():
     try:
-        player=''
-        game_mode = 'normal'
-        game_menu = 'main_menu'
+        Game_methods()
         while True:
-            match game_menu:
+            match Game_methods.game_menu:
                 case 'main_menu':
-                    game_menu = main_menu(screen,clock)
+                    new_main_menu = Main_menu()
+                    Game_methods.game_menu = new_main_menu.run()
 
                 case 'game_set_up':
-                    game_menu, game_mode, player = game_set_up(screen,clock,game_mode,player)
+                    new_game_launch = Game_set_up()
+                    Game_methods.game_menu = new_game_launch.run()
 
                 case 'in_game':
-                    game_menu = in_game(screen,clock,game_mode,player)
+                    new_game = Game_round()
+                    Game_methods.game_menu = new_game.run()
 
                 case 'game_off'| _:
-                    game_off()
+                    Game_methods.off()
     except KeyboardInterrupt:
-        game_off()
+        Game_methods.off()
     except pygame.error:
-        game_off()
+        Game_methods.off()
+
 
 main()
