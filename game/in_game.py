@@ -2,7 +2,8 @@ import pygame
 import random, secrets, string
 from game.class_folder.Fruits import Fruits
 from game.__settings__ import FPS, FRUIT_DICT, ICECUBE_IMAGE, BOMB_IMAGE, ICECUBE_COLOR, BOMB_COLOR
-from game.scores.manage_scores import combo_count, update_scores
+from game.scores.Player_attributes import Player_attributes
+from game.scores.Scores import Scores
 from game.game_functions import clock_tick
  
 def create_fruits(screen, game_mode, type):
@@ -32,81 +33,70 @@ def create_fruits(screen, game_mode, type):
     return fruit
 
 def in_game(screen, clock, game_mode, player):
-    invicibility = 0
-    score = 0
-    frame = 0
+    current_player = Player_attributes(player)
+    game_scores = Scores()
     spawn_delay = 40
+    frame = 0
     fruits = []
-    slashed = 0
     slashed_fruits = []
-    life = 3
-    combo = 0
-    last_key = ''
-    frozen=0
-    is_frozen = False
     current_background = screen.background()
     screen.screen.blit(current_background, (0, 0))
     frozen_effect = screen.frozen()
     while True:
-        if frozen == 0:
-            is_frozen = False
-            screen.screen.blit(current_background, (0, 0))
-            for fruit in fruits:
-                fruit.draw()
+        screen.screen.blit(current_background, (0, 0))
+        fruits_on_screen = fruits.copy()
+        for fruit in fruits_on_screen:
+            if not current_player.frozen():
                 if fruit.fall() == 'dropped':
                     index = fruits.index(fruit)
                     fruits.pop(index)
-                    if frame - invicibility > 60 and fruit.type == 'fruit':
-                        life -= 1
-                        invicibility = frame
-        elif frozen > 0:
+                    current_player.life_down('dropped', frame, fruit)
+            fruit.draw()
+        if current_player.frozen():
             screen.screen.blit(frozen_effect, (0, 0))
-            is_frozen = True
-            frozen -=1
+            current_player.frozen_up()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "game_off"
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RETURN and life <=0:
-                    update_scores(score, slashed, player)
+                if event.key == pygame.K_RETURN and not current_player.alive():
+                    game_scores.update_scores(current_player)
                     return 'main_menu'
-                if is_frozen == False:
+                if not current_player.frozen():
                     try:
-                        played_key = str(event.unicode).upper()
+                        current_player.played_key = str(event.unicode).upper()
                         for fruit in fruits:
-                            if fruit.letter == played_key:
+                            if fruit.letter == current_player.played_key:
                                 if fruit.type == 'fruit':
-                                    slashed+=1
                                     slashed_fruits.append(fruit)
                                     index = fruits.index(fruit)
                                     fruits.pop(index)
-                                    score, combo = combo_count(played_key, last_key, score, combo)
-                                    last_key = played_key
+                                    current_player.add_score()
                                 elif fruit.type == 'icecube':
-                                    frozen = 180
                                     index = fruits.index(fruit)
                                     fruits.pop(index)
+                                    current_player.frozen_up()
                                 elif fruit.type == 'bomb':
-                                    life = 0
                                     index = fruits.index(fruit)
                                     fruits.pop(index)
+                                    current_player.life_down('bomb')
                                 break                
-                        print(score)
+                        print(current_player.score)
                     except Exception:
                         pass
         if frame % 1300 == 0:
             if spawn_delay <= 2:
                 pass
-            else: spawn_delay -=3
+            else: spawn_delay -=2
         if frame % spawn_delay == 0:
-            if is_frozen == False and life > 0:
+            if not current_player.frozen() and current_player.alive():
                 if secrets.randbelow(100) > spawn_delay:
                     fruit = create_fruits(screen, game_mode,'fruit')
                     fruits.append(fruit)
                 if secrets.randbelow(100) > spawn_delay + 50:
                     fruit = create_fruits(screen,game_mode, 'icecube')
                     fruits.append(fruit)
-                if secrets.randbelow(100) > spawn_delay + 70:
+                if secrets.randbelow(100) > spawn_delay + 60:
                     fruit = create_fruits(screen,game_mode, 'bomb')
                     fruits.append(fruit)
                 

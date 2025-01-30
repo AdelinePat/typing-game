@@ -1,5 +1,5 @@
 import pygame
-from game.scores.manage_scores import *
+from game.scores.Player_attributes import *
 from game.in_game import *
 from game.main_menu import *
 from game.game_set_up import *
