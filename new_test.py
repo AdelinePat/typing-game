@@ -15,7 +15,7 @@ def menu_display():
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     # screen_rect_center = screen.screen.get_rect().center
 
-    main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list = get_buttons()
+    main_menu_button, main_button_list = get_buttons()
     
     
     run = True
@@ -51,17 +51,17 @@ def menu_display():
 
                 case "main_menu":
                     screen.screen.blit(current_background, (0,0))
-                    for button in button_list:  
-                        if button.rect.collidepoint(mouse_position):
-                            button.hovered = True
-                            button.draw("red")
+                    for main_button in main_button_list:  
+                        if main_button.rect.collidepoint(mouse_position):
+                            main_button.hovered = True
+                            main_button.draw("red")
 
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 # print("ohlalala")   
-                                game_menu = button.identification
+                                game_menu = main_button.identification
                         else:
-                            button.hovered = False
-                            button.draw(TEXT_COLOR)
+                            main_button.hovered = False
+                            main_button.draw(TEXT_COLOR)
 
                 case "score_menu":
                     #TODO afficher les scores et les joueurs associés sur plusieurs page avec option supression
@@ -93,7 +93,7 @@ def menu_display():
                     for mode_button in button_mode_list: 
                             if mode_button.rect.collidepoint(mouse_position):
                                 if event.type == pygame.MOUSEBUTTONDOWN:
-                                    game_mode = button.identification
+                                    game_mode = mode_button.identification
 
                     # print(game_mode)
                     # print(language)

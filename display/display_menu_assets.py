@@ -51,7 +51,7 @@ def get_buttons():
     exit_menu_button = Button(450, 100, "Quitter", "exit_menu", 4, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*3))
     button_list = [game_menu_button, mode_menu_button, score_menu_button, exit_menu_button]
 
-    return main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list
+    return main_menu_button, button_list
 
 def load_scores():
     if not os.path.exists(SCORE_PATH):
@@ -108,11 +108,11 @@ def display_mode_menu(game_mode, language_mode):
     # english_button.text_render(MAIN_FONT, "white")
                                             
 
-    button_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
+    button_mode_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
     # difficulty_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
     language_list = [french_button, english_button]
 
-    for button in button_list:
+    for button in button_mode_list:
         if game_mode == button.identification:
                 button.text_render(MAIN_FONT, "red")
         else:
@@ -124,7 +124,7 @@ def display_mode_menu(game_mode, language_mode):
         else:
             language.text_render(MAIN_FONT, "white")
             
-    return button_list, language_list
+    return button_mode_list, language_list
 
 
                     
