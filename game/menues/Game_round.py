@@ -16,44 +16,50 @@ pygame.mixer.set_num_channels(16)
 
 
 
-def run_new_game(screen, clock,fps, game_mode, player):
+def run_new_game(screen, clock, fps, game_mode, player):
     current_player = Player_attributes(player)
     game_scores = Scores()
-    game_mode = game_mode
-    if game_mode == 'normal_mode' or game_mode == 'easy_mode':
-        life = 5
+
+    all_letters = list(string.ascii_uppercase)
+    if game_mode == 'easy_mode':
+        life = 7
         spawn_delay = 40
         devel = 9
         letters = []
+        for letter in range(0,5):
+            letters.append(random.choice(all_letters))
+            all_letters.remove(letters[-1])
+
+    elif game_mode == 'normal_mode':
+        life = 5
+        spawn_delay = 35
+        devel = 7
+        letters = []
         for letter in range(0,7):
-            letters.append(random.choice(string.ascii_uppercase))
+            letters.append(random.choice(all_letters))
+            all_letters.remove(letters[-1])
+
     elif game_mode == 'nightmare_mode':
-        life = 50
+        life = 3
         spawn_delay = 30
         devel = 5
-        letters = string.ascii_uppercase
-    frame = 0
+        letters = all_letters.copy()
+
+    frame = 1
     fruits = []
     props = []
+    fruits_slices = []
+
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     frozen_effect = screen.frozen()
-    fruits_slices = []
+
     while True:
         if not current_player.alive(life):
             game_scores.update_scores(current_player)
-            # Jouer le son de Game Over
             sounds.play_game_over_sound()
             return "menu_game_over"
+
         screen.screen.blit(current_background, (0, 0))
-    
-        fruits_slices_on_screen = fruits_slices.copy()
-        for fruit_slice in fruits_slices_on_screen:
-            fruit_slice.draw()
-            if not current_player.frozen():
-                if fruit_slice.fall(frame) == 'dropped':
-                    index = fruits_slices.index(fruit_slice)
-                    fruits_slices.pop(index)
-        
         fruits_on_screen = fruits.copy()
         for fruit in fruits_on_screen:
             fruit.draw()
@@ -73,44 +79,72 @@ def run_new_game(screen, clock,fps, game_mode, player):
 
         display_score_in_game(current_player.score)
         display_hearts(life, current_player.strike)
+
         if current_player.frozen():
             screen.screen.blit(frozen_effect, (0, 0))
             current_player.frozen_up()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "game_off"
+
             if event.type == pygame.KEYDOWN:
-                if not current_player.frozen():
-                    try:
-                        current_player.played_key = str(event.unicode).upper()
-                        for fruit in fruits:
-                            if fruit.letter == current_player.played_key:
-                                index = fruits.index(fruit)
-                                fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen, screen, 'half_1')
-                                fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen, screen, 'half_2')
-                                fruits_slices.append(fruit_slices_1)
-                                fruits_slices.append(fruit_slices_2)
-                                fruits.pop(index)
-                                # Joue le son de découpe ici
-                                sounds.play_slice_sound()
-                                current_player.add_score()
-                    except Exception:
-                        pass
-        if frame % 900 == 0:
-            if spawn_delay <= 2:
-                pass
-            else:
-                spawn_delay -=1
-                devel -= 0.25
+                try:
+                    current_player.played_key = str(event.unicode).upper()
+                except Exception:
+                    current_player.played_key = ''
+
+                for fruit in fruits:
+                    if fruit.letter == current_player.played_key:
+                        index = fruits.index(fruit)
+                        fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, screen.screen, screen, 'half_1')
+                        fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, screen.screen, screen, 'half_2')
+                        fruits_slices.append(fruit_slices_1)
+                        fruits_slices.append(fruit_slices_2)
+                        fruits.pop(index)
+                        sounds.play_slice_sound()
+                        current_player.add_score()
+
+                for prop in props:
+                    if prop.letter == current_player.played_key:
+                        if prop.name == 'bomb':
+                            sounds.play_bomb_sound
+                            current_player.life_down(life,'bomb')
+                            index = props.index(prop)
+                            props.pop(index)
+                        elif prop.name in ('icecube1', 'icecube2', 'icecube3', 'icecube4'):
+                            sounds.play_freeze_sound
+                            current_player.frozen_up()
+                            index = props.index(prop)
+                            props.pop(index)
+  
+        fruits_slices_on_screen = fruits_slices.copy()
+        for fruit_slice in fruits_slices_on_screen:
+            fruit_slice.draw()
+            if not current_player.frozen():
+                if fruit_slice.fall(frame) == 'dropped':
+                    index = fruits_slices.index(fruit_slice)
+                    fruits_slices.pop(index)
+        
         if frame % spawn_delay == 0:
             if not current_player.frozen() and current_player.alive(life):
                 if secrets.randbelow(100) > spawn_delay:
                     fruit = create_fruits(screen, letters, devel)
                     fruits.append(fruit)
-                if secrets.randbelow(100) > spawn_delay: # + 40:
+                if secrets.randbelow(100) > spawn_delay + 50:
                     prop = create_props(screen, devel)
                     props.append(prop)
-                
+        
+        if frame % 900 == 0:
+            if game_mode == 'normal_mode':
+                letters.append(random.choice(all_letters))
+                all_letters.remove(letters[-1])
+            if spawn_delay <= 2:
+                pass
+            else:
+                spawn_delay -=1
+                devel -= 0.25
+
         frame = clock_tick(clock, fps, frame)
 
 def create_fruits(screen, letters, devel):

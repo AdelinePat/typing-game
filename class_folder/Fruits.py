@@ -49,7 +49,7 @@ class Fruits():
         self.letter = letter
         self.vel_x = random.randrange(-4, 4)
         self.vel_y = (random.uniform(26.75 - devel*1.75, 27.5 - devel*1.5)) * -1 # VERSION DE JOLYNE
-        self.weight = self.vel_y # 59.5 - devel*5.5, 53 - devel*4
+        self.weight = self.vel_y
 
     
 

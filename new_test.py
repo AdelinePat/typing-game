@@ -24,7 +24,6 @@ def menu_display():
     screen, fps, clock, player, game_mode, game_menu, language_mode = init_game_functions()
 
     while run:
-        # timer.tick(fps)
         clock_tick(clock,fps)
 
         mouse_position = pygame.mouse.get_pos()

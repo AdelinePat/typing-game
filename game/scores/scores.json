@@ -1,8 +1,8 @@
 {
     "jojo": {
         "highscore": 213,
-        "slashed_fruits": 753,
-        "games_played": 15
+        "slashed_fruits": 893,
+        "games_played": 21
     },
     "test": {
         "highscore": 51,
@@ -48,5 +48,15 @@
         "highscore": 5213,
         "slashed_fruits": 5213,
         "games_played": 20
+    },
+    "cacac": {
+        "highscore": 17,
+        "slashed_fruits": 16,
+        "games_played": 1
+    },
+    "cacac arme": {
+        "highscore": 17,
+        "slashed_fruits": 14,
+        "games_played": 1
     }
 }
