@@ -1,16 +1,16 @@
 import pygame, random
-from __settings__ import FRUIT_DICT
+from __settings__ import FRUIT_DICT, SCREEN
 
 class Fruit_slices():
-    def __init__(self, x, y, vel_x, vel_y, size, name, screen_screen, screen, fruit_half):
+    def __init__(self, x, y, vel_x, vel_y, size, name, fruit_half):
         self.x = x
         self.y = y
         self.size = size
         self.width = size
         self.height = size
-        self.screen = screen_screen
-        self.screen_width = screen.width
-        self.screen_height = screen.height
+        # self.screen = screen_screen
+        # self.screen_width = screen.width
+        # self.screen_height = screen.height
         self.surface = (self.width, self.height)
         self.name = name
         self.image_path = FRUIT_DICT[self.name]["slice"]
@@ -26,10 +26,10 @@ class Fruit_slices():
             self.vel_x = abs(vel_x)
 
     def fall(self, frame):
-        if self.y > (self.screen_height + 2):
+        if self.y > (SCREEN.height + 2):
             return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
         else:
-            if self.x <-10 or self.x > self.screen_width-self.width+10:
+            if self.x <-10 or self.x > SCREEN.width-self.width+10:
                 self.vel_x *= -1
             if self.vel_y < -1:
                 self.y += self.vel_y
@@ -52,5 +52,5 @@ class Fruit_slices():
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         self.rect = self.image.get_rect(center = self.box_center)
 
-        self.screen.blit(image_rotate, image_rect)
+        SCREEN.screen.blit(image_rotate, image_rect)
 

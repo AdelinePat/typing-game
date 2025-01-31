@@ -1,19 +1,21 @@
 import pygame
+from display.display_models.Screen import Screen
 pygame.display.init()
 
-BACKGROUND_IMAGE = pygame.image.load("assets/backgrounds/background_name_v2.jpg")
-BACKGROUND_IMAGE_MENU = pygame.image.load("assets/backgrounds/background_menu.jpg")
-FROZEN_EFFECT = "assets/props/frozen_effect.webp"
+SCREEN = Screen(1080, 720)
+
 MAIN_FONT = "assets/fonts/Coolvetica Rg.otf"
 STYLE_FONT = "assets/fonts/slice n dice.ttf"
 TEXT_COLOR = (218, 133, 51)
 TEXT_COLOR_LIGHT = (245, 189, 122)
 TEXT_COLOR_DARK = (96, 57, 2)
 
-BUTTON_IMAGE = "assets/plank/plank1.1.png"
+
+
+BUTTON_IMAGE = pygame.image.load("assets/plank/plank1.1.png")
 
 def flip_button_image():
-    img = pygame.image.load(BUTTON_IMAGE)
+    img = BUTTON_IMAGE
     img_copy1 = img.copy()
     img_copy2 = img.copy()
     img_copy3 = img.copy()
@@ -33,12 +35,12 @@ ICE_CUBE1 = pygame.image.load("assets/bonus_malus/ice_cube1.png")
 ICE_CUBE2 = pygame.image.load("assets/bonus_malus/ice_cube2.png")
 ICE_CUBE3 = pygame.image.load("assets/bonus_malus/ice_cube3.png")
 ICE_CUBE4 = pygame.image.load("assets/bonus_malus/ice_cube4.png")
-HEART = "assets/bonus_malus/heart_v3.png"
-BOMB_IMAGE = "assets/bonus_malus/bomb.png"
+HEART = pygame.image.load("assets/bonus_malus/heart_v3.png")
+BOMB_IMAGE = pygame.image.load("assets/bonus_malus/bomb.png")
 BOMB = pygame.image.load("assets/bonus_malus/bomb.png")
-EFFECT1 = "assets/bonus_malus/explosion1.png"
-EFFECT2 = "assets/bonus_malus/explosion2.png"
-EFFECT3 = "assets/bonus_malus/explosion3.png"
+EFFECT1 = pygame.image.load("assets/bonus_malus/explosion1.png")
+EFFECT2 = pygame.image.load("assets/bonus_malus/explosion2.png")
+EFFECT3 = pygame.image.load("assets/bonus_malus/explosion3.png")
 
 ICECUBE_COLOR = (255,255,255)
 BOMB_COLOR = (0,0,0)

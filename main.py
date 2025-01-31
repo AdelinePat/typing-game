@@ -1,6 +1,6 @@
 import pygame
-from class_folder.Button import Button
-from class_folder.Screen import Screen
+from element_models.Button_image import Button
+from element_models.Screen import Screen
 from game.menues.game_functions import init_game_functions, game_off, clock_tick
 from game.menues.game_round import run_new_game
 from game.menues.game_set_up import run_set_up_game
@@ -76,10 +76,10 @@ def menu_display():
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    game_menu, game_mode, player = run_set_up_game(screen,clock,fps,game_mode,player)
+                    game_menu, player = run_set_up_game(screen, clock, fps, player)
 
                 case "in_game":
-                    game_menu = run_new_game(screen,clock,fps,game_mode,player)
+                    game_menu = run_new_game(screen, clock, fps, game_mode, player)
 
                 case "menu_game_over":
                     game_menu = "main_menu"

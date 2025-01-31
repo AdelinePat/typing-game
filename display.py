@@ -2,11 +2,11 @@ import pygame
 import time
 import random, secrets
 import string
-from class_folder.Screen import Screen
-from class_folder.Fruits import Fruits
-from class_folder.Fruit_slices import Fruit_slices
+from display.display_models.Screen import Screen
+from game.element_models.Fruits import Fruits
+from game.element_models.Fruit_slices import Fruit_slices
 from __settings__ import FPS_EASY, FPS_HARD, FRUIT_DICT
-from display.display_menu_assets import display_hearts, display_score_in_game
+# from display.display_menu import display_hearts, display_score_in_game
 
 KEYDOWN = pygame.KEYDOWN
 screen = Screen(1080, 720)
@@ -25,7 +25,7 @@ def create_fruits():
     string.ascii_letters
     random_letter = random.choice(string.ascii_letters).upper()
 
-    fruit = Fruits(random_x_position, (screen.height+random_size), random_size, image, random_rotation, random_letter, color,screen.height, screen.screen, fruits_list[index])
+    fruit = Fruits(random_x_position, (screen.height+random_size), random_size, image, random_rotation, random_letter, color, fruits_list[index])
     # fruit = Fruits(random_x_position, screen.height//2, random_size, image, random_rotation, "A", color, screen.height, screen.screen)
     return fruit
  
@@ -60,8 +60,8 @@ while run:
                     if len(fruits) > 0:
                         if fruit.letter.lower() == letter:
                             index = fruits.index(fruit)
-                            fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen)
-                            fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name, screen.screen)
+                            fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name)
+                            fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.width, fruit.name)
                             fruits_slices.append(fruit_slices_1)
                             fruits_slices.append(fruit_slices_2)
                             fruits.pop(index)

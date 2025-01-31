@@ -1,17 +1,22 @@
-from display.display_menu_assets import display_hearts, display_score_in_game, get_buttons, load_scores, display_scores, display_mode_menu
+# from display.display_game_elements import display_hearts, display_score_in_game
+from display.display_menu import get_buttons, display_mode_menu
+from display.display_scores import display_scores
 import pygame
-from class_folder.Button import Button
-from class_folder.Screen import Screen
+# from display.display_models import Button
+# from display.display_models import Screen
+from game.scores.Scores import Scores
 from game.menues.game_functions import init_game_functions, game_off, clock_tick
 from game.menues.game_round import run_new_game
 from game.menues.game_set_up import run_set_up_game
-
-from __settings__ import TEXT_COLOR, BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
-
+from __settings__ import TEXT_COLOR
+from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 
 
 def menu_display():
-    screen = Screen(1080, 720)
+    # screen = Screen(1080, 720)
+    
+    screen, fps, clock, player, game_mode, game_menu, language_mode = init_game_functions()
+
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     # screen_rect_center = screen.screen.get_rect().center
 
@@ -21,7 +26,6 @@ def menu_display():
     run = True
     screen.screen.blit(current_background, (0,0))
    
-    screen, fps, clock, player, game_mode, game_menu, language_mode = init_game_functions()
 
     while run:
         clock_tick(clock,fps)
@@ -38,7 +42,7 @@ def menu_display():
             match game_menu:
                 case "start_menu":
                         screen.screen.blit(current_background, (0,0))         
-                        if main_menu_button.rect.collidepoint(mouse_position):
+                        if main_menu_button.image_rect.collidepoint(mouse_position):
                             main_menu_button.hovered = True
                             main_menu_button.draw("red")
                             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -51,7 +55,7 @@ def menu_display():
                 case "main_menu":
                     screen.screen.blit(current_background, (0,0))
                     for main_button in main_button_list:  
-                        if main_button.rect.collidepoint(mouse_position):
+                        if main_button.image_rect.collidepoint(mouse_position):
                             main_button.hovered = True
                             main_button.draw("red")
 
@@ -66,8 +70,8 @@ def menu_display():
                     #TODO afficher les scores et les joueurs associés sur plusieurs page avec option supression
                     new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
                     screen.screen.blit(new_background, (0,0))
-                    scores = load_scores()
-                    display_scores(scores)
+                    scores = Scores()
+                    display_scores(scores.scores)
                     # score_menu_button.draw("green")
 
 
@@ -82,8 +86,6 @@ def menu_display():
                     screen.screen.blit(new_background, (0,0))
                     button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
 
-                    
-                    
                     for language in language_list:
                         # for event in pygame.event.get():  
                             if language.rect.collidepoint(mouse_position):
@@ -99,10 +101,10 @@ def menu_display():
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    game_menu, game_mode, player = run_set_up_game(screen,clock,fps,game_mode,player)
+                    game_menu, player = run_set_up_game(screen, clock, fps, player)
 
                 case "in_game":
-                    game_menu = run_new_game(screen,clock,fps,game_mode,player)
+                    game_menu = run_new_game(screen, clock, fps, game_mode, player)
 
                 case "menu_game_over":
                     pass

@@ -1,9 +1,10 @@
 import pygame
-from class_folder.Screen import Screen
-from __settings__ import FPS
+# from class_folder.Screen import Screen
+from __settings__ import FPS, SCREEN
 
 def init_game_functions():
-    screen = Screen(1080, 720)
+    # screen = Screen(1080, 720)
+    SCREEN
     fps = FPS
     clock = pygame.time.Clock()
     player = ''
@@ -11,7 +12,7 @@ def init_game_functions():
     game_menu = 'start_menu'
     language_mode = "french_mode"
     pygame.init()
-    return screen, fps, clock, player, game_mode, game_menu, language_mode
+    return SCREEN, fps, clock, player, game_mode, game_menu, language_mode
         
 def game_off():
     '''
