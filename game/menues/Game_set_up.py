@@ -1,6 +1,9 @@
 import pygame
 import string
+from __settings__ import BUTTON_IMAGE3, SCREEN, MAIN_FONT, TEXT_COLOR_DARK,STYLE_FONT
 from display.display_models.__settings__ import BACKGROUND_IMAGE
+from display.display_models.Button import Button
+from display.display_models.Button_image import Button_image
 from game.menues.game_functions import clock_tick
 
 def run_set_up_game(screen, clock, fps, player):
@@ -8,13 +11,26 @@ def run_set_up_game(screen, clock, fps, player):
         user_input = player
     else: 
         user_input = ''
-    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
+    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer")
     while True:
-        screen.screen.blit(current_background, (0, 0))
-        user_print = pygame.font.Font('assets/fonts/Coolvetica Rg.otf').render(user_input, True, 'black', 'white')
-        user_print_rect = user_print.get_rect(center= (screen.width//2, screen.height//2))
-        screen.screen.blit(user_print, user_print_rect)
-        correct_input, user_input = input_expression(user_input, 9)
+        SCREEN.screen.blit(current_background, (0, 0))
+        
+        user_name_title = Button("entrez votre nom", "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
+        user_name_title.draw(TEXT_COLOR_DARK)
+
+        info_button = Button("Appuyez sur entrer pour lancer le jeu", "info", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
+        info_button.draw(TEXT_COLOR_DARK)
+
+
+        player_name_button = Button_image(600, 150, user_input, "player_input", BUTTON_IMAGE3, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2))
+        player_name_button.font = MAIN_FONT
+        player_name_button.draw(TEXT_COLOR_DARK)
+
+        # user_print = pygame.font.Font('assets/fonts/Coolvetica Rg.otf').render(user_input, True, 'black', 'white')
+
+        # user_print_rect = user_print.get_rect(center= (SCREEN.width//2, SCREEN.height//2))
+        # SCREEN.screen.blit(user_print, user_print_rect)
+        correct_input, user_input = input_expression(user_input, 12)
         match correct_input:
             case True:
                 player = user_input

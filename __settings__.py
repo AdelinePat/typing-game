@@ -10,10 +10,7 @@ TEXT_COLOR = (218, 133, 51)
 TEXT_COLOR_LIGHT = (245, 189, 122)
 TEXT_COLOR_DARK = (96, 57, 2)
 
-
-
 BUTTON_IMAGE = pygame.image.load("assets/plank/plank1.1.png")
-
 def flip_button_image():
     img = BUTTON_IMAGE
     img_copy1 = img.copy()
@@ -25,7 +22,6 @@ def flip_button_image():
     img_flip_3 = pygame.transform.flip(img_copy3, True, True)
 
     return img_flip_1, img_flip_2, img_flip_3
-
 BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4 = flip_button_image()
 
 PLANK_SCORE = "assets/plank/plank2.png"
