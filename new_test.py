@@ -82,7 +82,7 @@ def menu_display():
                     # screen.screen.blit(current_background, (0,0))
                     # mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
-                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Modes")
                     screen.screen.blit(new_background, (0,0))
                     button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
 
