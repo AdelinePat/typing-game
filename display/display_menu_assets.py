@@ -73,7 +73,7 @@ def create_mode_menu_button():
     language_button.draw(TEXT_COLOR)
 
 
-def display_mode_menu(game_mode, language):
+def display_mode_menu(game_mode, language_mode):
     create_mode_menu_button()
     
 
@@ -100,66 +100,51 @@ def display_mode_menu(game_mode, language):
     french_button = Button_simple("Français", "french_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 - 10))
     english_button = Button_simple("Anglais", "english_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 + 70))
 
-    easy_difficulty_button.text_render(MAIN_FONT, "white")
-    normal_difficulty_button.text_render(MAIN_FONT, "white")
-    nightmare_difficulty_button.text_render(MAIN_FONT, "white")
+    # easy_difficulty_button.text_render(MAIN_FONT, "white")
+    # normal_difficulty_button.text_render(MAIN_FONT, "white")
+    # nightmare_difficulty_button.text_render(MAIN_FONT, "white")
 
-    french_button.text_render(MAIN_FONT, "white")
-    english_button.text_render(MAIN_FONT, "white")
+    # french_button.text_render(MAIN_FONT, "white")
+    # english_button.text_render(MAIN_FONT, "white")
                                             
 
-    # dialog_render("Facile", MAIN_FONT, 32, "white")
-    # easy_difficulty_rect = easy_difficulty_button.get_rect(center = ((screen.width // 4), (screen.height // 2 - 10)))
-    # screen.screen.blit(easy_difficulty_button, easy_difficulty_rect)
-
-    # normal_difficulty_button = dialog_render("Normal", MAIN_FONT, 32, "white")
-    # normal_difficulty_rect = normal_difficulty_button.get_rect(center = ((screen.width // 4), (screen.height // 2 + 70)))
-    # screen.screen.blit(normal_difficulty_button, normal_difficulty_rect)
-
-    # nightmare_difficulty_button = dialog_render("Nightmare", MAIN_FONT, 32, "white")
-    # nightmare_rect = nightmare_difficulty_button.get_rect(center = ((screen.width // 4), (screen.height // 2 + 150)))
-    # screen.screen.blit(nightmare_difficulty_button, nightmare_rect)
-
-    # french_button = dialog_render("Français", MAIN_FONT, 32, "white")
-    # french_rect = french_button.get_rect(center = ((screen.width // 4)*3, (screen.height // 2 - 10)))
-    # screen.screen.blit(french_button, french_rect)
-
-    # english_button = dialog_render("Anglais", MAIN_FONT, 32, "white")
-    # english_rect = english_button.get_rect(center = ((screen.width // 4)*3, (screen.height // 2 + 70)))
-    # screen.screen.blit(english_button, english_rect)
-
-
-
-
-    # button_return = dialog_render("RETOUR", MAIN_FONT, 32, "white")
-    # button_return_rect = button_return.get_rect(center = (screen.width // 4, screen.height - 100))
-    # screen.screen.blit(button_return, button_return_rect)
-
-    # french_button.draw(TEXT_COLOR)
-    # english_button.draw(TEXT_COLOR)
     button_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
+    # difficulty_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
     language_list = [french_button, english_button]
+
     mouse_position = pygame.mouse.get_pos()
-    for event in pygame.event.get():
-        for button in button_list:
-            if button.rect.collidepoint(mouse_position):
-                # new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
-                # screen.screen.blit(new_background, (0,0))
-                # create_mode_menu_button()
-                button.text_render(STYLE_FONT, "red")
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    game_mode = button.identification
-            else:
+    for button in button_list:
+        if game_mode == button.identification:
+                button.text_render(MAIN_FONT, "red")
+        else:
+            button.text_render(MAIN_FONT, "white")
+
+    for language in language_list:
+        if language_mode == language.identification:
+                language.text_render(MAIN_FONT, "red")
+        else:
+            language.text_render(MAIN_FONT, "white")
+            
+    return button_list, language_list
+
 
                     
-        for language in language_list:
-            if language.rect.collidepoint(mouse_position):
-                language.hovered = True
-                # language.color = "red"
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    language = language.identification
+                # if event.type == pygame.MOUSEBUTTONDOWN:
+                #     game_mode = button.identification
 
-    return game_mode, language
+                # if game_mode == button.identification:
+            #     #     button.text_render(MAIN_FONT, "blue")
+
+                    
+            # for language in language_list:
+            #     if language.rect.collidepoint(mouse_position):
+            #         language.text_render(MAIN_FONT, "red")
+                    
+            #         if event.type == pygame.MOUSEBUTTONDOWN:
+            #             language = language.identification   
+            #             button.text_render(MAIN_FONT, "blue")
+
+    # return game_mode, language_mode
                 
 
 

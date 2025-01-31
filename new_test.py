@@ -22,8 +22,10 @@ def menu_display():
     screen.screen.blit(current_background, (0,0))
    
     screen, fps, clock, player, game_mode, game_menu = init_game_functions()
+
     game_mode = "normal_mode"
-    language = "french_mode"
+    language_mode = "french_mode"
+
     while run:
         # timer.tick(fps)
         clock_tick(clock,fps)
@@ -82,9 +84,23 @@ def menu_display():
                     # exit_menu_button.draw("blue")
                     new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
                     screen.screen.blit(new_background, (0,0))
-                    game_mode, language = display_mode_menu(game_mode, language)
-                    print(game_mode)
-                    print(language)
+                    button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
+
+                    for mode_button in button_mode_list:
+                        # for event in pygame.event.get():  
+                            if mode_button.rect.collidepoint(mouse_position):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    game_mode = button.identification
+                    
+                    for language in language_list:
+                        # for event in pygame.event.get():  
+                            if language.rect.collidepoint(mouse_position):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    language_mode = language.identification
+                    
+
+                    # print(game_mode)
+                    # print(language)
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
