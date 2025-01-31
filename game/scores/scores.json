@@ -1,8 +1,8 @@
 {
     "jojo": {
         "highscore": 213,
-        "slashed_fruits": 688,
-        "games_played": 12
+        "slashed_fruits": 724,
+        "games_played": 14
     },
     "test": {
         "highscore": 8,
@@ -18,7 +18,7 @@
         "highscore": 3,
         "slashed_fruits": 3,
         "games_played": 1
-    }    ,
+    },
     "Mulan": {
         "highscore": 8,
         "slashed_fruits": 9,

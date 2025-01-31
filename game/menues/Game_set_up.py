@@ -1,17 +1,14 @@
-import pygame, string
-# <<<<<<< HEAD
-from game.menues.Game_methods import Game_methods
+import pygame
+import string
 from __settings__ import BACKGROUND_IMAGE
-# =======
 from game.menues.game_functions import clock_tick
-# >>>>>>> 424c21e502b879d3f3c5d45216ceee4e08c7d7ed
 
 def run_set_up_game(screen,clock,fps,game_mode,player):
     if player != '':
         user_input = player
     else: 
         user_input = ''
-    current_background = screen.background()
+    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     while True:
         screen.screen.blit(current_background, (0, 0))
         user_print = pygame.font.Font('assets/fonts/Coolvetica Rg.otf').render(user_input, True, 'black', 'white')
@@ -28,13 +25,6 @@ def run_set_up_game(screen,clock,fps,game_mode,player):
                 return "off", game_mode, player
         clock_tick(clock,fps)
 
-# <<<<<<< HEAD
-        if Game_methods.player != '':
-            self.user_input = Game_methods.player
-        else: 
-            self.user_input = ''
-        self.current_background = self.screen.background(BACKGROUND_IMAGE, "Fruits Slicer")
-# =======
 def input_expression(game_mode, user_input, max_value):
     for event in pygame.event.get():
         # Handle game quit
@@ -45,7 +35,6 @@ def input_expression(game_mode, user_input, max_value):
             if event.key == pygame.K_ESCAPE:
                 # Return to a previous menu or cancel
                 return False, game_mode, user_input
-# >>>>>>> 424c21e502b879d3f3c5d45216ceee4e08c7d7ed
 
             if event.key == pygame.K_RETURN and user_input != '':
                 # Confirm the input when Enter is pressed

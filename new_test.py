@@ -2,10 +2,9 @@ from display.display_menu_assets import display_hearts, display_score_in_game, g
 import pygame
 from class_folder.Button import Button
 from class_folder.Screen import Screen
-from game.menues.Game_methods import Game_methods
-from game.menues.Game_round import Game_round
-from game.menues.Game_set_up import Game_set_up
-from game.menues.Main_menu import Main_menu
+from game.menues.game_functions import init_game_functions, game_off, clock_tick
+from game.menues.game_round import run_new_game
+from game.menues.game_set_up import run_set_up_game
 
 from __settings__ import TEXT_COLOR, BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 
@@ -13,21 +12,20 @@ from __settings__ import TEXT_COLOR, BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 
 def menu_display():
     screen = Screen(1080, 720)
-    background_final = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
+    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     # screen_rect_center = screen.screen.get_rect().center
 
     main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list = get_buttons()
     
     
     run = True
-    screen.screen.blit(background_final, (0,0))
+    screen.screen.blit(current_background, (0,0))
    
-    game_menu = "start_menu"
-    clock = pygame.time.Clock()
+    screen, fps, clock, player, game_mode, game_menu = init_game_functions()
 
     while run:
         # timer.tick(fps)
-        timer = clock.tick(60)
+        clock_tick(clock,fps)
 
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -40,7 +38,7 @@ def menu_display():
 
             match game_menu:
                 case "start_menu":
-                        screen.screen.blit(background_final, (0,0))         
+                        screen.screen.blit(current_background, (0,0))         
                         if main_menu_button.rect.collidepoint(mouse_position):
                             main_menu_button.hovered = True
                             main_menu_button.draw("red")
@@ -52,7 +50,7 @@ def menu_display():
                             main_menu_button.draw(TEXT_COLOR)
 
                 case "main_menu":
-                    screen.screen.blit(background_final, (0,0))
+                    screen.screen.blit(current_background, (0,0))
                     for button in button_list:  
                         if button.rect.collidepoint(mouse_position):
                             button.hovered = True
@@ -78,18 +76,16 @@ def menu_display():
 
                 case "mode_menu":
                     #TODO afficher les modes de jeu possible et les langues (si on a les temps)
-                    screen.screen.blit(background_final, (0,0))
+                    screen.screen.blit(current_background, (0,0))
                     mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    new_game = Game_set_up()
-                    game_menu = new_game.run()
+                    game_menu, game_mode, player = run_set_up_game(screen,clock,fps,game_mode,player)
 
                 case "in_game":
-                    new_game_start = Game_round()
-                    game_menu = new_game_start.run()
+                    game_menu = run_new_game(screen,clock,fps,game_mode,player)
 
                 case "menu_game_over":
                     pass
@@ -101,7 +97,7 @@ def menu_display():
 
 
                     # game_menu_screen()
-                    # screen.screen.blit(background_final, (0,0))
+                    # screen.screen.blit(current_background, (0,0))
                     # game_menu_button.draw("black")
                     # exit_menu_button.draw("blue")
                 case "exit_menu":
