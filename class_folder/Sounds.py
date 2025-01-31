@@ -8,7 +8,8 @@ class Sounds:
         self.bomb_sound = pygame.mixer.Sound("./assets/sounds/explosion-2.wav")
         self.bomb_sound.set_volume(0.5)
         self.freeze_sound = pygame.mixer.Sound("./assets/sounds/freeze.wav")
-        self.bomb_sound.set_volume(0.5)
+        self.freeze_sound.set_volume(0.5)  # Corrigé ici aussi (avant c'était self.bomb_sound)
+        self.game_over_sound = pygame.mixer.Sound("./assets/sounds/game_over.wav")
 
     def play_slice_sound(self):
         self.slice_sound.play()
@@ -18,3 +19,6 @@ class Sounds:
 
     def play_freeze_sound(self):
         self.freeze_sound.play()
+
+    def play_game_over_sound(self):  # Changement du nom ici
+        self.game_over_sound.play()
