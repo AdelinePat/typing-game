@@ -11,14 +11,14 @@ def run_new_game(screen, clock,fps, game_mode, player):
     current_player = Player_attributes(player)
     game_scores = Scores()
     game_mode = game_mode
-    if game_mode == 'normal':
+    if game_mode == 'normal_mode' or game_mode == 'easy_mode':
         life = 5
         spawn_delay = 40
         devel = 9
         letters = []
         for letter in range(0,7):
             letters.append(random.choice(string.ascii_uppercase))
-    elif game_mode == 'nightmare':
+    elif game_mode == 'nightmare_mode':
         life = 50
         spawn_delay = 30
         devel = 5
@@ -52,11 +52,11 @@ def run_new_game(screen, clock,fps, game_mode, player):
                     fruits.pop(index)
                     current_player.life_down(life, 'dropped', frame)
 
-
-        for prop in props:
+        props_on_screen = props.copy()
+        for prop in props_on_screen:
             prop.draw()
             if not current_player.frozen():
-                if prop.fall() == 'dropped':
+                if prop.fall(frame, devel) == 'dropped':
                     index = props.index(prop)
                     props.pop(index)
 
@@ -95,7 +95,7 @@ def run_new_game(screen, clock,fps, game_mode, player):
                     fruit = create_fruits(screen, letters, devel)
                     fruits.append(fruit)
                 if secrets.randbelow(100) > spawn_delay: # + 40:
-                    prop = create_props(screen)
+                    prop = create_props(screen, devel)
                     props.append(prop)
                 
         frame = clock_tick(clock, fps, frame)
@@ -117,7 +117,7 @@ def create_fruits(screen, letters, devel):
 
     return fruit
 
-def create_props(screen):
+def create_props(screen, devel):
     props_list= list(PROPS_DICT.keys())
     index = secrets.randbelow(len(props_list))
     
@@ -131,6 +131,6 @@ def create_props(screen):
     string.ascii_letters
     random_letter = random.choice(string.ascii_letters).upper()
 
-    prop = Fruits(random_x_position, (screen.height+1), random_size, image, random_rotation, random_letter, color, screen.height, screen.screen, screen.width, props_list[index])
+    prop = Fruits(random_x_position, (screen.height+1), random_size, image, random_rotation, devel, random_letter, color, screen.height, screen.screen, screen.width, props_list[index])
 
     return prop

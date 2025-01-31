@@ -7,10 +7,11 @@ def init_game_functions():
     fps = FPS
     clock = pygame.time.Clock()
     player = ''
-    game_mode = 'normal'
+    game_mode = 'normal_mode'
     game_menu = 'start_menu'
+    language_mode = "french_mode"
     pygame.init()
-    return screen, fps, clock, player, game_mode, game_menu
+    return screen, fps, clock, player, game_mode, game_menu, language_mode
         
 def game_off():
     '''

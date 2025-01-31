@@ -112,7 +112,6 @@ def display_mode_menu(game_mode, language_mode):
     # difficulty_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
     language_list = [french_button, english_button]
 
-    mouse_position = pygame.mouse.get_pos()
     for button in button_list:
         if game_mode == button.identification:
                 button.text_render(MAIN_FONT, "red")

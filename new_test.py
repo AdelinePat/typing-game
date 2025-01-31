@@ -21,10 +21,7 @@ def menu_display():
     run = True
     screen.screen.blit(current_background, (0,0))
    
-    screen, fps, clock, player, game_mode, game_menu = init_game_functions()
-
-    game_mode = "normal_mode"
-    language_mode = "french_mode"
+    screen, fps, clock, player, game_mode, game_menu, language_mode = init_game_functions()
 
     while run:
         # timer.tick(fps)
@@ -86,18 +83,17 @@ def menu_display():
                     screen.screen.blit(new_background, (0,0))
                     button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
 
-                    for mode_button in button_mode_list:
-                        # for event in pygame.event.get():  
-                            if mode_button.rect.collidepoint(mouse_position):
-                                if event.type == pygame.MOUSEBUTTONDOWN:
-                                    game_mode = button.identification
+                    
                     
                     for language in language_list:
                         # for event in pygame.event.get():  
                             if language.rect.collidepoint(mouse_position):
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     language_mode = language.identification
-                    
+                    for mode_button in button_mode_list: 
+                            if mode_button.rect.collidepoint(mouse_position):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    game_mode = button.identification
 
                     # print(game_mode)
                     # print(language)
@@ -122,15 +118,13 @@ def menu_display():
                     # screen.screen.blit(current_background, (0,0))
                     # game_menu_button.draw("black")
                     # exit_menu_button.draw("blue")
-                case "exit_menu":
-                    run = False
+                case "exit_menu" | _:
+                    game_off()
    
 
         # pygame.display.flip()
 
         pygame.display.update() 
 
-
-    pygame.quit()
 
 menu_display()
