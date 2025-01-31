@@ -6,6 +6,15 @@ from __settings__ import FRUIT_DICT, BACKGROUND_IMAGE, PROPS_DICT
 from game.scores.Player_attributes import Player_attributes
 from game.scores.Scores import Scores
 from display.display_menu_assets import display_hearts, display_score_in_game
+from class_folder.Sounds import Sounds
+
+# Initialisation de pygame et du mixer
+sounds = Sounds()
+sounds.play_slice_sound()
+pygame.mixer.init()
+pygame.mixer.set_num_channels(16)
+
+
 
 def run_new_game(screen, clock,fps, game_mode, player):
     current_player = Player_attributes(player)
@@ -32,6 +41,8 @@ def run_new_game(screen, clock,fps, game_mode, player):
     while True:
         if not current_player.alive(life):
             game_scores.update_scores(current_player)
+            # Jouer le son de Game Over
+            sounds.play_game_over_sound()
             return "menu_game_over"
         screen.screen.blit(current_background, (0, 0))
     
@@ -80,6 +91,8 @@ def run_new_game(screen, clock,fps, game_mode, player):
                                 fruits_slices.append(fruit_slices_1)
                                 fruits_slices.append(fruit_slices_2)
                                 fruits.pop(index)
+                                # Joue le son de découpe ici
+                                sounds.play_slice_sound()
                                 current_player.add_score()
                     except Exception:
                         pass
