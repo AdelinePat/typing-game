@@ -3,7 +3,7 @@ from class_folder.Screen import Screen
 from __settings__ import MAIN_FONT
 
 class Fruits():
-    def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen, screen_width, name):
+    def __init__(self, x, y, size, image, rotation, devel, letter, color, screen_height, screen_screen, screen_width, name):
         self.name = name
         self.x = x
         self.y = y
@@ -48,20 +48,24 @@ class Fruits():
 
         self.letter = letter
         self.vel_x = random.randrange(-4, 4)
-        self.vel_y = (random.randrange(26, 36))*-1 # VERSION DE JOLYNE 
-        self.devel = 0
+        self.vel_y = (random.uniform(26.75 - devel*1.75, 27.5 - devel*1.5)) * -1 # VERSION DE JOLYNE
+        self.weight = self.vel_y # 59.5 - devel*5.5, 53 - devel*4
 
-    def fall(self):
+    
+
+    def fall(self, frame, devel):
         if self.y > (self.screen_height + 2):
             return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
         else:
             if self.x <-10 or self.x > self.screen_width-self.width+10:
                 self.vel_x *= -1
-            self.y += self.vel_y
+            if self.vel_y < -1:
+                self.y += self.vel_y
+            else:
+                self.y += self.vel_y*3
             self.x += self.vel_x
-            if self.devel %6 == 0:
-                self.vel_y += 1 + abs(self.vel_y*0.2)
-            self.devel += 1
+            if frame % 9 == 0:
+                self.vel_y += abs(self.weight * (0.2 - (devel*0.01)))
 
     def text_render(self):
         # self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
