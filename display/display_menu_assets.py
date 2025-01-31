@@ -61,9 +61,18 @@ def load_scores():
         scores = json.load(file)
     return scores
 
-    image = FRUIT_DICT[fruits_list[index]]["image"]
-    color = FRUIT_DICT[fruits_list[index]]["color"]
-    
+def display_mode_menu():
+    in_menu_button = Button(450, 100, "Mode", "in_score", 2, ((screen.width // 2), 70))
+    in_menu_button.draw(TEXT_COLOR)
+
+    #  width, height, text, identification, flip, center
+    difficulty_button = Button(300, 70, "Difficulté", "in_score", 1, ((screen.width // 4), 200))
+
+    language_button = Button(300, 70, "Langue", "in_score", 3, ((screen.width // 4)*3, 200))
+
+    difficulty_button.draw(TEXT_COLOR)
+    language_button.draw(TEXT_COLOR)
+
 def display_scores(scores):
     in_score_button = Button(450, 100, "Scores", "in_score", 3, ((screen.width // 2), 70))
     in_score_button.draw(TEXT_COLOR)

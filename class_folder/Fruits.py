@@ -17,7 +17,7 @@ class Fruits():
         self.screen_width = screen_width
         self.box_center = (self.x + self.width//2, self.y + self.height//2)
         
-        self.image =  pygame.transform.smoothscale(pygame.image.load(image).convert_alpha(), (self.surface))
+        self.image =  pygame.transform.smoothscale(image.convert_alpha(), (self.surface))
         
         '''TENTATIVES ADELINES
         self.vel_x = random.randrange(-4, 4)

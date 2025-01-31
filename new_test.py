@@ -1,4 +1,4 @@
-from display.display_menu_assets import display_hearts, display_score_in_game, get_buttons, load_scores, display_scores
+from display.display_menu_assets import display_hearts, display_score_in_game, get_buttons, load_scores, display_scores, display_mode_menu
 import pygame
 from class_folder.Button import Button
 from class_folder.Screen import Screen
@@ -76,9 +76,12 @@ def menu_display():
 
                 case "mode_menu":
                     #TODO afficher les modes de jeu possible et les langues (si on a les temps)
-                    screen.screen.blit(current_background, (0,0))
-                    mode_menu_button.draw("purple")
+                    # screen.screen.blit(current_background, (0,0))
+                    # mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+                    screen.screen.blit(new_background, (0,0))
+                    display_mode_menu()
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu

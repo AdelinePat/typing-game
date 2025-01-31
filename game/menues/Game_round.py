@@ -2,7 +2,7 @@ import pygame, random, secrets, string
 from class_folder.Fruits import Fruits
 from class_folder.Fruit_slices import Fruit_slices
 from game.menues.game_functions import clock_tick
-from __settings__ import FRUIT_DICT, BACKGROUND_IMAGE
+from __settings__ import FRUIT_DICT, BACKGROUND_IMAGE, PROPS_DICT
 from game.scores.Player_attributes import Player_attributes
 from game.scores.Scores import Scores
 from display.display_menu_assets import display_hearts, display_score_in_game
@@ -23,6 +23,7 @@ def run_new_game(screen, clock,fps, game_mode, player):
         letters = string.ascii_uppercase
     frame = 0
     fruits = []
+    props = []
     slashed_fruits = []
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     frozen_effect = screen.frozen()
@@ -40,6 +41,14 @@ def run_new_game(screen, clock,fps, game_mode, player):
                     fruits.pop(index)
                     current_player.life_down(life, 'dropped', frame)
             fruit.draw()
+        for prop in props:
+            if not current_player.frozen():
+                if prop.fall() == 'dropped':
+                    index = props.index(prop)
+                    props.pop(index)
+            prop.draw()
+
+
         for fruit_slice in fruits_slices:
                 fruit_slice.draw()
                 fruit_slice.fall()
@@ -77,6 +86,9 @@ def run_new_game(screen, clock,fps, game_mode, player):
                 if secrets.randbelow(100) > spawn_delay:
                     fruit = create_fruits(screen)
                     fruits.append(fruit)
+                if secrets.randbelow(100) > spawn_delay: # + 40:
+                    prop = create_props(screen)
+                    props.append(prop)
                 
         frame = clock_tick(clock, fps, frame)
 
@@ -97,3 +109,21 @@ def create_fruits(screen):
     fruit = Fruits(random_x_position, (screen.height+1), random_size, image, random_rotation, random_letter, color, screen.height, screen.screen, screen.width, fruits_list[index])
 
     return fruit
+
+def create_props(screen):
+    props_list= list(PROPS_DICT.keys())
+    index = secrets.randbelow(len(props_list))
+    
+    image = PROPS_DICT[props_list[index]]["image"]
+    color = PROPS_DICT[props_list[index]]["color"]
+
+    random_size = random.randrange(100, 175)
+    random_rotation = random.randrange(-60, 60)
+    random_x_position = random.randrange(random_size//4, (screen.width - random_size))
+
+    string.ascii_letters
+    random_letter = random.choice(string.ascii_letters).upper()
+
+    prop = Fruits(random_x_position, (screen.height+1), random_size, image, random_rotation, random_letter, color, screen.height, screen.screen, screen.width, props_list[index])
+
+    return prop
