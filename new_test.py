@@ -22,7 +22,8 @@ def menu_display():
     screen.screen.blit(current_background, (0,0))
    
     screen, fps, clock, player, game_mode, game_menu = init_game_functions()
-
+    game_mode = "normal_mode"
+    language = "french_mode"
     while run:
         # timer.tick(fps)
         clock_tick(clock,fps)
@@ -81,7 +82,9 @@ def menu_display():
                     # exit_menu_button.draw("blue")
                     new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
                     screen.screen.blit(new_background, (0,0))
-                    display_mode_menu()
+                    game_mode, language = display_mode_menu(game_mode, language)
+                    print(game_mode)
+                    print(language)
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu

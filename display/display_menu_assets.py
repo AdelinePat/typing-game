@@ -61,17 +61,56 @@ def load_scores():
         scores = json.load(file)
     return scores
 
-def display_mode_menu():
-    in_menu_button = Button(450, 100, "Mode", "in_score", 2, ((screen.width // 2), 70))
+def display_mode_menu(game_mode, language):
+    in_menu_button = Button(450, 100, "Mode", "mode_menu", 2, ((screen.width // 2), 70))
     in_menu_button.draw(TEXT_COLOR)
 
     #  width, height, text, identification, flip, center
-    difficulty_button = Button(300, 70, "Difficulté", "in_score", 1, ((screen.width // 4), 200))
+    difficulty_button = Button(300, 70, "Difficulté", "mode_menu", 1, ((screen.width // 4), (screen.height // 2 - 100)))
 
-    language_button = Button(300, 70, "Langue", "in_score", 3, ((screen.width // 4)*3, 200))
-
+    language_button = Button(300, 70, "Langue", "mode_menu", 3, ((screen.width // 4)*3, (screen.height // 2 - 100)))
     difficulty_button.draw(TEXT_COLOR)
     language_button.draw(TEXT_COLOR)
+
+    
+    easy_difficulty_button = Button(250, 50, "Facile", "easy_mode", 2, ((screen.width // 4), (screen.height // 2 - 10)))
+    normal_difficulty_button = Button(250, 50, "Normal", "normal_mode", 3, ((screen.width // 4), (screen.height // 2 + 70)))
+    nightmare_difficulty_button = Button(250, 50, "Nightmare", "nightmare_mode", 3, ((screen.width // 4), (screen.height // 2 + 150)))
+    french_button = Button(250, 50, "Français", "french_mode", 4, ((screen.width // 4)*3, (screen.height // 2 - 10)))
+    english_button = Button(250, 50, "Anglais", "english_mode", 1, ((screen.width // 4)*3, (screen.height // 2 + 70)))
+    button_list = [easy_difficulty_button, normal_difficulty_button, nightmare_difficulty_button]
+    language_list = [french_button, english_button]
+    
+    easy_difficulty_button.draw(TEXT_COLOR)
+    normal_difficulty_button.draw(TEXT_COLOR)
+    nightmare_difficulty_button.draw(TEXT_COLOR)
+
+    # french_button = Button(250, 50, "Français", "french_mode", 4, ((screen.width // 4)*3, (screen.height // 2 - 10)))
+    # english_button = Button(250, 50, "Anglais", "english_mode", 1, ((screen.width // 4)*3, (screen.height // 2 + 70)))
+    french_button.draw(TEXT_COLOR)
+    english_button.draw(TEXT_COLOR)
+
+    mouse_position = pygame.mouse.get_pos()
+    for event in pygame.event.get():
+        for button in button_list:
+            if button.rect.collidepoint(mouse_position):
+                button.hovered = True
+                button.draw("red")
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    game_mode = button.identification
+                    
+        for language in language_list:
+            if language.rect.collidepoint(mouse_position):
+                language.hovered = True
+                language.draw("red")
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    language = language.identification
+
+    return game_mode, language
+                
+
+
+
 
 def display_scores(scores):
     in_score_button = Button(450, 100, "Scores", "in_score", 3, ((screen.width // 2), 70))
