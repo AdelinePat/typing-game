@@ -8,23 +8,21 @@ class Player_attributes:
         self.combo = 0
         self.played_key = ''
         self.last_key = ''
-        # self.life = 3
         self.strike = 0
         self.frozen_delay = 0
         self.slashed = 0
         self.invicibility = 0
     
-    def life_down(self, mistake, frame=0, fruit=None):
+    def life_down(self, life, mistake, frame=0):
         '''
             lower the player's life based on events
         '''
         if mistake == 'dropped':
-            if frame - self.invicibility > 60: # and fruit.type == 'fruit':
-                # self.life -= 1
+            if frame - self.invicibility > 40:
                 self.strike += 1
                 self.invicibility = frame
         elif mistake == 'bomb':
-            self.life = 0
+            self.strike = life
     
     def alive(self, life):
         '''

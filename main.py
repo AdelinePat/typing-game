@@ -1,18 +1,15 @@
-from display.display_menu_assets import display_hearts, display_score_in_game
 import pygame
 from class_folder.Button import Button
 from class_folder.Screen import Screen
-from game.menues.Game_methods import Game_methods
-from game.menues.Game_round import Game_round
-from game.menues.Game_set_up import Game_set_up
-from game.menues.Main_menu import Main_menu
+from game.menues.game_functions import init_game_functions, game_off, clock_tick
+from game.menues.game_round import run_new_game
+from game.menues.game_set_up import run_set_up_game
 
 from __settings__ import TEXT_COLOR
 
 def menu_display():
     screen = Screen(1080, 720)
     background_final = screen.background()
-    # screen_rect_center = screen.screen.get_rect().center
     main_menu_button = Button(700, 150, 'Menu Principal', "main_menu", 1, screen.screen.get_rect().center)
     game_menu_button = Button(450, 100, "Jouer", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
     mode_menu_button = Button(450, 100, "Mode", "mode_menu", 1, ((screen.width // 2), (screen.height // 8) + (screen.height //4)))
@@ -23,12 +20,10 @@ def menu_display():
     run = True
     screen.screen.blit(background_final, (0,0))
    
-    game_menu = "start_menu"
-    clock = pygame.time.Clock()
+    screen, fps, clock, player, game_mode, game_menu = init_game_functions()
 
     while run:
-        # timer.tick(fps)
-        timer = clock.tick(60)
+        clock_tick(clock,fps)
 
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -81,15 +76,13 @@ def menu_display():
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    new_game = Game_set_up()
-                    game_menu = new_game.run()
+                    game_menu, game_mode, player = run_set_up_game(screen,clock,fps,game_mode,player)
 
                 case "in_game":
-                    new_game_start = Game_round()
-                    game_menu = new_game_start.run()
+                    game_menu = run_new_game(screen,clock,fps,game_mode,player)
 
                 case "menu_game_over":
-                    pass
+                    game_menu = "main_menu"
                     #TODO créer le menu game over ololol
 
 
@@ -102,14 +95,10 @@ def menu_display():
                     # game_menu_button.draw("black")
                     # exit_menu_button.draw("blue")
                 case "exit_menu":
-                    run = False
+                    game_off()
    
 
-        # pygame.display.flip()
+        
 
-        pygame.display.update() 
-
-
-    pygame.quit()
 
 menu_display()
