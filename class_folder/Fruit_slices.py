@@ -17,14 +17,14 @@ class Fruit_slices():
 
         self.image = pygame.transform.smoothscale(pygame.image.load(self.image_path).convert_alpha(), (self.surface))
 
-        self.vel_y = random.randrange(20, 70)
+        self.vel_y = random.randrange(5, 20)
         self.vel_x = random.randrange(-20, 20)
 
     def fall(self):
         if self.y < 1500:
             self.y += self.vel_y
             self.x += self.vel_x
-            self.vel_y += abs(self.vel_y*0.1)
+            self.vel_y += abs(self.vel_y*0.3)
 
 
     def rotate_element(self, element):

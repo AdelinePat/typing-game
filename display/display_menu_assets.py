@@ -45,7 +45,7 @@ def get_buttons():
     main_menu_button = Button(700, 150, 'Menu Principal', "main_menu", 1, screen.screen.get_rect().center)
     game_menu_button = Button(450, 100, "Jouer", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
     mode_menu_button = Button(450, 100, "Mode", "mode_menu", 2, ((screen.width // 2), (screen.height // 8) + (screen.height //4)))
-    score_menu_button = Button(450, 100, "Score", "score_menu", 3, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*2))
+    score_menu_button = Button(450, 100, "Scores", "score_menu", 3, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*2))
     exit_menu_button = Button(450, 100, "Quitter", "exit_menu", 4, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*3))
     button_list = [game_menu_button, mode_menu_button, score_menu_button, exit_menu_button]
 
@@ -65,7 +65,7 @@ def load_scores():
     color = FRUIT_DICT[fruits_list[index]]["color"]
     
 def display_scores(scores):
-    in_score_button = Button(450, 100, "Score", "in_score", 3, ((screen.width // 2), 70))
+    in_score_button = Button(450, 100, "Scores", "in_score", 3, ((screen.width // 2), 70))
     in_score_button.draw(TEXT_COLOR)
 
     if not scores:

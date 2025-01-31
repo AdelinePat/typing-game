@@ -3,7 +3,7 @@ from class_folder.Screen import Screen
 from __settings__ import MAIN_FONT
 
 class Fruits():
-    def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen, name):
+    def __init__(self, x, y, size, image, rotation, letter, color, screen_height, screen_screen, screen_width, name):
         self.name = name
         self.x = x
         self.y = y
@@ -14,7 +14,8 @@ class Fruits():
         self.color = color
         self.screen_height = screen_height
         self.screen_screen = screen_screen
-        self.box_center = (self.x + self.width //2, self.y + self.height // 2)
+        self.screen_width = screen_width
+        self.box_center = (self.x + self.width//2, self.y + self.height//2)
         
         self.image =  pygame.transform.smoothscale(pygame.image.load(image).convert_alpha(), (self.surface))
         
@@ -54,7 +55,7 @@ class Fruits():
         if self.y > (self.screen_height + 2):
             return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
         else:
-            if self.x <-10 or self.x > self.screen_height-self.width+10:
+            if self.x <-10 or self.x > self.screen_width-self.width+10:
                 self.vel_x *= -1
             self.y += self.vel_y
             self.x += self.vel_x
