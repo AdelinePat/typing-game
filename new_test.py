@@ -1,4 +1,4 @@
-from display.display_menu_assets import display_hearts, display_score_in_game, get_buttons, load_scores, display_scores
+from display.display_menu_assets import display_hearts, display_score_in_game, get_buttons, load_scores, display_scores, display_mode_menu
 import pygame
 from class_folder.Button import Button
 from class_folder.Screen import Screen
@@ -22,6 +22,9 @@ def menu_display():
     screen.screen.blit(current_background, (0,0))
    
     screen, fps, clock, player, game_mode, game_menu = init_game_functions()
+
+    game_mode = "normal_mode"
+    language_mode = "french_mode"
 
     while run:
         # timer.tick(fps)
@@ -76,9 +79,28 @@ def menu_display():
 
                 case "mode_menu":
                     #TODO afficher les modes de jeu possible et les langues (si on a les temps)
-                    screen.screen.blit(current_background, (0,0))
-                    mode_menu_button.draw("purple")
+                    # screen.screen.blit(current_background, (0,0))
+                    # mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+                    screen.screen.blit(new_background, (0,0))
+                    button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
+
+                    for mode_button in button_mode_list:
+                        # for event in pygame.event.get():  
+                            if mode_button.rect.collidepoint(mouse_position):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    game_mode = button.identification
+                    
+                    for language in language_list:
+                        # for event in pygame.event.get():  
+                            if language.rect.collidepoint(mouse_position):
+                                if event.type == pygame.MOUSEBUTTONDOWN:
+                                    language_mode = language.identification
+                    
+
+                    # print(game_mode)
+                    # print(language)
 
                 case "game_on":
                     #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu

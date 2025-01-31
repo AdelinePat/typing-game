@@ -11,6 +11,7 @@ TEXT_COLOR_LIGHT = (245, 189, 122)
 TEXT_COLOR_DARK = (96, 57, 2)
 
 BUTTON_IMAGE = "assets/plank/plank1.1.png"
+
 def flip_button_image():
     img = pygame.image.load(BUTTON_IMAGE)
     img_copy1 = img.copy()
@@ -28,13 +29,13 @@ BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4 = flip_button_image()
 PLANK_SCORE = "assets/plank/plank2.png"
 
 ICECUBE_IMAGE = "assets/bonus_malus/ice_cube1.png"
-ICE_CUBE1 = "assets/bonus_malus/ice_cube1.png"
-ICE_CUBE2 = "assets/bonus_malus/ice_cube2.png"
-ICE_CUBE3 = "assets/bonus_malus/ice_cube3.png"
-ICE_CUBE4 = "assets/bonus_malus/ice_cube4.png"
+ICE_CUBE1 = pygame.image.load("assets/bonus_malus/ice_cube1.png")
+ICE_CUBE2 = pygame.image.load("assets/bonus_malus/ice_cube2.png")
+ICE_CUBE3 = pygame.image.load("assets/bonus_malus/ice_cube3.png")
+ICE_CUBE4 = pygame.image.load("assets/bonus_malus/ice_cube4.png")
 HEART = "assets/bonus_malus/heart_v3.png"
 BOMB_IMAGE = "assets/bonus_malus/bomb.png"
-BOMB = "assets/bonus_malus/bomb.png"
+BOMB = pygame.image.load("assets/bonus_malus/bomb.png")
 EFFECT1 = "assets/bonus_malus/explosion1.png"
 EFFECT2 = "assets/bonus_malus/explosion2.png"
 EFFECT3 = "assets/bonus_malus/explosion3.png"
@@ -46,31 +47,31 @@ FPS = 60
 FPS_EASY = 20
 FPS_HARD = 40
 
-APPLE_IMAGE = "assets/fruits/apple_full.png"
+APPLE_IMAGE = pygame.image.load("assets/fruits/apple_full.png")
 APPLE_SLICE = "assets/fruits/apple_slice.png"
 
-COCONUT_IMAGE = "assets/fruits/coconut_full.png"
+COCONUT_IMAGE = pygame.image.load("assets/fruits/coconut_full.png")
 COCONUT_SLICE = "assets/fruits/coconut_slice.png"
 
-KIWI_IMAGE = "assets/fruits/kiwi_full.png"
+KIWI_IMAGE = pygame.image.load("assets/fruits/kiwi_full.png")
 KIWI_SLICE = "assets/fruits/kiwi_slice.png"
 
-LIMON_IMAGE = "assets/fruits/limon_full.png"
+LIMON_IMAGE = pygame.image.load("assets/fruits/limon_full.png")
 LIMON_SLICE = "assets/fruits/limon_slice.png"
 
-MELON_IMAGE = "assets/fruits/melon_full.png"
+MELON_IMAGE = pygame.image.load("assets/fruits/melon_full.png")
 MELON_SLICE = "assets/fruits/melon_slice.png"
 
-ORANGE_IMAGE = "assets/fruits/orange_full.png"
+ORANGE_IMAGE = pygame.image.load("assets/fruits/orange_full.png")
 ORANGE_SLICE = "assets/fruits/orange_slice.png"
 
-PEAR_IMAGE = "assets/fruits/pear_full.png"
+PEAR_IMAGE = pygame.image.load("assets/fruits/pear_full.png")
 PEAR_SLICE = "assets/fruits/pear_slice.png"
 
-PINEAPPLE_IMAGE = "assets/fruits/pineapple_full_2.png"
+PINEAPPLE_IMAGE = pygame.image.load("assets/fruits/pineapple_full_2.png")
 PINEAPPLE_SLICE = "assets/fruits/pineapple_slice.png"
 
-WATERMELON_IMAGE = "assets/fruits/watermelon_full.png"
+WATERMELON_IMAGE = pygame.image.load("assets/fruits/watermelon_full.png")
 WATERMELON_SLICE = "assets/fruits/watermelon_slice.png"
 
 ASSETS_DICT = {
@@ -135,5 +136,28 @@ FRUIT_DICT = {
                 "color" : (42,131,41)
             },
 }
+
+
+PROPS_DICT = {
+    "icecube1" : {
+        "image": ICE_CUBE1,
+        "color": (0,0,0)
+        },
+    "icecube2": {
+        "image" : ICE_CUBE2,
+        "color": (0,0,0)
+        },
+    "icecube3" : {
+        "image" : ICE_CUBE3,
+        "color": (0,0,0)
+        },
+    "icecube4": {
+        "image" : ICE_CUBE4,
+        "color": (0,0,0)},
+    "bomb": {
+        "image": BOMB,
+        "color": (0,0,0)
+        }
+    }
 
 SCORE_PATH = "game/scores/scores.json"

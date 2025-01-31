@@ -5,7 +5,7 @@ pygame.font.init()
 screen = Screen(1080, 720)
 
 class Button:
-    def __init__(self,width, height, text, identification, flip, center):
+    def __init__(self, width, height, text, identification, flip, center):
         self.text = text
         self.width = width
         self.height = height
