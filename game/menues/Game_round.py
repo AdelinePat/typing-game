@@ -1,40 +1,12 @@
 import pygame, random, secrets, string
 from class_folder.Fruits import Fruits
 from class_folder.Fruit_slices import Fruit_slices
-# <<<<<<< HEAD
-from __settings__ import FRUIT_DICT, ICECUBE_IMAGE, BOMB_IMAGE, ICECUBE_COLOR, BOMB_COLOR, BACKGROUND_IMAGE
-# =======
 from game.menues.game_functions import clock_tick
-from __settings__ import FRUIT_DICT
-# >>>>>>> 424c21e502b879d3f3c5d45216ceee4e08c7d7ed
+from __settings__ import FRUIT_DICT, BACKGROUND_IMAGE
 from game.scores.Player_attributes import Player_attributes
 from game.scores.Scores import Scores
 from display.display_menu_assets import display_hearts, display_score_in_game
 
-# <<<<<<< HEAD
-class Game_round(Game_methods):
-    def __init__(self):
-        self.strike = 0
-        self.current_player = Player_attributes(Game_methods.player)
-        self.game_scores = Scores()
-        self.game_mode = Game_methods.game_mode
-        if self.game_mode == 'normal':
-            self.life = 5
-            self.spawn_delay = 40
-            self.letters = []
-            for letter in range(0,8):
-                self.letters.append(random.choice(string.ascii_uppercase))
-        elif self.game_mode == 'nightmare':
-            self.life = 3
-            self.spawn_delay = 30
-            self.letters = string.ascii_uppercase
-        self.frame = 0
-        self.fruits = []
-        self.slashed_fruits = []
-        self.current_background = self.screen.background(BACKGROUND_IMAGE, "Fruits Slicer - Partie en cours")
-        self.frozen_effect = self.screen.frozen()
-        
-# =======
 def run_new_game(screen, clock,fps, game_mode, player):
     current_player = Player_attributes(player)
     game_scores = Scores()
@@ -52,7 +24,7 @@ def run_new_game(screen, clock,fps, game_mode, player):
     frame = 0
     fruits = []
     slashed_fruits = []
-    current_background = screen.background()
+    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
     frozen_effect = screen.frozen()
     fruits_slices = []
     while True:
@@ -111,7 +83,6 @@ def run_new_game(screen, clock,fps, game_mode, player):
 def create_fruits(screen):
     fruits_list= list(FRUIT_DICT.keys())
     index = secrets.randbelow(len(fruits_list))
-# >>>>>>> 424c21e502b879d3f3c5d45216ceee4e08c7d7ed
     
     image = FRUIT_DICT[fruits_list[index]]["image"]
     color = FRUIT_DICT[fruits_list[index]]["color"]
