@@ -11,20 +11,30 @@ TEXT_COLOR_LIGHT = (245, 189, 122)
 TEXT_COLOR_DARK = (96, 57, 2)
 
 BUTTON_IMAGE = pygame.image.load("assets/plank/plank1.1.png")
-def flip_button_image():
-    img = BUTTON_IMAGE
-    img_copy1 = img.copy()
-    img_copy2 = img.copy()
-    img_copy3 = img.copy()
+# def flip_button_image():
+#     img = BUTTON_IMAGE
+#     img_copy1 = img.copy()
+#     img_copy2 = img.copy()
+#     img_copy3 = img.copy()
 
-    img_flip_1 = pygame.transform.flip(img_copy1, True, False)
-    img_flip_2 = pygame.transform.flip(img_copy2, False, True)
-    img_flip_3 = pygame.transform.flip(img_copy3, True, True)
+#     img_flip_1 = pygame.transform.flip(img_copy1, True, False)
+#     img_flip_2 = pygame.transform.flip(img_copy2, False, True)
+#     img_flip_3 = pygame.transform.flip(img_copy3, True, True)
 
-    return img_flip_1, img_flip_2, img_flip_3
-BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4 = flip_button_image()
+#     return img_flip_1, img_flip_2, img_flip_3
+def flip_button_image(img, flip_horizontal, flip_vertical):
+    img_copy = img.copy()
+    img_flip = pygame.transform.flip(img_copy, flip_horizontal, flip_vertical)
+    return img_flip
+
+BUTTON_IMAGE2 = flip_button_image(BUTTON_IMAGE, True, False)
+BUTTON_IMAGE3 = flip_button_image(BUTTON_IMAGE, False, True)
+BUTTON_IMAGE4 = flip_button_image(BUTTON_IMAGE, True, True)
 
 PLANK_SCORE = "assets/plank/plank2.png"
+PLANK_ARROW_RIGHT = pygame.image.load("assets/plank/arrow_right_plank.png")
+
+PLANK_ARROW_LEFT = flip_button_image(PLANK_ARROW_RIGHT, True, False)
 
 ICECUBE_IMAGE = "assets/bonus_malus/ice_cube1.png"
 ICE_CUBE1 = pygame.image.load("assets/bonus_malus/ice_cube1.png")

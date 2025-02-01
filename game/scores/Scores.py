@@ -42,7 +42,7 @@ class Scores:
         # Save the updated scores
         self.save_scores()
 
-    def erase_all_record():
+    def erase_all_record(self):
         '''
         delete the score file, erasing all records
         '''
