@@ -13,7 +13,7 @@ def get_scores_menu_page(scores):
             number_pages = len(all_player)//8 + 1
         else:
             number_pages = len(all_player)//8
-            
+
     return all_player, number_pages
 
 def create_arrows():
@@ -30,44 +30,47 @@ def display_empty_score():
     message = Button("Il n'y a pas encore de scores enregistré", "empty_score", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2))
     message.draw("white")
 
-
-def display_scores(scores, page):
-    arrow_left, arrow_right = create_arrows()
-    all_player, number_pages = get_scores_menu_page(scores)
-
+def create_footer_buttons():
     reset_score_button = Button_image(200, 60, "Réinitialiser", "reset_all_score", BUTTON_IMAGE2, SCREEN.screen, (SCREEN.width - 180, 7* SCREEN.height //8))
     escape_button = Button_image(200, 60, "Retour", "escape_button", BUTTON_IMAGE4, SCREEN.screen, (180, 7* SCREEN.height //8))
-    reset_score_button.draw(TEXT_COLOR)
-    escape_button.draw(TEXT_COLOR)
+    # reset_score_button.draw(TEXT_COLOR)
+    # escape_button.draw(TEXT_COLOR)
 
-    create_score_title()
-    
+    return reset_score_button, escape_button
+
+def range_pages(number_pages, all_player):
     index_start_list = []
-    index_range_list = []
+    index_end_list = []
     index_start = 0
-    index_range = 8
-    for page_id in range(number_pages):
+    index_end = 8
+    for page_index in range(number_pages):
         index_start_list.append(index_start)
-        index_range_list.append(index_range)
+        index_end_list.append(index_end)
         if index_start +8 < len(all_player):
             index_start += 8
-            index_range += 8    
-        if index_range > len(all_player):
-            index_range = len(all_player)
-    
-    position_x = 20
-    position_y = 150
+            index_end += 8    
+        if index_end > len(all_player):
+            index_end = len(all_player)
+    return index_start_list, index_end_list
 
+def draw_arrows(page, number_pages):
+    arrow_left, arrow_right = create_arrows()
     if page == 0:
         arrow_right.draw(TEXT_COLOR_DARK)
-    elif page < number_pages:
+    elif page < number_pages-1:
         arrow_left.draw(TEXT_COLOR_DARK)
         arrow_right.draw(TEXT_COLOR_DARK)
     else:
         arrow_left.draw(TEXT_COLOR_DARK)
+    return arrow_left, arrow_right
 
-
-    for index in range(index_start_list[page], index_range_list[page]):
+def display_scores(scores, page):   
+    all_player, number_pages = get_scores_menu_page(scores)
+    index_start_list, index_end_list = range_pages(number_pages, all_player)
+    arrow_left, arrow_right = draw_arrows(page, number_pages)
+    position_x = 20
+    position_y = 150
+    for index in range(index_start_list[page], index_end_list[page]):
         if position_x < SCREEN.width - 30:
             display_player_score(scores, all_player[index], position_x, position_y)
             position_x += SCREEN.width // 4
@@ -76,20 +79,8 @@ def display_scores(scores, page):
             position_y += SCREEN.height // 4 + 20
             display_player_score(scores, all_player[index], position_x, position_y)
             position_x += SCREEN.width // 4
+    return arrow_left, arrow_right, number_pages
 
-
-    return arrow_left, arrow_right, len(all_player), reset_score_button, escape_button
-        # position_x = 20
-        # position_y = 150
-        # for player in all_player:
-        #     if position_x < SCREEN.width - 30:
-        #         display_player_score(scores, player, position_x, position_y)
-        #         position_x += SCREEN.width // 4
-        #     else:
-        #         position_x = 20
-        #         position_y += SCREEN.height // 4 + 20
-        #         display_player_score(scores, player, position_x, position_y)
-        #         position_x += SCREEN.width // 4
 
 def display_player_score(scores, player, position_x, position_y):
     box = pygame.Rect(position_x, position_y, (SCREEN.width // 4) - 40 , (SCREEN.height // 4))

@@ -3,16 +3,13 @@ import pygame
 from __settings__ import FPS, SCREEN
 
 def init_game_functions():
-    # screen = Screen(1080, 720)
-    SCREEN
-    fps = FPS
     clock = pygame.time.Clock()
     player = ''
     game_mode = 'normal_mode'
     game_menu = 'start_menu'
     language_mode = "french_mode"
     pygame.init()
-    return SCREEN, fps, clock, player, game_mode, game_menu, language_mode
+    return clock, player, game_mode, game_menu, language_mode
         
 def game_off():
     '''

@@ -9,7 +9,7 @@
         "slashed_fruits": 121,
         "games_played": 15
     },
-    "Aladin": {
+    "aladin": {
         "highscore": 1058,
         "slashed_fruits": 1058,
         "games_played": 139
@@ -19,44 +19,74 @@
         "slashed_fruits": 759,
         "games_played": 14
     },
-    "Mulan": {
+    "mulan": {
         "highscore": 8,
         "slashed_fruits": 9,
         "games_played": 2
     },
-    "Kakashi": {
+    "kakashi": {
         "highscore": 1058,
         "slashed_fruits": 1058,
         "games_played": 139
     },
-    "Zoro": {
+    "zoro": {
         "highscore": 10583,
         "slashed_fruits": 10583,
         "games_played": 1
     },
-    "Sari": {
+    "sari": {
         "highscore": 33,
         "slashed_fruits": 33,
         "games_played": 10
     },
-    "Ussop": {
+    "ussop": {
         "highscore": 13,
         "slashed_fruits": 13,
         "games_played": 2
     },
-    "Nanami": {
+    "nanami": {
         "highscore": 5213,
         "slashed_fruits": 5213,
         "games_played": 20
     },
-    "cacac": {
+    "florence": {
         "highscore": 17,
         "slashed_fruits": 16,
         "games_played": 1
     },
-    "cacac arme": {
+    "vanessa": {
         "highscore": 17,
         "slashed_fruits": 14,
         "games_played": 1
+    },
+    "jolyne": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "noa": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "maeva": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "hashegin": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "anothertest": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "booya": {
+        "highscore": 37,
+        "slashed_fruits": 48,
+        "games_played": 2
     }
 }

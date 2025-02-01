@@ -4,7 +4,7 @@ from __settings__ import BUTTON_IMAGE3, SCREEN, MAIN_FONT, TEXT_COLOR_DARK,STYLE
 from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 from display.display_models.Button import Button
 from display.display_models.Button_image import Button_image
-from game.menues.game_functions import clock_tick
+from game.game_functions import clock_tick
 
 def run_set_up_game(screen, clock, fps, player):
     if player != '':

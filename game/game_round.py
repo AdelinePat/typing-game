@@ -1,7 +1,7 @@
 import pygame, random, secrets, string
 from game.element_models.Fruits import Fruits
 from game.element_models.Fruit_slices import Fruit_slices
-from game.menues.game_functions import clock_tick
+from game.game_functions import clock_tick
 from display.display_menu import game_over_screen
 from __settings__ import FRUIT_DICT, PROPS_DICT
 from display.display_models.__settings__ import BACKGROUND_IMAGE

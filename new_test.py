@@ -3,37 +3,39 @@ from display.display_menu import get_buttons, display_mode_menu
 from display.display_scores import display_scores, display_empty_score
 import pygame
 
-from in_score_menu import in_score_menu
+from menu.in_score_menu import in_score_menu
+from menu.in_main_menu import in_main_menu
+from menu.in_mode_menu import in_mode_menu
+from menu.in_start_menu import in_start_menu
 # from display.display_models import Button
 # from display.display_models import Screen
-from game.scores.Scores import Scores
-from game.menues.game_functions import init_game_functions, game_off, clock_tick
-from game.menues.game_round import run_new_game
-from game.menues.game_set_up import run_set_up_game
+# from game.scores.Scores import Scores
+from game.game_functions import init_game_functions, game_off, clock_tick
+from game.game_round import run_new_game
+from game.game_set_up import run_set_up_game
 from __settings__ import TEXT_COLOR,TEXT_COLOR_DARK
 from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
+from display.display_menu import game_over_screen
+from __settings__ import SCREEN, FPS
 
 
 def menu_display():
-    # screen = Screen(1080, 720)
-    
-    screen, fps, clock, player, game_mode, game_menu, language_mode = init_game_functions()
+    clock, player, game_mode, game_menu, language_mode = init_game_functions()
 
-    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
-    # screen_rect_center = screen.screen.get_rect().center
-    scores = Scores()
+    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer")
+
+    
     main_menu_button, main_button_list = get_buttons()
     
     
     run = True
-    screen.screen.blit(current_background, (0,0))
+    SCREEN.screen.blit(current_background, (0,0))
+    print("background menu principal")
 
-    page_score = 0
 
     while run:
-        clock_tick(clock,fps)
+        clock_tick(clock, FPS)
 
-        mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -44,69 +46,25 @@ def menu_display():
 
             match game_menu:
                 case "start_menu":
-                        screen.screen.blit(current_background, (0,0))         
-                        if main_menu_button.image_rect.collidepoint(mouse_position):
-                            main_menu_button.hovered = True
-                            main_menu_button.draw(TEXT_COLOR_DARK)
-                            if event.type == pygame.MOUSEBUTTONDOWN:
-                                game_menu = "main_menu"
-                        else:
-                            main_menu_button.hovered = False
-                            main_menu_button.draw(TEXT_COLOR)
+                    game_menu = in_start_menu(clock, FPS, main_menu_button)
 
                 case "main_menu":
-                    screen.screen.blit(current_background, (0,0))
-                    for main_button in main_button_list:  
-                        if main_button.image_rect.collidepoint(mouse_position):
-                            main_button.hovered = True
-                            main_button.draw(TEXT_COLOR_DARK)
-
-                            if event.type == pygame.MOUSEBUTTONDOWN:
-                                # print("ohlalala")   
-                                game_menu = main_button.identification
-                        else:
-                            main_button.hovered = False
-                            main_button.draw(TEXT_COLOR)
+                    game_menu = in_main_menu(clock, FPS, main_button_list)
 
                 case "score_menu":
-                    #TODO afficher les scores et les joueurs associés sur plusieurs page avec option supression
-                    game_menu = in_score_menu(clock, fps,scores)
+                    game_menu = in_score_menu(clock, FPS)
                    
                 case "mode_menu":
-                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Modesh")
-                    screen.screen.blit(new_background, (0,0))
-                    button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
+                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS, game_mode, language_mode)     
 
-                    for language in language_list:
-                        # for event in pygame.event.get():  
-                            if language.rect.collidepoint(mouse_position):
-                                language.draw(TEXT_COLOR)
-                                if event.type == pygame.MOUSEBUTTONDOWN:
-                                    language_mode = language.identification
-                    for mode_button in button_mode_list:
-                            if mode_button.rect.collidepoint(mouse_position):
-                                mode_button.draw(TEXT_COLOR)
-                                if event.type == pygame.MOUSEBUTTONDOWN:
-                                    game_mode = mode_button.identification
                 case "game_on":
-                    #TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    game_menu, player = run_set_up_game(screen, clock, fps, player)
+                    game_menu, player = run_set_up_game(SCREEN, clock, FPS, player)
 
                 case "in_game":
-                    game_menu = run_new_game(screen, clock, fps, game_mode, player)
+                    game_menu = run_new_game(SCREEN, clock, FPS, game_mode, player)
 
-                case "menu_game_over":
-                    pass
-                    #TODO créer le menu game over ololol
-
-                    #TODO boucle de jeu et tout ce qui va avec
                 case "exit_menu" | _:
                     game_off()
-   
-
-        # pygame.display.flip()
 
         pygame.display.update() 
-
-
 menu_display()
