@@ -33,6 +33,7 @@ def menu_display():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     game_menu = "main_menu"
+                
 
             match game_menu:
                 case "start_menu":

@@ -2,6 +2,7 @@ import pygame, random, secrets, string
 from game.element_models.Fruits import Fruits
 from game.element_models.Fruit_slices import Fruit_slices
 from game.menues.game_functions import clock_tick
+from display.display_menu import game_over_screen
 from __settings__ import FRUIT_DICT, PROPS_DICT
 from display.display_models.__settings__ import BACKGROUND_IMAGE
 from game.scores.Player_attributes import Player_attributes
@@ -55,16 +56,17 @@ def run_new_game(screen, clock, fps, game_mode, player):
     frozen_effect = screen.frozen()
 
     while True:
-        if not current_player.alive(life):
+        if not current_player.is_alive(life):
             game_scores.update_scores(current_player)
             sounds.play_game_over_sound()
+            game_over_screen(current_player.score)
             return "menu_game_over"
 
         screen.screen.blit(current_background, (0, 0))
         fruits_on_screen = fruits.copy()
         for fruit in fruits_on_screen:
             fruit.draw()
-            if not current_player.frozen():
+            if not current_player.is_frozen():
                 if fruit.fall(frame, devel) == 'dropped':
                     index = fruits.index(fruit)
                     fruits.pop(index)
@@ -73,7 +75,7 @@ def run_new_game(screen, clock, fps, game_mode, player):
         props_on_screen = props.copy()
         for prop in props_on_screen:
             prop.draw()
-            if not current_player.frozen():
+            if not current_player.is_frozen():
                 if prop.fall(frame, devel) == 'dropped':
                     index = props.index(prop)
                     props.pop(index)
@@ -81,8 +83,9 @@ def run_new_game(screen, clock, fps, game_mode, player):
         display_score_in_game(current_player.score)
         display_hearts(life, current_player.strike)
 
-        if current_player.frozen():
+        if current_player.is_frozen():
             screen.screen.blit(frozen_effect, (0, 0))
+            # sounds.play_freeze_sound
             current_player.frozen_up()
 
         for event in pygame.event.get():
@@ -122,13 +125,13 @@ def run_new_game(screen, clock, fps, game_mode, player):
         fruits_slices_on_screen = fruits_slices.copy()
         for fruit_slice in fruits_slices_on_screen:
             fruit_slice.draw()
-            if not current_player.frozen():
+            if not current_player.is_frozen():
                 if fruit_slice.fall(frame) == 'dropped':
                     index = fruits_slices.index(fruit_slice)
                     fruits_slices.pop(index)
         
         if frame % spawn_delay == 0:
-            if not current_player.frozen() and current_player.alive(life):
+            if not current_player.is_frozen() and current_player.is_alive(life):
                 if secrets.randbelow(100) > spawn_delay:
                     fruit = create_element(screen, devel, FRUIT_DICT, letters)
                     fruits.append(fruit)

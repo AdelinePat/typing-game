@@ -1,6 +1,9 @@
-from __settings__ import SCREEN, MAIN_FONT, BUTTON_IMAGE, BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4, TEXT_COLOR
+from __settings__ import SCREEN, MAIN_FONT, BUTTON_IMAGE, BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4, TEXT_COLOR, TEXT_COLOR_DARK, TEXT_COLOR_LIGHT
 from display.display_models.Button_image import Button_image
 from display.display_models.Button import Button
+
+import pygame
+
 def get_buttons():
 
     main_menu_button = Button_image(700, 150, 'FRUITS SLICER', "main_menu", BUTTON_IMAGE, SCREEN.screen, SCREEN.screen.get_rect().center)
@@ -56,4 +59,34 @@ def display_mode_menu(game_mode, language_mode):
             language.draw("white")
             
     return button_mode_list, language_list
+
+
+def game_over_screen(player_score):
+    # background_screen = pygame.Rect(0,0, SCREEN.width, SCREEN.height)
+    # background_screen.center = (SCREEN.width //2, SCREEN.height // 2)
+    background_screen = pygame.Surface((SCREEN.width, SCREEN.height))
+    background_rect = background_screen.get_rect(center = (SCREEN.width //2, SCREEN.height // 2))
+    background_screen.set_alpha(155)
+    pygame.draw.rect(background_screen, (0,0,0), background_rect)
+    SCREEN.screen.blit(background_screen, background_rect)
+
+
+    game_over_button = Button_image(600, 150, "Perdu !", "game_over_button", BUTTON_IMAGE4, SCREEN.screen, (SCREEN.width //2, SCREEN.height // 2))
+    game_over_button.draw(TEXT_COLOR_DARK)
+
+    # user_name_title = Button("entrez votre nom", "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
+    # user_name_title.draw(TEXT_COLOR_LIGHT)
+
+    # info_button = Button("Appuyez sur entrer pour lancer le jeu", "info", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
+    # info_button.draw(TEXT_COLOR_LIGHT)
+
+    game_over_dialog = f"Votre meilleur score est {player_score}"
+    message_button = Button(game_over_dialog, "game_over_message", 42, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
+    message_button.draw(TEXT_COLOR_LIGHT)
+
+    info_dialog_button = Button("Appuyer sur échappe ou entrer pour revenir au menu principal", "info_dialog_game_over", 30, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
+    info_dialog_button.draw(TEXT_COLOR_LIGHT)
+
+    
+    
 

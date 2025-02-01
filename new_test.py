@@ -36,8 +36,9 @@ def menu_display():
                 run = False
             
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                     game_menu = "main_menu"
+
 
             match game_menu:
                 case "start_menu":
@@ -82,7 +83,7 @@ def menu_display():
                     # screen.screen.blit(current_background, (0,0))
                     # mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
-                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Modes")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Modesh")
                     screen.screen.blit(new_background, (0,0))
                     button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
 
