@@ -43,15 +43,22 @@ def display_score_in_game(score):
     dialog_rect = dialog.get_rect(center = score_image_rect.center)
     screen.screen.blit(dialog, dialog_rect)
 
-def get_buttons():
-    main_menu_button = Button(700, 150, 'Menu Principal', "main_menu", 1, screen.screen.get_rect().center)
-    game_menu_button = Button(450, 100, "Jouer", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
-    mode_menu_button = Button(450, 100, "Mode", "mode_menu", 2, ((screen.width // 2), (screen.height // 8) + (screen.height //4)))
-    score_menu_button = Button(450, 100, "Scores", "score_menu", 3, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*2))
-    exit_menu_button = Button(450, 100, "Quitter", "exit_menu", 4, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*3))
+def get_buttons(translation):
+    main_menu_text = translation.translate("Main_menu")
+    game_menu_text = translation.translate("Game_on")
+    mode_menu_text = translation.translate("Mode")
+    score_menu_text = translation.translate("Score")
+    exit_menu_text = translation.translate("Exit_menu")
+
+    main_menu_button = Button(700, 150, main_menu_text, "main_menu", 1, screen.screen.get_rect().center)
+    game_menu_button = Button(450, 100, game_menu_text, "game_on", 1, ((screen.width // 2), (screen.height // 8)))
+    mode_menu_button = Button(450, 100, mode_menu_text, "mode_menu", 2, ((screen.width // 2), (screen.height // 8) + (screen.height //4)))
+    score_menu_button = Button(450, 100, score_menu_text, "score_menu", 3, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*2))
+    exit_menu_button = Button(450, 100, exit_menu_text, "exit_menu", 4, ((screen.width // 2), (screen.height // 8) + (screen.height //4)*3))
+
     button_list = [game_menu_button, mode_menu_button, score_menu_button, exit_menu_button]
 
-    return main_menu_button, button_list
+    return main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list
 
 def load_scores():
     if not os.path.exists(SCORE_PATH):
@@ -73,7 +80,7 @@ def create_mode_menu_button():
     language_button.draw(TEXT_COLOR)
 
 
-def display_mode_menu(game_mode, language_mode):
+def display_mode_menu(game_mode, language_mode, translation):
     create_mode_menu_button()
     
 
@@ -94,11 +101,16 @@ def display_mode_menu(game_mode, language_mode):
 
     #text, identification, font, font_size, color
 
-    easy_difficulty_button = Button_simple("Facile", "easy_mode", 28, screen.screen, ((screen.width // 4), (screen.height // 2 - 10)))
-    normal_difficulty_button = Button_simple("Normal", "normal_mode", 28, screen.screen, (screen.width // 4, screen.height // 2 + 70))
-    nightmare_difficulty_button = Button_simple("Nighmare", "nightmare_mode", 28, screen.screen, (screen.width // 4, screen.height // 2 + 150))
-    french_button = Button_simple("Français", "french_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 - 10))
-    english_button = Button_simple("Anglais", "english_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 + 70))
+    easy_text = translation.translate("Easy")
+    easy_difficulty_button = Button_simple(easy_text, "easy_mode", 28, screen.screen, ((screen.width // 4), (screen.height // 2 - 10)))
+    normal_text = translation.translate("Normal")
+    normal_difficulty_button = Button_simple(normal_text, "normal_mode", 28, screen.screen, (screen.width // 4, screen.height // 2 + 70))
+    nightmare_text = translation.translate("Nightmare")
+    nightmare_difficulty_button = Button_simple(nightmare_text, "nightmare_mode", 28, screen.screen, (screen.width // 4, screen.height // 2 + 150))
+    french_text_button = translation.translate("french")
+    french_button = Button_simple(french_text_button, "french_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 - 10))
+    english_text_button = translation.translate("English")
+    english_button = Button_simple(english_text_button, "english_mode", 28, screen.screen, ((screen.width // 4)*3, screen.height // 2 + 70))
 
     # easy_difficulty_button.text_render(MAIN_FONT, "white")
     # normal_difficulty_button.text_render(MAIN_FONT, "white")
@@ -149,12 +161,13 @@ def display_mode_menu(game_mode, language_mode):
 
 
 
-def display_scores(scores):
+def display_scores(scores, translation):
     in_score_button = Button(450, 100, "Scores", "in_score", 3, ((screen.width // 2), 70))
     in_score_button.draw(TEXT_COLOR)
 
     if not scores:
-        print("y'a pas de scores enregistré")
+        no_score_text = translation.translate("No score record")
+        print(f"{no_score_text}")
     else:
         
         all_player_score = list(scores.keys())

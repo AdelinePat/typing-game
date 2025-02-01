@@ -5,17 +5,22 @@ from class_folder.Screen import Screen
 from game.menues.game_functions import init_game_functions, game_off, clock_tick
 from game.menues.game_round import run_new_game
 from game.menues.game_set_up import run_set_up_game
+from class_folder.translation_manager import TranslationManager
 
 from __settings__ import TEXT_COLOR, BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 
+translate_all = TranslationManager()
+pygame.init()
+screen = pygame.display.set_mode((600, 400))
+font = pygame.font.Font(None, 36)
 
 
-def menu_display():
+def menu_display(translation):
     screen = Screen(1080, 720)
-    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer")
+    current_background = screen.background(BACKGROUND_IMAGE, translate_all.translate("fruit_slicer"))
     # screen_rect_center = screen.screen.get_rect().center
 
-    main_menu_button, main_button_list = get_buttons()
+    main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list = get_buttons(translation)
     
     
     run = True
@@ -50,21 +55,22 @@ def menu_display():
 
                 case "main_menu":
                     screen.screen.blit(current_background, (0,0))
-                    for main_button in main_button_list:  
-                        if main_button.rect.collidepoint(mouse_position):
-                            main_button.hovered = True
-                            main_button.draw("red")
+                    for button in button_list:  
+                        if button.rect.collidepoint(mouse_position):
+                            button.hovered = True
+                            button.draw("red")
 
                             if event.type == pygame.MOUSEBUTTONDOWN:
                                 # print("ohlalala")   
-                                game_menu = main_button.identification
+                                game_menu = button.identification
                         else:
-                            main_button.hovered = False
-                            main_button.draw(TEXT_COLOR)
+                            button.hovered = False
+                            button.draw(TEXT_COLOR)
 
                 case "score_menu":
                     #TODO afficher les scores et les joueurs associés sur plusieurs page avec option supression
-                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+                    window_title = translate_all.translate("fruit_slicer")+"  - " + translate_all.translate("score")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, window_title)
                     screen.screen.blit(new_background, (0,0))
                     scores = load_scores()
                     display_scores(scores)
@@ -78,9 +84,10 @@ def menu_display():
                     # screen.screen.blit(current_background, (0,0))
                     # mode_menu_button.draw("purple")
                     # exit_menu_button.draw("blue")
-                    new_background = screen.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+                    window_title = translate_all.translate("fruit_slicer")+"  - " + translate_all.translate("score")
+                    new_background = screen.background(BACKGROUND_IMAGE_MENU, window_title)
                     screen.screen.blit(new_background, (0,0))
-                    button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
+                    button_mode_list, language_list = display_mode_menu(game_mode, language_mode, translate_all)
 
                     
                     
@@ -89,11 +96,12 @@ def menu_display():
                             if language.rect.collidepoint(mouse_position):
                                 if event.type == pygame.MOUSEBUTTONDOWN:
                                     language_mode = language.identification
-                    for mode_button in button_mode_list: 
-                            if mode_button.rect.collidepoint(mouse_position):
-                                if event.type == pygame.MOUSEBUTTONDOWN:
-                                    game_mode = mode_button.identification
-
+                                    if language_mode == "english_mode":
+                                        translate_all.set_language("eng")
+                                    elif language_mode == "french_mode":
+                                        translate_all.set_language("fr")
+                                    else:
+                                        print("Langue invalide !!")                 
                     # print(game_mode)
                     # print(language)
 
@@ -126,4 +134,4 @@ def menu_display():
         pygame.display.update() 
 
 
-menu_display()
+menu_display(translate_all)
