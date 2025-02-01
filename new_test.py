@@ -76,7 +76,7 @@ def menu_display(translation):
                         BACKGROUND_IMAGE_MENU, window_title)
                     screen.screen.blit(new_background, (0, 0))
                     scores = load_scores()
-                    display_scores(scores)
+                    display_scores(scores, translate_all)
                     # score_menu_button.draw("green")
 
                     # exit_menu_button.draw("brown")

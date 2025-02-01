@@ -8,7 +8,7 @@
     "Exit_menu": "Quitter",
     "Mode": "Mode",
     "Score": "Score",
-    "Difficultu": "Difficulté",
+    "Difficulty": "Difficulté",
     "Easy": "Facile",
     "Normal": "Normal",
     "Nightmare": "Cauchemar",
@@ -19,7 +19,7 @@
     "in_game": "Partie en cours",
     "No_score_record": "Il n'a pas de scores enregistré",
     "highscore": "Meilleur score",
-    "Slashed Fruits": "Fruits coupés",
+    "Slashed_Fruits": "Fruits coupés",
     "Game_Played": "Partie Jouée"
   },
   "eng": {
@@ -40,9 +40,9 @@
     "English": "English",
     "game_on": "Enter your name",
     "in_game": "In Game",
-    "No score record": "No score record",
+    "No_score_record": "No score record",
     "highscore": "highscore",
-    "Slashed Fruits": "Slashed Fruits",
+    "Slashed_Fruits": "Slashed Fruits",
     "Game_Played": "Game Played"
   }
 }
