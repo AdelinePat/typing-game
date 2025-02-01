@@ -56,15 +56,19 @@ def run_new_game(screen, clock, fps, game_mode, player):
 
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer  - EN JEU")
     frozen_effect = screen.frozen()
+    run = True
+    while run:
+        screen.screen.blit(current_background, (0, 0))
 
-    while True:
         if not current_player.is_alive(life):
             game_scores.update_scores(current_player)
             sounds.play_game_over_sound()
-            game_over_screen(current_player.score)
-            return "menu_game_over"
+            
+            run = False
+            game_menu = "menu_game_over"
+            return game_menu, current_player.score
 
-        screen.screen.blit(current_background, (0, 0))
+        
         fruits_on_screen = fruits.copy()
         for fruit in fruits_on_screen:
             fruit.draw()
