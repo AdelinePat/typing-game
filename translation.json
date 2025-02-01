@@ -1,6 +1,6 @@
 {
   "fr": {
-    "Main_menu": "Menu Principal",
+    "main_menu": "Menu Principal",
     "fruit_slicer": "Fruit Ninja",
     "score_menu": "Score",
     "Game_on": "Jouer",
@@ -8,7 +8,7 @@
     "Exit_menu": "Quitter",
     "Mode": "Mode",
     "Score": "Score",
-    "Difficulty": "Difficulté",
+    "Difficultu": "Difficulté",
     "Easy": "Facile",
     "Normal": "Normal",
     "Nightmare": "Cauchemar",
@@ -17,13 +17,13 @@
     "English": "Anglais",
     "game_on": "Entrez votre nom",
     "in_game": "Partie en cours",
-    "No score record": "Il n'a pas de scores enregistré",
-    "Highscore": "Meilleur score",
+    "No_score_record": "Il n'a pas de scores enregistré",
+    "highscore": "Meilleur score",
     "Slashed Fruits": "Fruits coupés",
     "Game_Played": "Partie Jouée"
   },
   "eng": {
-    "Main_menu": "Main Menu",
+    "main_menu": "Main Menu",
     "fruit_slicer": "Fruit Slicer",
     "score_menu": "Score",
     "Game_on": "Play",
@@ -41,7 +41,7 @@
     "game_on": "Enter your name",
     "in_game": "In Game",
     "No score record": "No score record",
-    "Highscore": "Highscore",
+    "highscore": "highscore",
     "Slashed Fruits": "Slashed Fruits",
     "Game_Played": "Game Played"
   }
