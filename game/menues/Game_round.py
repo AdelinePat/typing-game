@@ -11,15 +11,17 @@ from display.display_game_elements import display_hearts, display_score_in_game
 from display.display_models.Sounds import Sounds
 
 # Initialisation de pygame et du mixer
-sounds = Sounds()
-sounds.play_slice_sound()
-pygame.mixer.init()
-pygame.mixer.set_num_channels(16)
+
 
 
 
 def run_new_game(screen, clock, fps, game_mode, player):
+    sounds = Sounds()
+    sounds.play_slice_sound()
+    pygame.mixer.init()
+    pygame.mixer.set_num_channels(16)
     current_player = Player_attributes(player)
+
     game_scores = Scores()
 
     all_letters = list(string.ascii_uppercase)
@@ -85,7 +87,6 @@ def run_new_game(screen, clock, fps, game_mode, player):
 
         if current_player.is_frozen():
             screen.screen.blit(frozen_effect, (0, 0))
-            # sounds.play_freeze_sound
             current_player.frozen_up()
 
         for event in pygame.event.get():
@@ -112,12 +113,12 @@ def run_new_game(screen, clock, fps, game_mode, player):
                 for prop in props:
                     if prop.letter == current_player.played_key:
                         if prop.name == 'bomb':
-                            sounds.play_bomb_sound
+                            sounds.play_bomb_sound()
                             current_player.life_down(life,'bomb')
                             index = props.index(prop)
                             props.pop(index)
                         elif prop.name in ('icecube1', 'icecube2', 'icecube3', 'icecube4'):
-                            sounds.play_freeze_sound
+                            sounds.play_freeze_sound()
                             current_player.frozen_up()
                             index = props.index(prop)
                             props.pop(index)
