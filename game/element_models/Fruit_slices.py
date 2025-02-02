@@ -25,9 +25,9 @@ class Fruit_slices():
         else:
             self.vel_y = abs(vel_y)
         if self.fruit_half == "half_1":
-            self.vel_x = -abs(vel_x)
+            self.vel_x = -abs(vel_x) - random.randrange(1, 5)
         elif self.fruit_half == "half_2":
-            self.vel_x = abs(vel_x)
+            self.vel_x = abs(vel_x) + random.randrange(1, 5)
 
     def fall(self, frame):
         if self.y > (SCREEN.height + 2):
