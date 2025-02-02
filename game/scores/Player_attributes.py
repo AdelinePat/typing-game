@@ -24,7 +24,7 @@ class Player_attributes:
         elif mistake == 'bomb':
             self.strike = life
     
-    def alive(self, life):
+    def is_alive(self, life):
         '''
             return a boolean to check the player's life state
         '''
@@ -58,12 +58,12 @@ class Player_attributes:
         '''
             update the player's frozen delay up or down based on events
         '''
-        if self.frozen():
+        if self.is_frozen():
             self.frozen_delay -=1
         else:
             self.frozen_delay = 180
     
-    def frozen(self):
+    def is_frozen(self):
         '''
             return a boolean based on the player's frozen state
         '''

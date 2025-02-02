@@ -1,112 +1,62 @@
+from __settings__ import SCREEN, FPS
 import pygame
-from class_folder.Button import Button
-from class_folder.Screen import Screen
-from game.menues.game_functions import init_game_functions, game_off, clock_tick
-from game.menues.game_round import run_new_game
-from game.menues.game_set_up import run_set_up_game
+from display.display_models.__settings__ import BACKGROUND_IMAGE
+from display.display_models.translation_manager import TranslationManager
+from display.display_menu import get_main_menu_button, game_over_screen
+from menu.in_score_menu import in_score_menu
+from menu.in_main_menu import in_main_menu
+from menu.in_mode_menu import in_mode_menu
+from menu.in_start_menu import in_start_menu
+from game.game_functions import init_game_functions, clock_tick
+from game.game_round import run_new_game
+from game.game_set_up import run_set_up_game
 
-from __settings__ import TEXT_COLOR
 
+translate_all = TranslationManager()
 
-def menu_display(translation):
-    screen = Screen(1080, 720)
-    background_final = screen.background()
-    # main_menu_text = translation.translate("main_settings")
-    main_menu_button = Button(
-        700, 150, "Settings", "main_menu", 1, screen.screen.get_rect().center)
-    # game_menu_text = translation.translate("Start_menu")
-    game_menu_button = Button(
-        450, 100, "Play", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
-    mode_menu_text = translation.translate("Mode")
-    mode_menu_button = Button(450, 100, mode_menu_text, "mode_menu", 1, ((
-        screen.width // 2), (screen.height // 8) + (screen.height // 4)))
-    # score_menu_text = translation.translate("Score")
-    score_menu_button = Button(450, 100, "Score", "score_menu", 1, ((
-        screen.width // 2), (screen.height // 8) + (screen.height // 4)*2))
-    # exit_menu_text = translation.translate("Exit")
-    exit_menu_button = Button(450, 100, "Exit", "exit_menu", 1, ((
-        screen.width // 2), (screen.height // 8) + (screen.height // 4)*3))
-    button_list = [game_menu_button, mode_menu_button,
-                   score_menu_button, exit_menu_button]
-
+def main():
+    clock, player, game_mode, game_menu, language_mode = init_game_functions()
+    current_background = SCREEN.background(BACKGROUND_IMAGE, translate_all.translate("fruit_slicer"))
+    
     run = True
-    screen.screen.blit(background_final, (0, 0))
-
-    screen, fps, clock, player, game_mode, game_menu = init_game_functions()
-
+    SCREEN.screen.blit(current_background, (0,0))
     while run:
-        clock_tick(clock, fps)
+        clock_tick(clock, FPS)
+        main_menu_button = get_main_menu_button(translate_all)
 
-        mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                     game_menu = "main_menu"
 
             match game_menu:
                 case "start_menu":
-                    screen.screen.blit(background_final, (0, 0))
-                    if main_menu_button.rect.collidepoint(mouse_position):
-                        main_menu_button.hovered = True
-                        main_menu_button.draw("red")
-                        if event.type == pygame.MOUSEBUTTONDOWN:
-                            game_menu = "main_menu"
-                            # return game_menu
-                    else:
-                        main_menu_button.hovered = False
-                        main_menu_button.draw(TEXT_COLOR)
+                    game_menu = in_start_menu(clock, FPS, main_menu_button, translate_all)
 
                 case "main_menu":
-                    screen.screen.blit(background_final, (0, 0))
-                    for button in button_list:
-                        if button.rect.collidepoint(mouse_position):
-                            button.hovered = True
-                            button.draw("red")
-
-                            if event.type == pygame.MOUSEBUTTONDOWN:
-                                # print("ohlalala")
-                                game_menu = button.identification
-                        else:
-                            button.hovered = False
-                            button.draw(TEXT_COLOR)
+                    game_menu = in_main_menu(clock, FPS, translate_all)
 
                 case "score_menu":
-                    # TODO afficher les scores et les joueurs associés sur plusieurs page avec option supression
-                    screen.screen.blit(background_final, (0, 0))
-                    score_menu_button.draw("green")
-
-                    # exit_menu_button.draw("brown")
-
+                    game_menu = in_score_menu(clock, FPS, translate_all)
+                   
                 case "mode_menu":
-                    # TODO afficher les modes de jeu possible et les langues (si on a les temps)
-                    screen.screen.blit(background_final, (0, 0))
-                    mode_menu_button.draw("purple")
-                    # exit_menu_button.draw("blue")
+                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS, game_mode, language_mode, translate_all)
+                    translate_all.set_language(language_mode)    
 
                 case "game_on":
-                    # TODO fonction qui demande le nom d'utilisateur avant de lancer la boucle de jeu
-                    game_menu, game_mode, player = run_set_up_game(
-                        screen, clock, fps, game_mode, player)
+                    game_menu, player = run_set_up_game(SCREEN, clock, FPS, player, translate_all)
 
                 case "in_game":
-                    game_menu = run_new_game(
-                        screen, clock, fps, game_mode, player)
+                    game_menu, player_score = run_new_game(SCREEN, clock, FPS, game_mode, player, translate_all)
 
                 case "menu_game_over":
-                    game_menu = "main_menu"
-                    # TODO créer le menu game over ololol
+                    game_menu = game_over_screen(player_score, translate_all)
 
-                    # TODO boucle de jeu et tout ce qui va avec
-
-                    # game_menu_screen()
-                    # screen.screen.blit(background_final, (0,0))
-                    # game_menu_button.draw("black")
-                    # exit_menu_button.draw("blue")
                 case "exit_menu":
-                    game_off()
+                    exit()
 
-
-menu_display()
+        pygame.display.update() 
+main()

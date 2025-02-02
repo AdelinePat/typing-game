@@ -1,0 +1,66 @@
+{
+  "fr": {
+    "fruit_slicer": "Fruit Ninja",
+    "main_menu":"Menu Principal",
+    
+    "start_menu": "Jouer",
+    "name_title": "Entrez votre nom",
+    "info_start_game": "Appuyez sur entrer pour lancer le jeu",
+    "in_game": "Partie en cours",
+
+    "main_settings": "Paramètres",
+    "Difficulty": "Difficulté",
+    "Easy": "Facile",
+    "Normal": "Normal",
+    "Nightmare": "Cauchemar",
+    "Language": "Langues",
+    "French": "Français",
+    "English": "Anglais",
+    
+    "score_menu": "Scores",
+    "No_score_record": "Il n'y a pas encore de scores enregistrés",
+    "highscore": "Meilleur score",
+    "Slashed_Fruits": "Fruits coupés",
+    "Game_Played": "Partie(s) jouée(s)",
+    "reset_all_score": "Réinitialiser",
+    "escape_button": "Retour",
+
+    "Game_over_message" : "Votre score est",
+    "Game_over_button": "Perdu !",
+    "Info_dialog_game_over": "Appuyer sur échappe ou entrer pour revenir au menu principal",
+
+    "Exit_menu": "Quitter"
+  },
+  "eng": {
+    "fruit_slicer": "Fruit Slicer",
+    "main_menu": "Main Menu",
+
+    "start_menu": "Play",
+    "name_title": "Enter your username",
+    "info_start_game": "Press enter to start new game",
+    "in_game": "In Game",
+
+    "main_settings": "Settings",
+    "Difficulty": "Difficulty",
+    "Easy": "Easy",
+    "Normal": "Normal",
+    "Nightmare": "Nightmare",
+    "Language": "Languages",
+    "French": "French",
+    "English": "English",
+     
+    "score_menu": "Scores",
+    "No_score_record": "No score record",
+    "highscore": "Highscore",
+    "Slashed_Fruits": "Slashed fruits",
+    "Game_Played": "Game Played",
+    "reset_all_score": "Reset",
+    "escape_button": "Return",
+
+    "Game_over_message" : "Your score is",
+    "Game_over_button": "Game over !",
+    "Info_dialog_game_over": "Press ESC or ENTER to get back to main menu",
+
+    "Exit_menu": "Exit"
+  }
+}

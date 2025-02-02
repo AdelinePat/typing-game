@@ -6,62 +6,97 @@
     },
     "test": {
         "highscore": 51,
-        "slashed_fruits": 57,
-        "games_played": 3
+        "slashed_fruits": 121,
+        "games_played": 15
     },
-    "Aladin": {
+    "aladin": {
         "highscore": 1058,
         "slashed_fruits": 1058,
         "games_played": 139
     },
     "baba": {
         "highscore": 282,
-        "slashed_fruits": 397,
-        "games_played": 7
+        "slashed_fruits": 759,
+        "games_played": 14
     },
-    "Mulan": {
+    "mulan": {
         "highscore": 8,
         "slashed_fruits": 9,
         "games_played": 2
     },
-    "Kakashi": {
+    "kakashi": {
         "highscore": 1058,
         "slashed_fruits": 1058,
         "games_played": 139
     },
-    "Zoro": {
+    "zoro": {
         "highscore": 10583,
         "slashed_fruits": 10583,
         "games_played": 1
     },
-    "Sari": {
+    "sari": {
         "highscore": 33,
         "slashed_fruits": 33,
         "games_played": 10
     },
-    "Ussop": {
+    "ussop": {
         "highscore": 13,
         "slashed_fruits": 13,
         "games_played": 2
     },
-    "Nanami": {
+    "nanami": {
         "highscore": 5213,
         "slashed_fruits": 5213,
         "games_played": 20
     },
-    "cacac": {
+    "florence": {
         "highscore": 17,
         "slashed_fruits": 16,
         "games_played": 1
     },
-    "cacac arme": {
+    "vanessa": {
         "highscore": 17,
         "slashed_fruits": 14,
         "games_played": 1
     },
-    "djkjkjk": {
-        "highscore": 7,
-        "slashed_fruits": 6,
-        "games_played": 1
+    "jolyne": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "noa": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "maeva": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "hashegin": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "anothertest": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "thomas": {
+        "highscore": 79,
+        "slashed_fruits": 116,
+        "games_played": 3
+    },
+    "adeline": {
+        "highscore": 324,
+        "slashed_fruits": 764,
+        "games_played": 11
+    },
+    "booya": {
+        "highscore": 112,
+        "slashed_fruits": 138,
+        "games_played": 4
     }
 }
