@@ -12,6 +12,7 @@ def in_score_menu(clock, fps):
     
     scores = Scores()
     while True:
+        keys = pygame.key.get_pressed()
         new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
         SCREEN.screen.blit(new_background, (0,0))
         create_score_title()
@@ -29,10 +30,17 @@ def in_score_menu(clock, fps):
                     # score_menu = False
                     game_menu = "main_menu"
                     return game_menu
+                if event.key == pygame.K_LEFT:
+                    if page_score > 0:
+                        page_score -= 1
+                if event.key == pygame.K_RIGHT:
+                    if page_score < number_page - 1:
+                            page_score += 1
+
         if escape_button.image_rect.collidepoint(mouse_position):
             escape_button.draw(TEXT_COLOR_DARK)
             if event.type == pygame.MOUSEBUTTONDOWN:
-                game_menu = "start_menu"
+                game_menu = "main_menu"
                 # score_menu = False
                 return game_menu        
         
@@ -45,14 +53,17 @@ def in_score_menu(clock, fps):
 
             arrow_left, arrow_right, number_page = display_scores(scores.scores, page_score)
             if arrow_left.image_rect.collidepoint(mouse_position):
-                if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.type == pygame.MOUSEBUTTONDOWN or event.type == keys[pygame.K_LEFT]:
                     if page_score > 0:
                         page_score -= 1
 
             if arrow_right.image_rect.collidepoint(mouse_position):
-                if event.type == pygame.MOUSEBUTTONDOWN:
+                if event.type == pygame.MOUSEBUTTONDOWN :
                     if page_score < number_page - 1:
                         page_score += 1
+            
+            # if event.type == keys[pygame.K_LEFT]:
+                    
 
         if reset_score_button.image_rect.collidepoint(mouse_position) and bool(scores.scores):
             reset_score_button.draw(TEXT_COLOR_DARK)
