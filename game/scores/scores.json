@@ -83,5 +83,20 @@
         "highscore": 33,
         "slashed_fruits": 33,
         "games_played": 10
+    },
+    "thomas": {
+        "highscore": 79,
+        "slashed_fruits": 116,
+        "games_played": 3
+    },
+    "adeline": {
+        "highscore": 324,
+        "slashed_fruits": 764,
+        "games_played": 9
+    },
+    "booya": {
+        "highscore": 29,
+        "slashed_fruits": 31,
+        "games_played": 2
     }
 }

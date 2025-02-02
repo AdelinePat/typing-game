@@ -54,37 +54,38 @@ def run_new_game(screen, clock, fps, game_mode, player):
     props = []
     fruits_slices = []
 
+
     current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer  - EN JEU")
     frozen_effect = screen.frozen()
-    run = True
-    while run:
+    while True:
+        
+        prop_pop_list = []
+        fruit_pop_list = []
+        slice_pop_list = []
+
         screen.screen.blit(current_background, (0, 0))
 
         if not current_player.is_alive(life):
             game_scores.update_scores(current_player)
             sounds.play_game_over_sound()
-            
-            run = False
             game_menu = "menu_game_over"
             return game_menu, current_player.score
-
         
-        fruits_on_screen = fruits.copy()
-        for fruit in fruits_on_screen:
+        for fruit in fruits:
             fruit.draw()
             if not current_player.is_frozen():
                 if fruit.fall(frame, devel) == 'dropped':
                     index = fruits.index(fruit)
-                    fruits.pop(index)
+                    fruit_pop_list.append(index)
                     current_player.life_down(life, 'dropped', frame)
-
-        props_on_screen = props.copy()
-        for prop in props_on_screen:
+  
+        for prop in props:
             prop.draw()
             if not current_player.is_frozen():
                 if prop.fall(frame, devel) == 'dropped':
                     index = props.index(prop)
-                    props.pop(index)
+                    prop_pop_list.append(index)
+        
 
         display_score_in_game(current_player.score)
         display_hearts(life, current_player.strike)
@@ -93,6 +94,7 @@ def run_new_game(screen, clock, fps, game_mode, player):
             screen.screen.blit(frozen_effect, (0, 0))
             current_player.frozen_up()
 
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return "game_off"
@@ -110,7 +112,7 @@ def run_new_game(screen, clock, fps, game_mode, player):
                         fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, 'half_2')
                         fruits_slices.append(fruit_slices_1)
                         fruits_slices.append(fruit_slices_2)
-                        fruits.pop(index)
+                        fruit_pop_list.append(index)
                         sounds.play_slice_sound()
                         current_player.add_score()
 
@@ -120,20 +122,21 @@ def run_new_game(screen, clock, fps, game_mode, player):
                             sounds.play_bomb_sound()
                             current_player.life_down(life,'bomb')
                             index = props.index(prop)
-                            props.pop(index)
+                            prop_pop_list.append(index)
                         elif prop.name in ('icecube1', 'icecube2', 'icecube3', 'icecube4'):
                             sounds.play_freeze_sound()
                             current_player.frozen_up()
                             index = props.index(prop)
-                            props.pop(index)
-  
-        fruits_slices_on_screen = fruits_slices.copy()
-        for fruit_slice in fruits_slices_on_screen:
+                            prop_pop_list.append(index)
+
+        for fruit_slice in fruits_slices:
             fruit_slice.draw()
             if not current_player.is_frozen():
                 if fruit_slice.fall(frame) == 'dropped':
                     index = fruits_slices.index(fruit_slice)
-                    fruits_slices.pop(index)
+                    slice_pop_list.append(index)
+
+        
         
         if frame % spawn_delay == 0:
             if not current_player.is_frozen() and current_player.is_alive(life):
@@ -153,6 +156,23 @@ def run_new_game(screen, clock, fps, game_mode, player):
             else:
                 spawn_delay -=1
                 devel -= 0.25
+        
+        if bool(fruit_pop_list):
+            fruit_pop_list.sort(reverse= True)
+            for a_fruit in fruit_pop_list:
+                # print(f"l'index à pop : {a_fruit}")
+                # print(f"longueur fruits list : {len(fruits)}")
+                fruits.pop(a_fruit)
+
+        if bool(slice_pop_list):
+            slice_pop_list.sort(reverse= True)
+            for a_slice in slice_pop_list:
+                fruits_slices.pop(a_slice)
+                
+        if bool(prop_pop_list):
+            prop_pop_list.sort(reverse= True)
+            for a_prop in prop_pop_list:
+                props.pop(a_prop)
 
         frame = clock_tick(clock, fps, frame)
 

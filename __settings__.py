@@ -56,31 +56,31 @@ FPS_EASY = 20
 FPS_HARD = 40
 
 APPLE_IMAGE = pygame.image.load("assets/fruits/apple_full.png")
-APPLE_SLICE = "assets/fruits/apple_slice.png"
+APPLE_SLICE = pygame.image.load("assets/fruits/apple_slice.png")
 
 COCONUT_IMAGE = pygame.image.load("assets/fruits/coconut_full.png")
-COCONUT_SLICE = "assets/fruits/coconut_slice.png"
+COCONUT_SLICE = pygame.image.load("assets/fruits/coconut_slice.png")
 
 KIWI_IMAGE = pygame.image.load("assets/fruits/kiwi_full.png")
-KIWI_SLICE = "assets/fruits/kiwi_slice.png"
+KIWI_SLICE = pygame.image.load("assets/fruits/kiwi_slice.png")
 
 LIMON_IMAGE = pygame.image.load("assets/fruits/limon_full.png")
-LIMON_SLICE = "assets/fruits/limon_slice.png"
+LIMON_SLICE = pygame.image.load("assets/fruits/limon_slice.png")
 
 MELON_IMAGE = pygame.image.load("assets/fruits/melon_full.png")
-MELON_SLICE = "assets/fruits/melon_slice.png"
+MELON_SLICE = pygame.image.load("assets/fruits/melon_slice.png")
 
 ORANGE_IMAGE = pygame.image.load("assets/fruits/orange_full.png")
-ORANGE_SLICE = "assets/fruits/orange_slice.png"
+ORANGE_SLICE = pygame.image.load("assets/fruits/orange_slice.png")
 
 PEAR_IMAGE = pygame.image.load("assets/fruits/pear_full.png")
-PEAR_SLICE = "assets/fruits/pear_slice.png"
+PEAR_SLICE = pygame.image.load("assets/fruits/pear_slice.png")
 
 PINEAPPLE_IMAGE = pygame.image.load("assets/fruits/pineapple_full_2.png")
-PINEAPPLE_SLICE = "assets/fruits/pineapple_slice.png"
+PINEAPPLE_SLICE = pygame.image.load("assets/fruits/pineapple_slice.png")
 
 WATERMELON_IMAGE = pygame.image.load("assets/fruits/watermelon_full.png")
-WATERMELON_SLICE = "assets/fruits/watermelon_slice.png"
+WATERMELON_SLICE = pygame.image.load("assets/fruits/watermelon_slice.png")
 
 ASSETS_DICT = {
     "plank1" : BUTTON_IMAGE,

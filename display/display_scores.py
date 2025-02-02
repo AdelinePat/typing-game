@@ -3,7 +3,6 @@ from display.display_models.Button_image import Button_image
 from display.display_models.Button import Button
 from __settings__ import SCREEN, BUTTON_IMAGE3, BUTTON_IMAGE2, BUTTON_IMAGE4, MAIN_FONT, STYLE_FONT, TEXT_COLOR, TEXT_COLOR_LIGHT, TEXT_COLOR_DARK, PLANK_ARROW_RIGHT, PLANK_ARROW_LEFT
 
-
 def get_scores_menu_page(scores):
     if not scores:
         display_empty_score()
@@ -81,16 +80,15 @@ def display_scores(scores, page):
             position_x += SCREEN.width // 4
     return arrow_left, arrow_right, number_pages
 
-
 def display_player_score(scores, player, position_x, position_y):
     box = pygame.Rect(position_x, position_y, (SCREEN.width // 4) - 40 , (SCREEN.height // 4))
     box_center = box.center
     # draw_box = pygame.draw.rect(SCREEN.screen, "red", box, 3)
 
     user = dialog_render(player.capitalize(), STYLE_FONT, 34, TEXT_COLOR, (box_center[0], box_center[1] - box.height // 2 + 40), SCREEN.screen)
-    highscore = dialog_render("Highscore : " + str(scores[player]["highscore"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 90), SCREEN.screen)
-    slice = dialog_render("Slashed Fruits : " + str(scores[player]["slashed_fruits"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 120), SCREEN.screen)
-    game = dialog_render("Game Played : " + str(scores[player]["games_played"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1]- box.height // 2 + 150), SCREEN.screen)
+    highscore = dialog_render("Meilleur score : " + str(scores[player]["highscore"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 90), SCREEN.screen)
+    slice = dialog_render("Fruits tranchés : " + str(scores[player]["slashed_fruits"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 120), SCREEN.screen)
+    game = dialog_render("Parties : " + str(scores[player]["games_played"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1]- box.height // 2 + 150), SCREEN.screen)
     
 def dialog_render(text, font, font_size, color, box_center, screen):
     font = pygame.font.Font(font, font_size)

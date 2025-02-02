@@ -21,18 +21,10 @@ from __settings__ import SCREEN, FPS
 
 def menu_display():
     clock, player, game_mode, game_menu, language_mode = init_game_functions()
-
-    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer")
-
-    
+    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer")   
     main_menu_button, main_button_list = get_buttons()
-    
-    
     run = True
     SCREEN.screen.blit(current_background, (0,0))
-    print("background menu principal")
-
-
     while run:
         clock_tick(clock, FPS)
 
@@ -62,6 +54,7 @@ def menu_display():
 
                 case "in_game":
                     game_menu, player_score = run_new_game(SCREEN, clock, FPS, game_mode, player)
+
                 case "menu_game_over":
                     game_menu = game_over_screen(player_score)
 

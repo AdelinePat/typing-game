@@ -8,7 +8,6 @@ def in_main_menu(clock, fps, main_button_list):
 
     current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer - Menu principal")
     SCREEN.screen.blit(current_background, (0,0))
-    print("blit du background dans main menu")
 
     while True:
         clock_tick(clock, fps)
@@ -22,7 +21,6 @@ def in_main_menu(clock, fps, main_button_list):
                 if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                     game_menu = "main_menu"
                     return game_menu
-                    # main_menu = False
 
             for main_button in main_button_list:  
                 if main_button.image_rect.collidepoint(mouse_position):
@@ -30,16 +28,8 @@ def in_main_menu(clock, fps, main_button_list):
                     main_button.draw(TEXT_COLOR_DARK)
 
                     if event.type == pygame.MOUSEBUTTONDOWN:
-                        # print("ohlalala")   
                         game_menu = main_button.identification
-                        # print("game menu devrait prendre la valeur du bouton")
-                        print(game_menu)
                         return game_menu
                 else:
                     main_button.hovered = False
                     main_button.draw(TEXT_COLOR)
-            # print("print des boutons")
-
-        # clock_tick(clock, fps)
-
-    # return game_menu

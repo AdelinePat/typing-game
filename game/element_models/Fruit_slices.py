@@ -17,12 +17,13 @@ class Fruit_slices():
 
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
 
-        self.image = pygame.transform.smoothscale(pygame.image.load(self.image_path).convert_alpha(), (self.surface))
-
+        self.image = pygame.transform.smoothscale(self.image_path.convert_alpha(), (self.surface))
+        self.rotation = random.randrange(-100, 100)
+        self.fruit_half = fruit_half
         self.vel_y = abs(vel_y)
-        if fruit_half == "half_1":
+        if self.fruit_half == "half_1":
             self.vel_x = -abs(vel_x)
-        elif fruit_half == "half_2":
+        elif self.fruit_half == "half_2":
             self.vel_x = abs(vel_x)
 
     def fall(self, frame):
@@ -41,8 +42,12 @@ class Fruit_slices():
             return None
 
     def rotate_element(self, element):
-        rotation = random.randrange(-60, 60)
-        element_rotate = pygame.transform.rotate(element, rotation)
+        self.rotation += random.randrange(10)
+        
+        if self.fruit_half == "half_1":
+            self.rotation * -1
+
+        element_rotate = pygame.transform.rotate(element, self.rotation)
         element_rect = element_rotate.get_rect(center = self.box_center)
         return element_rotate, element_rect
     

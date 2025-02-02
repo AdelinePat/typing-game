@@ -26,10 +26,6 @@ def run_set_up_game(screen, clock, fps, player):
         player_name_button.font = MAIN_FONT
         player_name_button.draw(TEXT_COLOR_DARK)
 
-        # user_print = pygame.font.Font('assets/fonts/Coolvetica Rg.otf').render(user_input, True, 'black', 'white')
-
-        # user_print_rect = user_print.get_rect(center= (SCREEN.width//2, SCREEN.height//2))
-        # SCREEN.screen.blit(user_print, user_print_rect)
         correct_input, user_input = input_expression(user_input, 12)
         match correct_input:
             case True:
