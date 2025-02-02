@@ -29,7 +29,7 @@ BUTTON_IMAGE = pygame.image.load("assets/plank/plank1.1.png")
 BUTTON_IMAGE2 = flip_button_image(BUTTON_IMAGE, True, False)
 BUTTON_IMAGE3 = flip_button_image(BUTTON_IMAGE, False, True)
 BUTTON_IMAGE4 = flip_button_image(BUTTON_IMAGE, True, True)
-PLANK_SCORE = "assets/plank/plank2.png"
+PLANK_SCORE =  pygame.image.load("assets/plank/plank2.png")
 PLANK_ARROW_RIGHT = pygame.image.load("assets/plank/arrow_right_plank.png")
 PLANK_ARROW_LEFT = flip_button_image(PLANK_ARROW_RIGHT, True, False)
 

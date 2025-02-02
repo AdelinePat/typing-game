@@ -16,8 +16,8 @@
     },
     "baba": {
         "highscore": 282,
-        "slashed_fruits": 759,
-        "games_played": 14
+        "slashed_fruits": 843,
+        "games_played": 16
     },
     "mulan": {
         "highscore": 8,
@@ -90,9 +90,9 @@
         "games_played": 3
     },
     "adeline": {
-        "highscore": 324,
-        "slashed_fruits": 764,
-        "games_played": 11
+        "highscore": 341,
+        "slashed_fruits": 1074,
+        "games_played": 13
     },
     "booya": {
         "highscore": 112,

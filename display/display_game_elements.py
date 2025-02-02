@@ -1,5 +1,5 @@
 import pygame
-from __settings__ import SCREEN, HEART, BUTTON_IMAGE, STYLE_FONT
+from __settings__ import SCREEN, HEART, PLANK_SCORE, STYLE_FONT
 
 def display_hearts(life, strike):
     hearts = []
@@ -21,7 +21,7 @@ def display_score_in_game(score):
     score_width = 200
     score_height = 100
     score_rect = pygame.Rect(0, 0, score_width, score_height)
-    score_image = pygame.transform.smoothscale(BUTTON_IMAGE, (score_width, score_height)).convert_alpha()
+    score_image = pygame.transform.smoothscale(PLANK_SCORE, (score_width, score_height)).convert_alpha()
     score_image_rect = score_image.get_rect(top= 10, right= SCREEN.width - 10)
     SCREEN.screen.blit(score_image, score_image_rect)
 
