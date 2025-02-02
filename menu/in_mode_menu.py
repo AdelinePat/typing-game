@@ -1,7 +1,8 @@
 import pygame
-from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
-from display.display_menu import display_mode_menu
 from __settings__ import SCREEN, TEXT_COLOR
+from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
+from display.display_scores import create_escape_button
+from display.display_menu import display_mode_menu
 from game.game_functions import clock_tick
 
 def in_mode_menu(clock, fps, game_mode, language_mode, translator):
@@ -20,6 +21,10 @@ def in_mode_menu(clock, fps, game_mode, language_mode, translator):
         SCREEN.screen.blit(new_background, (0,0))
         
         button_mode_list, language_list = display_mode_menu(game_mode, language_mode, translator)
+
+        return_button = create_escape_button(translator, (SCREEN.width // 2, 7 * SCREEN.height // 8))
+        return_button.draw(TEXT_COLOR)
+        # return_button = Button_image("A traduire", "escape_button", FONTSIZE, FONT, SCREEN, center)
             
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -31,7 +36,12 @@ def in_mode_menu(clock, fps, game_mode, language_mode, translator):
                 if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                     game_menu = "main_menu"
                     mode_menu = False
-        
+
+            if return_button.image_rect.collidepoint(mouse_position):
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    game_menu = "main_menu"
+                    mode_menu = False
+
             for language in language_list:
                 if language.rect.collidepoint(mouse_position):
                     language.draw(TEXT_COLOR)

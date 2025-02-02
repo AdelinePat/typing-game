@@ -1,8 +1,8 @@
 import pygame
-from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK, FPS
-# from display.display_models.Screen import Screen
+from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK
 from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
-from display.display_scores import display_scores, display_empty_score, create_score_title, create_footer_buttons
+from display.display_scores import display_scores, display_empty_score,\
+    create_score_title, create_footer_buttons
 from game.scores.Scores import Scores
 from game.game_functions import clock_tick
 

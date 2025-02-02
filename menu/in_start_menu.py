@@ -1,6 +1,6 @@
 import pygame
+from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK
 from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
-from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK, FPS
 from game.game_functions import clock_tick
 
 def in_start_menu(clock, fps, main_menu_button, translator):

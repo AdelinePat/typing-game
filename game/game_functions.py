@@ -1,7 +1,4 @@
 import pygame
-# from class_folder.Screen import Screen
-from __settings__ import FPS, SCREEN
-
 def init_game_functions():
     clock = pygame.time.Clock()
     player = ''

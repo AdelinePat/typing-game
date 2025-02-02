@@ -1,6 +1,5 @@
 import json
 
-
 class TranslationManager:
     def __init__(self, file_path="assets/translation.json", default_lang="fr"):
         self.file_path = file_path

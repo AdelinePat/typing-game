@@ -1,7 +1,8 @@
 import pygame
 from display.display_models.Button_image import Button_image
 from display.display_models.Button import Button
-from __settings__ import SCREEN, BUTTON_IMAGE3, BUTTON_IMAGE2, BUTTON_IMAGE4, MAIN_FONT, STYLE_FONT, TEXT_COLOR, TEXT_COLOR_LIGHT, TEXT_COLOR_DARK, PLANK_ARROW_RIGHT, PLANK_ARROW_LEFT
+from __settings__ import SCREEN, BUTTON_IMAGE3, BUTTON_IMAGE2, BUTTON_IMAGE4, MAIN_FONT,\
+    STYLE_FONT, TEXT_COLOR, TEXT_COLOR_LIGHT, TEXT_COLOR_DARK, PLANK_ARROW_RIGHT, PLANK_ARROW_LEFT
 
 def get_scores_menu_page(scores, translator):
     if not scores:
@@ -32,12 +33,16 @@ def display_empty_score(translator):
     message = Button(empty_score_text, "empty_score", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2))
     message.draw("white")
 
+def create_escape_button(translator, center):
+    escape_text = translator.translate("escape_button")
+    escape_button = Button_image(200, 60, escape_text, "escape_button", BUTTON_IMAGE4, SCREEN.screen, center)
+
+    return escape_button
+
 def create_footer_buttons(translator):
     reset_text = translator.translate("reset_all_score")
-    escape_text = translator.translate("escape_button")
-
     reset_score_button = Button_image(200, 60, reset_text, "reset_all_score", BUTTON_IMAGE2, SCREEN.screen, (SCREEN.width - 180, 7* SCREEN.height //8))
-    escape_button = Button_image(200, 60, escape_text, "escape_button", BUTTON_IMAGE4, SCREEN.screen, (180, 7* SCREEN.height //8))
+    escape_button = create_escape_button(translator, (180, 7* SCREEN.height //8))
 
     return reset_score_button, escape_button
 

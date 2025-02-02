@@ -1,6 +1,6 @@
 import pygame
 from display.display_models.Button import Button
-from __settings__ import STYLE_FONT, SCREEN
+from __settings__ import STYLE_FONT
 
 class Button_image(Button):
     def __init__(self, width, height, text, identification, image, screen, center):

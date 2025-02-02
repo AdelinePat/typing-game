@@ -1,4 +1,5 @@
-from __settings__ import SCREEN, MAIN_FONT, BUTTON_IMAGE, BUTTON_IMAGE2, BUTTON_IMAGE3, BUTTON_IMAGE4, TEXT_COLOR, TEXT_COLOR_DARK, TEXT_COLOR_LIGHT
+from __settings__ import SCREEN, MAIN_FONT, BUTTON_IMAGE, BUTTON_IMAGE2, BUTTON_IMAGE3, \
+    BUTTON_IMAGE4, TEXT_COLOR, TEXT_COLOR_DARK, TEXT_COLOR_LIGHT
 from display.display_models.Button_image import Button_image
 from display.display_models.Button import Button
 

@@ -1,23 +1,16 @@
-# from display.display_game_elements import display_hearts, display_score_in_game
-from display.display_menu import get_buttons, display_mode_menu, get_main_menu_button
-from display.display_scores import display_scores, display_empty_score
+from __settings__ import SCREEN, FPS
 import pygame
-
+from display.display_models.__settings__ import BACKGROUND_IMAGE
+from display.display_models.translation_manager import TranslationManager
+from display.display_menu import get_main_menu_button, game_over_screen
 from menu.in_score_menu import in_score_menu
 from menu.in_main_menu import in_main_menu
 from menu.in_mode_menu import in_mode_menu
 from menu.in_start_menu import in_start_menu
-# from display.display_models import Button
-# from display.display_models import Screen
-# from game.scores.Scores import Scores
-from game.game_functions import init_game_functions, game_off, clock_tick
+from game.game_functions import init_game_functions, clock_tick
 from game.game_round import run_new_game
 from game.game_set_up import run_set_up_game
-from __settings__ import TEXT_COLOR,TEXT_COLOR_DARK
-from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
-from display.display_menu import game_over_screen
-from __settings__ import SCREEN, FPS
-from display.display_models.translation_manager import TranslationManager
+
 
 translate_all = TranslationManager()
 

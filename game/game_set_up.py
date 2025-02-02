@@ -1,7 +1,8 @@
 import pygame
 import string
-from __settings__ import BUTTON_IMAGE3, SCREEN, MAIN_FONT, TEXT_COLOR_DARK,STYLE_FONT, TEXT_COLOR_LIGHT
-from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
+from __settings__ import BUTTON_IMAGE3, SCREEN, MAIN_FONT, TEXT_COLOR_DARK, \
+    STYLE_FONT, TEXT_COLOR_LIGHT
+from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
 from display.display_models.Button import Button
 from display.display_models.Button_image import Button_image
 from game.game_functions import clock_tick
@@ -22,7 +23,8 @@ def run_set_up_game(screen, clock, fps, player, translator):
 
         user_name_title_text = translator.translate("name_title")
         
-        user_name_title = Button(user_name_title_text, "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
+        user_name_title = Button(
+            user_name_title_text, "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
         user_name_title.draw(TEXT_COLOR_LIGHT)
 
         info_button_text = translator.translate("info_start_game")
