@@ -3,16 +3,12 @@ from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
 from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK, FPS
 from game.game_functions import clock_tick
 
-def in_start_menu(clock, fps, main_menu_button, translater):
+def in_start_menu(clock, fps, main_menu_button, translator):
 
-    title = translater.translate("fruit_slicer")
-    # location = translater.translate("main_settings")
-    # caption = f"{title} - {location}"
+    title = translator.translate("fruit_slicer")
 
     new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, title)
     SCREEN.screen.blit(new_background, (0,0))
-
-    
     
     start_menu = True
     while start_menu:

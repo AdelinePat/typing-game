@@ -3,16 +3,16 @@ from display.display_models.Button_image import Button_image
 from display.display_models.Button import Button
 
 import pygame
-def get_main_menu_button(translater):   
-    main_menu_text = translater.translate("main_menu")
+def get_main_menu_button(translator):   
+    main_menu_text = translator.translate("main_menu")
     main_menu_button = Button_image(700, 150, main_menu_text, "main_menu", BUTTON_IMAGE, SCREEN.screen, SCREEN.screen.get_rect().center)
     return main_menu_button
      
-def get_buttons(translater):
-    game_menu_text = translater.translate("start_menu")
-    mode_menu_text = translater.translate("main_settings")
-    score_menu_text = translater.translate("score_menu")
-    exit_menu_text = translater.translate("Exit_menu")
+def get_buttons(translator):
+    game_menu_text = translator.translate("start_menu")
+    mode_menu_text = translator.translate("main_settings")
+    score_menu_text = translator.translate("score_menu")
+    exit_menu_text = translator.translate("Exit_menu")
 
     game_menu_button = Button_image(450, 100, game_menu_text, "game_on", BUTTON_IMAGE, SCREEN.screen, ((SCREEN.width // 2), (SCREEN.height // 8)))
     mode_menu_button = Button_image(450, 100, mode_menu_text, "mode_menu", BUTTON_IMAGE2, SCREEN.screen, ((SCREEN.width // 2), (SCREEN.height // 8) + (SCREEN.height //4)))
@@ -23,10 +23,10 @@ def get_buttons(translater):
 
     return button_list
 
-def create_mode_menu_button(translater):
-    mode = translater.translate("Settings_menu")
-    difficulty = translater.translate("Difficulty")
-    language = translater.translate("Language")
+def create_mode_menu_button(translator):
+    mode = translator.translate("main_settings")
+    difficulty = translator.translate("Difficulty")
+    language = translator.translate("Language")
 
     in_menu_button = Button_image(450, 100, mode, "mode_menu", BUTTON_IMAGE2, SCREEN.screen, ((SCREEN.width // 2), 70))
     difficulty_button = Button_image(300, 70, difficulty, "mode_menu", BUTTON_IMAGE, SCREEN.screen, ((SCREEN.width // 4), (SCREEN.height // 2 - 100)))
@@ -36,10 +36,10 @@ def create_mode_menu_button(translater):
     difficulty_button.draw(TEXT_COLOR)
     language_button.draw(TEXT_COLOR)
 
-def get_difficulty_buttons(translater):
-    easy = translater.translate("Easy")
-    normal = translater.translate("Normal")
-    difficult = translater.translate("Nightmare")
+def get_difficulty_buttons(translator):
+    easy = translator.translate("Easy")
+    normal = translator.translate("Normal")
+    difficult = translator.translate("Nightmare")
 
     easy_difficulty_button = Button(easy, "easy_mode", 28, MAIN_FONT, SCREEN.screen, ((SCREEN.width // 4), (SCREEN.height // 2 - 10)))
     normal_difficulty_button = Button(normal, "normal_mode", 28, MAIN_FONT, SCREEN.screen, (SCREEN.width // 4, SCREEN.height // 2 + 70))
@@ -48,9 +48,9 @@ def get_difficulty_buttons(translater):
 
     return  button_mode_list
 
-def get_language_buttons(translater):
-    french = translater.translate("French")
-    english = translater.translate("English")
+def get_language_buttons(translator):
+    french = translator.translate("French")
+    english = translator.translate("English")
 
     french_button = Button(french, "fr", 28, MAIN_FONT, SCREEN.screen, ((SCREEN.width // 4)*3, SCREEN.height // 2 - 10))
     english_button = Button(english, "eng", 28, MAIN_FONT, SCREEN.screen, ((SCREEN.width // 4)*3, SCREEN.height // 2 + 70))
@@ -58,10 +58,10 @@ def get_language_buttons(translater):
 
     return language_list
 
-def display_mode_menu(game_mode, language_mode, translater):
-    create_mode_menu_button(translater)
-    button_mode_list = get_difficulty_buttons(translater)
-    language_list = get_language_buttons(translater)
+def display_mode_menu(game_mode, language_mode, translator):
+    create_mode_menu_button(translator)
+    button_mode_list = get_difficulty_buttons(translator)
+    language_list = get_language_buttons(translator)
         
     for button in button_mode_list:
         if game_mode == button.identification:
@@ -77,16 +77,16 @@ def display_mode_menu(game_mode, language_mode, translater):
             
     return button_mode_list, language_list
 
-def game_over_screen(player_score, translater):
+def game_over_screen(player_score, translator):
     background_screen = pygame.Surface((SCREEN.width, SCREEN.height))
     background_rect = background_screen.get_rect(center = (SCREEN.width //2, SCREEN.height // 2))
     background_screen.set_alpha(155)
     pygame.draw.rect(background_screen, (0,0,0), background_rect)
     SCREEN.screen.blit(background_screen, background_rect)
 
-    best_score_message = translater.translate("Game_over_message")
-    game_over_button_message = translater.translate("Game_over_button")
-    info_dialog = translater.translate("Info_dialog_game_over")
+    best_score_message = translator.translate("Game_over_message")
+    game_over_button_message = translator.translate("Game_over_button")
+    info_dialog = translator.translate("Info_dialog_game_over")
 
     game_over_dialog = f"{best_score_message} {player_score}"
     message_button = Button(game_over_dialog, "game_over_message", 42, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))

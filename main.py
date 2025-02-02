@@ -23,7 +23,7 @@ translate_all = TranslationManager()
 
 def main():
     clock, player, game_mode, game_menu, language_mode = init_game_functions()
-    current_background = SCREEN.background(BACKGROUND_IMAGE, str(translate_all.translate("fruit_slicer")))   
+    current_background = SCREEN.background(BACKGROUND_IMAGE, translate_all.translate("fruit_slicer"))
     
     run = True
     SCREEN.screen.blit(current_background, (0,0))

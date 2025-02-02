@@ -5,11 +5,11 @@ from game.game_functions import clock_tick
 from display.display_menu import get_buttons
 # from display.display_menu import get_buttons
 
-def in_main_menu(clock, fps, translater):
-    main_button_list = get_buttons(translater)
+def in_main_menu(clock, fps, translator):
+    main_button_list = get_buttons(translator)
 
-    title = translater.translate("fruit_slicer")
-    location = translater.translate("main_menu")
+    title = translator.translate("fruit_slicer")
+    location = translator.translate("main_menu")
     caption = f"{title} - {location}"
 
     current_background = SCREEN.background(BACKGROUND_IMAGE, caption)
