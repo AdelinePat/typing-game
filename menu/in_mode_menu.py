@@ -4,17 +4,22 @@ from display.display_menu import display_mode_menu
 from __settings__ import SCREEN, TEXT_COLOR
 from game.game_functions import clock_tick
 
-def in_mode_menu(clock, fps, game_mode, language_mode):
-    new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Modesh")
-    SCREEN.screen.blit(new_background, (0,0))
+def in_mode_menu(clock, fps, game_mode, language_mode, translator):
+    
+    title = translator.translate("fruit_slicer")
+    location = translator.translate("main_settings")
+    caption = f"{title} - {location}"
+    new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, caption)
+    
     
     game_menu = "mode_menu"
     mode_menu = True
 
     while mode_menu:
         clock_tick(clock, fps)
+        SCREEN.screen.blit(new_background, (0,0))
         
-        button_mode_list, language_list = display_mode_menu(game_mode, language_mode)
+        button_mode_list, language_list = display_mode_menu(game_mode, language_mode, translator)
             
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
@@ -32,6 +37,7 @@ def in_mode_menu(clock, fps, game_mode, language_mode):
                     language.draw(TEXT_COLOR)
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         language_mode = language.identification
+                        translator.set_language(language_mode)
                             
             for mode_button in button_mode_list:
                 if mode_button.rect.collidepoint(mouse_position):

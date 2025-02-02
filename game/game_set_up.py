@@ -6,19 +6,28 @@ from display.display_models.Button import Button
 from display.display_models.Button_image import Button_image
 from game.game_functions import clock_tick
 
-def run_set_up_game(screen, clock, fps, player):
+def run_set_up_game(screen, clock, fps, player, translator):
     if player != '':
         user_input = player
     else: 
         user_input = ''
-    current_background = SCREEN.background(BACKGROUND_IMAGE_MENU, "Fruit Slicer - Entrez votre nom d'utilisateur")
+    
+    title = translator.translate("fruit_slicer")
+    location = translator.translate("name_title")
+    caption = f"{title} - {location}"
+
+    current_background = SCREEN.background(BACKGROUND_IMAGE_MENU, caption)
     while True:
         SCREEN.screen.blit(current_background, (0, 0))
+
+        user_name_title_text = translator.translate("name_title")
         
-        user_name_title = Button("entrez votre nom", "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
+        user_name_title = Button(user_name_title_text, "name_title", 42, STYLE_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 - SCREEN.height // 4.5))
         user_name_title.draw(TEXT_COLOR_LIGHT)
 
-        info_button = Button("Appuyez sur entrer pour lancer le jeu", "info", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
+        info_button_text = translator.translate("info_start_game")
+
+        info_button = Button(info_button_text, "info_start_game", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
         info_button.draw(TEXT_COLOR_LIGHT)
 
 

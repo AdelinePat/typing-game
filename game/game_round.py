@@ -15,7 +15,7 @@ from display.display_models.Sounds import Sounds
 
 
 
-def run_new_game(screen, clock, fps, game_mode, player):
+def run_new_game(screen, clock, fps, game_mode, player, translator):
     sounds = Sounds()
     sounds.play_slice_sound()
     pygame.mixer.init()
@@ -54,9 +54,13 @@ def run_new_game(screen, clock, fps, game_mode, player):
     props = []
     fruits_slices = []
 
+    title = translator.translate("fruit_slicer")
+    location = translator.translate("in_game")
+    caption = f"{title} - {location}"
 
-    current_background = screen.background(BACKGROUND_IMAGE, "Fruit Slicer  - EN JEU")
+    current_background = screen.background(BACKGROUND_IMAGE, caption)
     frozen_effect = screen.frozen()
+    
     while True:
         
         prop_pop_list = []

@@ -2,11 +2,17 @@ import pygame
 from display.display_models.__settings__ import BACKGROUND_IMAGE
 from __settings__ import SCREEN, TEXT_COLOR, TEXT_COLOR_DARK, FPS
 from game.game_functions import clock_tick
+from display.display_menu import get_buttons
 # from display.display_menu import get_buttons
 
-def in_main_menu(clock, fps, main_button_list):
+def in_main_menu(clock, fps, translater):
+    main_button_list = get_buttons(translater)
 
-    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer - Menu principal")
+    title = translater.translate("fruit_slicer")
+    location = translater.translate("main_menu")
+    caption = f"{title} - {location}"
+
+    current_background = SCREEN.background(BACKGROUND_IMAGE, caption)
     SCREEN.screen.blit(current_background, (0,0))
 
     while True:

@@ -6,17 +6,20 @@ from display.display_scores import display_scores, display_empty_score, create_s
 from game.scores.Scores import Scores
 from game.game_functions import clock_tick
 
-def in_score_menu(clock, fps):
+def in_score_menu(clock, fps, translator):
     page_score = 0
     # score_menu = True
+    title = translator.translate("fruit_slicer")
+    location = translator.translate("score_menu")
+    caption = f"{title} - {location}"
     
     scores = Scores()
     while True:
         keys = pygame.key.get_pressed()
-        new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, "Fruits Slicer - Scores")
+        new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, caption)
         SCREEN.screen.blit(new_background, (0,0))
-        create_score_title()
-        reset_score_button, escape_button = create_footer_buttons()
+        create_score_title(translator)
+        reset_score_button, escape_button = create_footer_buttons(translator)
 
         mouse_position = pygame.mouse.get_pos()
 
@@ -45,13 +48,13 @@ def in_score_menu(clock, fps):
                 return game_menu        
         
         if not bool(scores.scores):
-            display_empty_score()
+            display_empty_score(translator)
             escape_button.draw(TEXT_COLOR)
         else:
             escape_button.draw(TEXT_COLOR)
             reset_score_button.draw(TEXT_COLOR)
 
-            arrow_left, arrow_right, number_page = display_scores(scores.scores, page_score)
+            arrow_left, arrow_right, number_page = display_scores(scores.scores, page_score, translator)
             if arrow_left.image_rect.collidepoint(mouse_position):
                 if event.type == pygame.MOUSEBUTTONDOWN or event.type == keys[pygame.K_LEFT]:
                     if page_score > 0:

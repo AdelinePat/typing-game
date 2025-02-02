@@ -1,5 +1,5 @@
 # from display.display_game_elements import display_hearts, display_score_in_game
-from display.display_menu import get_buttons, display_mode_menu
+from display.display_menu import get_buttons, display_mode_menu, get_main_menu_button
 from display.display_scores import display_scores, display_empty_score
 import pygame
 
@@ -17,16 +17,19 @@ from __settings__ import TEXT_COLOR,TEXT_COLOR_DARK
 from display.display_models.__settings__ import BACKGROUND_IMAGE, BACKGROUND_IMAGE_MENU
 from display.display_menu import game_over_screen
 from __settings__ import SCREEN, FPS
+from display.display_models.translation_manager import TranslationManager
 
+translate_all = TranslationManager()
 
-def menu_display():
+def main():
     clock, player, game_mode, game_menu, language_mode = init_game_functions()
-    current_background = SCREEN.background(BACKGROUND_IMAGE, "Fruit Slicer")   
-    main_menu_button, main_button_list = get_buttons()
+    current_background = SCREEN.background(BACKGROUND_IMAGE, str(translate_all.translate("fruit_slicer")))   
+    
     run = True
     SCREEN.screen.blit(current_background, (0,0))
     while run:
         clock_tick(clock, FPS)
+        main_menu_button = get_main_menu_button(translate_all)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -38,28 +41,29 @@ def menu_display():
 
             match game_menu:
                 case "start_menu":
-                    game_menu = in_start_menu(clock, FPS, main_menu_button)
+                    game_menu = in_start_menu(clock, FPS, main_menu_button, translate_all)
 
                 case "main_menu":
-                    game_menu = in_main_menu(clock, FPS, main_button_list)
+                    game_menu = in_main_menu(clock, FPS, translate_all)
 
                 case "score_menu":
-                    game_menu = in_score_menu(clock, FPS)
+                    game_menu = in_score_menu(clock, FPS, translate_all)
                    
                 case "mode_menu":
-                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS, game_mode, language_mode)     
+                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS, game_mode, language_mode, translate_all)
+                    translate_all.set_language(language_mode)    
 
                 case "game_on":
-                    game_menu, player = run_set_up_game(SCREEN, clock, FPS, player)
+                    game_menu, player = run_set_up_game(SCREEN, clock, FPS, player, translate_all)
 
                 case "in_game":
-                    game_menu, player_score = run_new_game(SCREEN, clock, FPS, game_mode, player)
+                    game_menu, player_score = run_new_game(SCREEN, clock, FPS, game_mode, player, translate_all)
 
                 case "menu_game_over":
-                    game_menu = game_over_screen(player_score)
+                    game_menu = game_over_screen(player_score, translate_all)
 
                 case "exit_menu":
                     exit()
 
         pygame.display.update() 
-menu_display()
+main()
