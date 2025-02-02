@@ -25,12 +25,12 @@ def in_start_menu(clock, fps, main_menu_button, translator):
                     # start_menu = False
                     return game_menu
 
-        if main_menu_button.image_rect.collidepoint(mouse_position):
-            main_menu_button.hovered = True
-            main_menu_button.draw(TEXT_COLOR_DARK)
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                game_menu = "main_menu"
-                return game_menu
-        else:
-            main_menu_button.hovered = False
-            main_menu_button.draw(TEXT_COLOR)
+            if main_menu_button.image_rect.collidepoint(mouse_position):
+                main_menu_button.hovered = True
+                main_menu_button.draw(TEXT_COLOR_DARK)
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    game_menu = "main_menu"
+                    return game_menu
+            else:
+                main_menu_button.hovered = False
+                main_menu_button.draw(TEXT_COLOR)
