@@ -51,20 +51,19 @@ def display_score_in_game(score):
 
 
 def get_buttons(translation):
-    main_menu_text = translation.translate("Main_menu")
-    game_menu_text = translation.translate("Game_on")
-    mode_menu_text = translation.translate("Mode")
-    score_menu_text = translation.translate("Score")
-    exit_menu_text = translation.translate("Exit_menu")
-
+    main_menu_text = translation.translate("main_menu")
     main_menu_button = Button(700, 150, main_menu_text,
                               "main_menu", 1, screen.screen.get_rect().center)
+    game_menu_text = translation.translate("start_menu")
     game_menu_button = Button(450, 100, game_menu_text, "game_on", 1, ((
         screen.width // 2), (screen.height // 8)))
+    mode_menu_text = translation.translate("Mode")
     mode_menu_button = Button(450, 100, mode_menu_text, "mode_menu", 2, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)))
+    score_menu_text = translation.translate("Score")
     score_menu_button = Button(450, 100, score_menu_text, "score_menu", 3, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*2))
+    exit_menu_text = translation.translate("Exit")
     exit_menu_button = Button(450, 100, exit_menu_text, "exit_menu", 4, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*3))
 
@@ -86,14 +85,15 @@ def load_scores():
 
 
 def create_mode_menu_button(translation):
-    mode_text = translation.translate("Main Menu")
-    difficulty_text = translation.translate("Difficulty")
-    language_text = translation.translate("Language")
+
+    mode_text = translation.translate("main_settings")
     in_menu_button = Button(450, 100, mode_text, "mode_menu",
                             2, ((screen.width // 2), 70))
     in_menu_button.draw(TEXT_COLOR)
+    difficulty_text = translation.translate("Difficulty")
     difficulty_button = Button(300, 70, difficulty_text, "mode_menu", 1, ((
         screen.width // 4), (screen.height // 2 - 100)))
+    language_text = translation.translate("Language")
     language_button = Button(300, 70, language_text, "mode_menu", 3, ((
         screen.width // 4)*3, (screen.height // 2 - 100)))
     difficulty_button.draw(TEXT_COLOR)
@@ -196,7 +196,7 @@ def display_scores(scores, translation):
             if position_x < screen.width + 30:
                 # if all_player_score.index(player_score) < 4:
                 display_player_score(scores, player_score,
-                                     position_x, position_y)
+                                     position_x, position_y, translation)
                 position_x += screen.width // 4
             else:
                 # elif all_player_score.index(player_score) > 4:
@@ -207,7 +207,7 @@ def display_scores(scores, translation):
                 position_x += screen.width // 4
 
 
-def display_player_score(scores, player, position_x, position_y):
+def display_player_score(scores, player, position_x, position_y, translation):
     box = pygame.Rect(position_x, position_y,
                       (screen.width // 4) - 40, (screen.height // 4))
     center = box.center
@@ -215,8 +215,8 @@ def display_player_score(scores, player, position_x, position_y):
     # draw_box = pygame.draw.rect(screen.screen, "red", box, 3)
 
     user = dialog_render(player.capitalize(), STYLE_FONT, 34, TEXT_COLOR)
-    highscore = dialog_render(
-        "Highscore : " + str(scores[player]["highscore"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
+    score_text = dialog_render(
+        "highscore : " + str(scores[player]["highscore"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
     slice = dialog_render(
         "Slashed Fruits : " + str(scores[player]["slashed_fruits"]), MAIN_FONT, 20, TEXT_COLOR_LIGHT)
     game = dialog_render(
@@ -235,7 +235,7 @@ def display_player_score(scores, player, position_x, position_y):
         center=(center[0], center[1] - box.height // 2 + 150))
 
     screen.screen.blit(user, box_user)
-    screen.screen.blit(highscore, box_highscore)
+    screen.screen.blit(score_text, box_highscore)
     screen.screen.blit(slice, box_slice)
     screen.screen.blit(game, box_game)
 

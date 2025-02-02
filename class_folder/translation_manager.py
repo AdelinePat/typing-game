@@ -19,10 +19,11 @@ class TranslationManager:
         if lang in self.translations:
             self.default_lang = lang
         else:
-            print(f"Langue '{lang}' non disponible, utilisation de {self.default_lang}")
+            print(f"Langue '{lang}' non disponible, utilisation de {
+                  self.default_lang}")
 
     def translate(self, *keys):
-       
+
         data = self.translations.get(self.default_lang, {})
         for key in keys:
             if isinstance(data, dict) and key in data:
