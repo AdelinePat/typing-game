@@ -36,21 +36,21 @@ PLANK_ARROW_LEFT = flip_button_image(PLANK_ARROW_RIGHT, True, False)
 """
 Icecube load images
 """
-ICECUBE_IMAGE = "assets/bonus_malus/ice_cube1.png"
-ICE_CUBE1 = pygame.image.load("assets/bonus_malus/ice_cube1.png")
-ICE_CUBE2 = pygame.image.load("assets/bonus_malus/ice_cube2.png")
-ICE_CUBE3 = pygame.image.load("assets/bonus_malus/ice_cube3.png")
-ICE_CUBE4 = pygame.image.load("assets/bonus_malus/ice_cube4.png")
+ICECUBE_IMAGE = "assets/props/ice_cube1.png"
+ICE_CUBE1 = pygame.image.load("assets/props/ice_cube1.png")
+ICE_CUBE2 = pygame.image.load("assets/props/ice_cube2.png")
+ICE_CUBE3 = pygame.image.load("assets/props/ice_cube3.png")
+ICE_CUBE4 = pygame.image.load("assets/props/ice_cube4.png")
 
 """
 Other images and colors
 """
-HEART = pygame.image.load("assets/bonus_malus/heart_v3.png")
-BOMB_IMAGE = pygame.image.load("assets/bonus_malus/bomb.png")
-BOMB = pygame.image.load("assets/bonus_malus/bomb.png")
-EFFECT1 = pygame.image.load("assets/bonus_malus/explosion1.png")
-EFFECT2 = pygame.image.load("assets/bonus_malus/explosion2.png")
-EFFECT3 = pygame.image.load("assets/bonus_malus/explosion3.png")
+HEART = pygame.image.load("assets/props/heart_v3.png")
+BOMB_IMAGE = pygame.image.load("assets/props/bomb.png")
+BOMB = pygame.image.load("assets/props/bomb.png")
+EFFECT1 = pygame.image.load("assets/props/explosion1.png")
+EFFECT2 = pygame.image.load("assets/props/explosion2.png")
+EFFECT3 = pygame.image.load("assets/props/explosion3.png")
 ICECUBE_COLOR = (255,255,255)
 BOMB_COLOR = (0,0,0)
 
