@@ -127,7 +127,7 @@ def display_mode_menu(game_mode, language_mode, translation):
     nightmare_text = translation.translate("Nightmare")
     nightmare_difficulty_button = Button_simple(
         nightmare_text, "nightmare_mode", 28, screen.screen, (screen.width // 4, screen.height // 2 + 150))
-    french_text_button = translation.translate("french")
+    french_text_button = translation.translate("French")
     french_button = Button_simple(french_text_button, "french_mode", 28, screen.screen, ((
         screen.width // 4)*3, screen.height // 2 - 10))
     english_text_button = translation.translate("English")
