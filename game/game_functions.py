@@ -4,7 +4,7 @@ def init_game_functions():
     player = ''
     game_mode = 'normal_mode'
     game_menu = 'start_menu'
-    language_mode = "french_mode"
+    language_mode = "fr"
     pygame.init()
     return clock, player, game_mode, game_menu, language_mode
         
