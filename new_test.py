@@ -21,9 +21,6 @@ def menu_display(translation):
         BACKGROUND_IMAGE, translate_all.translate("fruit_slicer"))
     # screen_rect_center = screen.screen.get_rect().center
 
-    main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list = get_buttons(
-        translation)
-
     run = True
     screen.screen.blit(current_background, (0, 0))
 
@@ -31,8 +28,11 @@ def menu_display(translation):
 
     while run:
         clock_tick(clock, fps)
+        main_menu_button, game_menu_button, mode_menu_button, score_menu_button, exit_menu_button, button_list = get_buttons(
+            translation)
 
         mouse_position = pygame.mouse.get_pos()
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -43,7 +43,10 @@ def menu_display(translation):
 
             match game_menu:
                 case "start_menu":
+                    game_menu_text = translation.translate("start_menu")
                     screen.screen.blit(current_background, (0, 0))
+                    game_menu_button = Button(450, 100, game_menu_text, "game_on", 1, ((
+                        screen.width // 2), (screen.height // 8)))
                     if main_menu_button.rect.collidepoint(mouse_position):
                         main_menu_button.hovered = True
                         main_menu_button.draw("red")

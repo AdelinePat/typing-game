@@ -11,20 +11,20 @@ from __settings__ import TEXT_COLOR
 def menu_display(translation):
     screen = Screen(1080, 720)
     background_final = screen.background()
-    main_menu_text = translation.translate("main_settings")
+    # main_menu_text = translation.translate("main_settings")
     main_menu_button = Button(
-        700, 150, main_menu_text, "main_menu", 1, screen.screen.get_rect().center)
-    game_menu_text = translation.translate("Start_menu")
+        700, 150, "Settings", "main_menu", 1, screen.screen.get_rect().center)
+    # game_menu_text = translation.translate("Start_menu")
     game_menu_button = Button(
-        450, 100, game_menu_text, "game_on", 1, ((screen.width // 2), (screen.height // 8)))
+        450, 100, "Play", "game_on", 1, ((screen.width // 2), (screen.height // 8)))
     mode_menu_text = translation.translate("Mode")
     mode_menu_button = Button(450, 100, mode_menu_text, "mode_menu", 1, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)))
-    score_menu_text = translation.translate("Score")
-    score_menu_button = Button(450, 100, score_menu_text, "score_menu", 1, ((
+    # score_menu_text = translation.translate("Score")
+    score_menu_button = Button(450, 100, "Score", "score_menu", 1, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*2))
-    exit_menu_text = translation.translate("Exit")
-    exit_menu_button = Button(450, 100, exit_menu_text, "exit_menu", 1, ((
+    # exit_menu_text = translation.translate("Exit")
+    exit_menu_button = Button(450, 100, "Exit", "exit_menu", 1, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*3))
     button_list = [game_menu_button, mode_menu_button,
                    score_menu_button, exit_menu_button]

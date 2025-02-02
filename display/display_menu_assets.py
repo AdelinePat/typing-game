@@ -63,7 +63,7 @@ def get_buttons(translation):
     score_menu_text = translation.translate("Score")
     score_menu_button = Button(450, 100, score_menu_text, "score_menu", 3, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*2))
-    exit_menu_text = translation.translate("Exit")
+    exit_menu_text = translation.translate("Exit_menu")
     exit_menu_button = Button(450, 100, exit_menu_text, "exit_menu", 4, ((
         screen.width // 2), (screen.height // 8) + (screen.height // 4)*3))
 
