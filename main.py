@@ -1,7 +1,7 @@
 from __settings__ import SCREEN, FPS
 import pygame
 from display.display_models.__settings__ import BACKGROUND_IMAGE
-from display.display_models.translation_manager import TranslationManager
+from display.display_models.Translation_manager import TranslationManager
 from display.display_menu import get_main_menu_button, game_over_screen
 from menu.in_score_menu import in_score_menu
 from menu.in_main_menu import in_main_menu
