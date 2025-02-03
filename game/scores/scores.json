@@ -1,0 +1,102 @@
+{
+    "jojo": {
+        "highscore": 213,
+        "slashed_fruits": 893,
+        "games_played": 21
+    },
+    "test": {
+        "highscore": 51,
+        "slashed_fruits": 121,
+        "games_played": 15
+    },
+    "aladin": {
+        "highscore": 1058,
+        "slashed_fruits": 1058,
+        "games_played": 139
+    },
+    "baba": {
+        "highscore": 282,
+        "slashed_fruits": 843,
+        "games_played": 16
+    },
+    "mulan": {
+        "highscore": 8,
+        "slashed_fruits": 9,
+        "games_played": 2
+    },
+    "kakashi": {
+        "highscore": 1058,
+        "slashed_fruits": 1058,
+        "games_played": 139
+    },
+    "zoro": {
+        "highscore": 10583,
+        "slashed_fruits": 10583,
+        "games_played": 1
+    },
+    "sari": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "ussop": {
+        "highscore": 13,
+        "slashed_fruits": 13,
+        "games_played": 2
+    },
+    "nanami": {
+        "highscore": 5213,
+        "slashed_fruits": 5213,
+        "games_played": 20
+    },
+    "florence": {
+        "highscore": 17,
+        "slashed_fruits": 16,
+        "games_played": 1
+    },
+    "vanessa": {
+        "highscore": 17,
+        "slashed_fruits": 14,
+        "games_played": 1
+    },
+    "jolyne": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "noa": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "maeva": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "hashegin": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "anothertest": {
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
+    },
+    "thomas": {
+        "highscore": 79,
+        "slashed_fruits": 116,
+        "games_played": 3
+    },
+    "adeline": {
+        "highscore": 341,
+        "slashed_fruits": 1074,
+        "games_played": 13
+    },
+    "booya": {
+        "highscore": 112,
+        "slashed_fruits": 138,
+        "games_played": 4
+    }
+}
