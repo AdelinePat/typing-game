@@ -19,9 +19,11 @@ def in_mode_menu(clock, fps, game_mode, language_mode, translator):
         clock_tick(clock, fps)
         SCREEN.screen.blit(new_background, (0,0))
         
-        button_mode_list, language_list = display_mode_menu(game_mode, language_mode, translator)
+        button_mode_list, language_list = display_mode_menu(game_mode,\
+                                        language_mode, translator)
 
-        return_button = create_escape_button(translator, (SCREEN.width // 2, 7 * SCREEN.height // 8))
+        return_button = create_escape_button(translator,\
+                        (SCREEN.width // 2, 7 * SCREEN.height // 8))
         return_button.draw(TEXT_COLOR)
 
         mouse_position = pygame.mouse.get_pos()

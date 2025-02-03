@@ -17,31 +17,37 @@ def get_scores_menu_page(scores, translator):
     return all_player, number_pages
 
 def create_arrows():
-    arrow_right = Button_image(150, 75, "", "button_next", PLANK_ARROW_RIGHT, SCREEN.screen, (SCREEN.width //2 + 100, 7 * SCREEN.height //8))
-    arrow_left = Button_image(150, 75, "", "button_previous", PLANK_ARROW_LEFT, SCREEN.screen, (SCREEN.width //2 - 100, 7* SCREEN.height //8))
+    arrow_right = Button_image(150, 75, "", "button_next", PLANK_ARROW_RIGHT,\
+                                SCREEN.screen, (SCREEN.width //2 + 100, 7 * SCREEN.height //8))
+    arrow_left = Button_image(150, 75, "", "button_previous", PLANK_ARROW_LEFT,\
+                               SCREEN.screen, (SCREEN.width //2 - 100, 7* SCREEN.height //8))
     return arrow_left, arrow_right
 
 def create_score_title(translator):
     score_text = translator.translate("score_menu")
-    in_score_button = Button_image(450, 100, score_text, "in_score", BUTTON_IMAGE3, SCREEN.screen, ((SCREEN.width // 2), 70))
+    in_score_button = Button_image(450, 100, score_text, "in_score", BUTTON_IMAGE3,\
+                                    SCREEN.screen, ((SCREEN.width // 2), 70))
     in_score_button.draw(TEXT_COLOR)
 
 def display_empty_score(translator):
     create_score_title(translator)
     empty_score_text = translator.translate("No_score_record")
 
-    message = Button(empty_score_text, "empty_score", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2))
+    message = Button(empty_score_text, "empty_score", 24, MAIN_FONT, SCREEN.screen,\
+                    (SCREEN.width//2, SCREEN.height//2))
     message.draw("white")
 
 def create_escape_button(translator, center):
     escape_text = translator.translate("escape_button")
-    escape_button = Button_image(200, 60, escape_text, "escape_button", BUTTON_IMAGE4, SCREEN.screen, center)
+    escape_button = Button_image(200, 60, escape_text, "escape_button",\
+                                  BUTTON_IMAGE4, SCREEN.screen, center)
 
     return escape_button
 
 def create_footer_buttons(translator):
     reset_text = translator.translate("reset_all_score")
-    reset_score_button = Button_image(200, 60, reset_text, "reset_all_score", BUTTON_IMAGE2, SCREEN.screen, (SCREEN.width - 180, 7* SCREEN.height //8))
+    reset_score_button = Button_image(200, 60, reset_text, "reset_all_score",\
+                        BUTTON_IMAGE2, SCREEN.screen, (SCREEN.width - 180, 7* SCREEN.height //8))
     escape_button = create_escape_button(translator, (180, 7* SCREEN.height //8))
 
     return reset_score_button, escape_button
@@ -60,7 +66,7 @@ def range_pages(number_pages, all_player):
             index_end += 8    
         if index_end > len(all_player):
             index_end = len(all_player)
-            
+
     return index_start_list, index_end_list
 
 def draw_arrows(page, number_pages):
@@ -90,6 +96,7 @@ def display_scores(scores, page, translator):
             position_y += SCREEN.height // 4 + 20
             display_player_score(scores, all_player[index], position_x, position_y, translator)
             position_x += SCREEN.width // 4
+            
     return arrow_left, arrow_right, number_pages
 
 def display_player_score(scores, player, position_x, position_y, translator):
@@ -105,10 +112,17 @@ def display_player_score(scores, player, position_x, position_y, translator):
     game_text = translator.translate("Game_Played")
     full_game_text = f"{game_text} : {str(scores[player]["games_played"])}"
 
-    user = dialog_render(player.capitalize(), STYLE_FONT, 34, TEXT_COLOR, (box_center[0], box_center[1] - box.height // 2 + 40), SCREEN.screen)
-    highscore = dialog_render(full_highscore_text, MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 90), SCREEN.screen)
-    slice = dialog_render(full_slice_text , MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1] - box.height // 2 + 120), SCREEN.screen)
-    game = dialog_render(full_game_text, MAIN_FONT, 20, TEXT_COLOR_LIGHT, (box_center[0], box_center[1]- box.height // 2 + 150), SCREEN.screen)
+    user = dialog_render(player.capitalize(), STYLE_FONT, 34, TEXT_COLOR,\
+        (box_center[0], box_center[1] - box.height // 2 + 40), SCREEN.screen)
+    
+    highscore = dialog_render(full_highscore_text, MAIN_FONT, 20, TEXT_COLOR_LIGHT,\
+        (box_center[0], box_center[1] - box.height // 2 + 90), SCREEN.screen)
+    
+    slice = dialog_render(full_slice_text , MAIN_FONT, 20, TEXT_COLOR_LIGHT,\
+        (box_center[0], box_center[1] - box.height // 2 + 120), SCREEN.screen)
+    
+    game = dialog_render(full_game_text, MAIN_FONT, 20, TEXT_COLOR_LIGHT,\
+        (box_center[0], box_center[1]- box.height // 2 + 150), SCREEN.screen)
     
 def dialog_render(text, font, font_size, color, box_center, screen):
     font = pygame.font.Font(font, font_size)

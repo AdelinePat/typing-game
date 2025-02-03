@@ -53,6 +53,7 @@ def in_score_menu(clock, fps, translator):
             reset_score_button.draw(TEXT_COLOR)
 
             arrow_left, arrow_right, number_page = display_scores(scores.scores, page_score, translator)
+            
             if arrow_left.image_rect.collidepoint(mouse_position):
                 if event.type == pygame.MOUSEBUTTONDOWN or event.type == keys[pygame.K_LEFT]:
                     if page_score > 0:

@@ -42,14 +42,16 @@ def main():
                     game_menu = in_score_menu(clock, FPS, translate_all)
                    
                 case "mode_menu":
-                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS, game_mode, language_mode, translate_all)
+                    game_menu, language_mode, game_mode = in_mode_menu(clock, FPS,\
+                                            game_mode, language_mode, translate_all)
                     translate_all.set_language(language_mode)    
 
                 case "game_on":
                     game_menu, player = run_set_up_game(SCREEN, clock, FPS, player, translate_all)
 
                 case "in_game":
-                    game_menu, player_score = run_new_game(SCREEN, clock, FPS, game_mode, player, translate_all)
+                    game_menu, player_score = run_new_game(SCREEN, clock, FPS,\
+                                            game_mode, player, translate_all)
 
                 case "menu_game_over":
                     game_menu = game_over_screen(player_score, translate_all)

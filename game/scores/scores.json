@@ -1,8 +1,8 @@
 {
     "jojo": {
         "highscore": 213,
-        "slashed_fruits": 943,
-        "games_played": 26
+        "slashed_fruits": 893,
+        "games_played": 21
     },
     "test": {
         "highscore": 51,
@@ -60,9 +60,9 @@
         "games_played": 1
     },
     "jolyne": {
-        "highscore": 52,
-        "slashed_fruits": 106,
-        "games_played": 13
+        "highscore": 33,
+        "slashed_fruits": 33,
+        "games_played": 10
     },
     "noa": {
         "highscore": 33,
@@ -90,13 +90,23 @@
         "games_played": 3
     },
     "adeline": {
-        "highscore": 341,
-        "slashed_fruits": 1074,
-        "games_played": 13
+        "highscore": 402,
+        "slashed_fruits": 1643,
+        "games_played": 21
     },
     "booya": {
         "highscore": 112,
         "slashed_fruits": 138,
         "games_played": 4
+    },
+    "armelle": {
+        "highscore": 22,
+        "slashed_fruits": 20,
+        "games_played": 1
+    },
+    "magali": {
+        "highscore": 59,
+        "slashed_fruits": 46,
+        "games_played": 1
     }
 }
