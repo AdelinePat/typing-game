@@ -1,7 +1,7 @@
 from __settings__ import SCREEN, FPS
 import pygame
 from display.display_models.__settings__ import BACKGROUND_IMAGE
-from display.display_models.Translation_manager import TranslationManager
+from display.display_models.translation_manager import TranslationManager
 from display.display_menu import get_main_menu_button, game_over_screen
 from menu.in_score_menu import in_score_menu
 from menu.in_main_menu import in_main_menu
@@ -10,8 +10,12 @@ from menu.in_start_menu import in_start_menu
 from game.game_functions import init_game_functions, clock_tick
 from game.game_round import run_new_game
 from game.game_set_up import run_set_up_game
+from display.display_models.Sounds import Sounds  
+
 
 translate_all = TranslationManager()
+sounds = Sounds()
+sounds.play_background_music(volume=0.1)
 
 def main():
     clock, player, game_mode, game_menu, language_mode = init_game_functions()
