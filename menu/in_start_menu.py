@@ -22,7 +22,6 @@ def in_start_menu(clock, fps, main_menu_button, translator):
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE or event.key == pygame.K_RETURN:
                     game_menu = "main_menu"
-                    # start_menu = False
                     return game_menu
 
             if main_menu_button.image_rect.collidepoint(mouse_position):

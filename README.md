@@ -31,37 +31,37 @@ pip install pygame
 The project is organised as follows:  
 Typing-Game/
 
-- assets/
-  - backgrounds/
-  - bonus_malus/
-  - fonts/
-  - plank/
-  - props/
-  - sounds/
-- class_folder/
-  - Button_simple/
-  - Button/
-  - Fruits_slice/
-  - Fruits/
-  - Screen/
-  - Sounds/
-  - translation_manager/
-- display/
-  - \_init/
-  - diplay_menu_assets/
-- \_settings
-- main
-- new_test
-- translation.json
-
+- assets\  
+  - backgrounds\   
+  - fonts\  
+  - fruits\  
+  - plank\  
+  - sounds\    
+    - translation.json  
+- display_models\    
+  - _init\    
+  - diplay_game_elements\    
+  - display_menu\    
+  - display-score\    
+- scores\   
+  - game_functions\    
+  - game_round\    
+  - game_set\    
+- menu\  
+  - init\ 
+  - in_main_menu\  
+  - in_score_menu\  
+  - in_score_menu\  
+- main  
+ 
 ### features
-
+  
 ![preview game](main_menu.jpg)  
-the game offers serveral features:
-
-assets/
-
-- **backgrounds/**: Contains all background images used in the game.
+the game offers serveral features:  
+  
+assets/  
+  
+- **backgrounds/**: Contains all background images used in the game.  
 - **bonus_malus/**: Contains images for bonus or malus items freeze or bombe power-ups.
 - **fonts/**: Font files used for displaying game text.
 - **plank/**:Images for any game UI components, such as the fruit slicing board.

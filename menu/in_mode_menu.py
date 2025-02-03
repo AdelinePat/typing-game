@@ -12,7 +12,6 @@ def in_mode_menu(clock, fps, game_mode, language_mode, translator):
     caption = f"{title} - {location}"
     new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, caption)
     
-    
     game_menu = "mode_menu"
     mode_menu = True
 
@@ -24,8 +23,7 @@ def in_mode_menu(clock, fps, game_mode, language_mode, translator):
 
         return_button = create_escape_button(translator, (SCREEN.width // 2, 7 * SCREEN.height // 8))
         return_button.draw(TEXT_COLOR)
-        # return_button = Button_image("A traduire", "escape_button", FONTSIZE, FONT, SCREEN, center)
-            
+
         mouse_position = pygame.mouse.get_pos()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

@@ -8,7 +8,6 @@ from game.game_functions import clock_tick
 
 def in_score_menu(clock, fps, translator):
     page_score = 0
-    # score_menu = True
     title = translator.translate("fruit_slicer")
     location = translator.translate("score_menu")
     caption = f"{title} - {location}"
@@ -44,7 +43,6 @@ def in_score_menu(clock, fps, translator):
             escape_button.draw(TEXT_COLOR_DARK)
             if event.type == pygame.MOUSEBUTTONDOWN:
                 game_menu = "main_menu"
-                # score_menu = False
                 return game_menu        
         
         if not bool(scores.scores):
@@ -64,9 +62,6 @@ def in_score_menu(clock, fps, translator):
                 if event.type == pygame.MOUSEBUTTONDOWN :
                     if page_score < number_page - 1:
                         page_score += 1
-            
-            # if event.type == keys[pygame.K_LEFT]:
-                    
 
         if reset_score_button.image_rect.collidepoint(mouse_position) and bool(scores.scores):
             reset_score_button.draw(TEXT_COLOR_DARK)
@@ -76,4 +71,3 @@ def in_score_menu(clock, fps, translator):
                     scores = Scores()
         
         clock_tick(clock, fps)
-    # return game_menu

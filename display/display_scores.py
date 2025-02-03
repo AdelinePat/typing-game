@@ -51,6 +51,7 @@ def range_pages(number_pages, all_player):
     index_end_list = []
     index_start = 0
     index_end = 8
+
     for page_index in range(number_pages):
         index_start_list.append(index_start)
         index_end_list.append(index_end)
@@ -59,6 +60,7 @@ def range_pages(number_pages, all_player):
             index_end += 8    
         if index_end > len(all_player):
             index_end = len(all_player)
+            
     return index_start_list, index_end_list
 
 def draw_arrows(page, number_pages):
@@ -76,6 +78,7 @@ def display_scores(scores, page, translator):
     all_player, number_pages = get_scores_menu_page(scores, translator)
     index_start_list, index_end_list = range_pages(number_pages, all_player)
     arrow_left, arrow_right = draw_arrows(page, number_pages)
+
     position_x = 20
     position_y = 150
     for index in range(index_start_list[page], index_end_list[page]):
@@ -92,7 +95,6 @@ def display_scores(scores, page, translator):
 def display_player_score(scores, player, position_x, position_y, translator):
     box = pygame.Rect(position_x, position_y, (SCREEN.width // 4) - 40 , (SCREEN.height // 4))
     box_center = box.center
-    # draw_box = pygame.draw.rect(SCREEN.screen, "red", box, 3)
 
     highscore_text = translator.translate("highscore")
     full_highscore_text = f"{highscore_text} : {str(scores[player]["highscore"])}"

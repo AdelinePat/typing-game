@@ -8,19 +8,15 @@ class Fruit_slices():
         self.size = size
         self.width = size
         self.height = size
-        # self.screen = screen_screen
-        # self.screen_width = screen.width
-        # self.screen_height = screen.height
         self.surface = (self.width, self.height)
         self.name = name
         self.image_path = FRUIT_DICT[self.name]["slice"]
-
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
-
         self.image = pygame.transform.smoothscale(self.image_path.convert_alpha(), (self.surface))
         self.rotation = random.randrange(-100, 100)
         self.fruit_half = fruit_half
-        if abs(vel_y) == 0:
+        
+        if -1 < abs(vel_y) < 1:
             self.vel_y = 1
         else:
             self.vel_y = abs(vel_y)
@@ -31,7 +27,7 @@ class Fruit_slices():
 
     def fall(self, frame):
         if self.y > (SCREEN.height + 2):
-            return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
+            return "dropped"
         else:
             if self.x <-10 or self.x > SCREEN.width-self.width+10:
                 self.vel_x *= -1
@@ -55,7 +51,6 @@ class Fruit_slices():
         return element_rotate, element_rect
     
     def draw(self):
-        # apply rotate element in fall() rather than draw() for draw() stays active even when frozen
         image_rotate, image_rect = self.rotate_element(self.image)
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         self.rect = self.image.get_rect(center = self.box_center)
