@@ -1,5 +1,4 @@
-import pygame, random, secrets 
-from display.display_models import Screen
+import pygame, random
 from __settings__ import MAIN_FONT, SCREEN
 
 class Fruits():
@@ -12,50 +11,18 @@ class Fruits():
         self.surface = (self.width, self.height)
         self.rotation = rotation
         self.color = color
-        # self.screen_height = screen_height
-        # self.screen_screen = screen_screen
-        # self.screen_width = screen_width
         self.box_center = (self.x + self.width//2, self.y + self.height//2)
         
         self.image =  pygame.transform.smoothscale(image.convert_alpha(), (self.surface))
-        
-        '''TENTATIVES ADELINES
-        self.vel_x = random.randrange(-4, 4)
-        self.vel_y = (random.randrange(150, 275))*-1
-        # self.vel_y = 50
-        self.y_max = 50
-        self.time_count = 0
-        _____________________________________
-        s = déplacement de l'objet mesuré en mettre
-        u = vitesse initiale eb m/s
-        t = temps
-        a = acceleration
-        s = u * t + (1/2) a * (t ** 2)
-        self.time_count += timer
-        if mode == 0:
-        a = 0.01
-        movement = (self.vel_y * self.time_count + 1/2 * a * timer ** 2)*0.1
-
-
-        _______________________________
-        if self.y > (self.screen_height + self.height + 1):
-            return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
-        else:
-            self.y += self.vel_y
-            self.x += self.vel_x
-            self.vel_y += 1 + abs(self.vel_y*0.3)
-        '''
 
         self.letter = letter
         self.vel_x = random.randrange(-4, 4)
-        self.vel_y = (random.uniform(26.75 - devel*1.75, 27.5 - devel*1.5)) * -1 # VERSION DE JOLYNE
+        self.vel_y = (random.uniform(26.75 - devel*1.75, 27.5 - devel*1.5)) * -1
         self.weight = self.vel_y
-
-    
 
     def fall(self, frame, devel):
         if self.y > (SCREEN.height + 2):
-            return "dropped" # pour savoir si le fruit n'a pas pu être coupé à temps
+            return "dropped"
         else:
             if self.x <-10 or self.x > SCREEN.width -self.width+10:
                 self.vel_x *= -1
@@ -68,7 +35,6 @@ class Fruits():
                 self.vel_y += abs(self.weight * (0.2 - (devel*0.01)))
 
     def text_render(self):
-        # self.box_center = ((self.x + self.width //2) - (self.width // 50), self.y + self.height // 2)
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         font_size = round(self.width // 3)
         font = pygame.font.Font(MAIN_FONT, font_size)

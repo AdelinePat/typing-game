@@ -1,8 +1,8 @@
 {
     "jojo": {
         "highscore": 213,
-        "slashed_fruits": 893,
-        "games_played": 21
+        "slashed_fruits": 943,
+        "games_played": 26
     },
     "test": {
         "highscore": 51,
@@ -60,9 +60,9 @@
         "games_played": 1
     },
     "jolyne": {
-        "highscore": 33,
-        "slashed_fruits": 33,
-        "games_played": 10
+        "highscore": 52,
+        "slashed_fruits": 106,
+        "games_played": 13
     },
     "noa": {
         "highscore": 33,

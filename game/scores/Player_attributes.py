@@ -1,9 +1,10 @@
 class Player_attributes:
-    def __init__(self, player):
+    def __init__(self, player, difficulty):
         '''
             initialize all current player attribute for the game's course
         '''
         self.player = player
+        self.multiplicator = difficulty
         self.score = 0
         self.combo = 0
         self.played_key = ''
@@ -40,16 +41,16 @@ class Player_attributes:
         '''
         if self.played_key == self.last_key:
             if self.combo <= 2:
-                self.score += 2
+                self.score += 2 * self.multiplicator
                 self.combo += 1
             elif self.combo <= 5:
-                self.score += round(self.combo*0.8)
+                self.score += round(self.combo*0.8) * self.multiplicator
                 self.combo +=1
             else:
-                self.score += 3
+                self.score += 3 * self.multiplicator
                 self.combo +=1
         else :
-            self.score += 1
+            self.score += 1 * self.multiplicator
             self.combo = 0
         self.slashed += 1
         self.last_key = self.played_key

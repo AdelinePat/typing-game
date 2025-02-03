@@ -9,28 +9,21 @@ from game.scores.Player_attributes import Player_attributes
 from game.scores.Scores import Scores
 from game.game_functions import clock_tick
 
-
-
-
-
-
-
-# Initialisation de pygame et du mixer
-
-
-
-
 def run_new_game(screen, clock, fps, game_mode, player, translator):
+    """
+        run a round of Fruit-Slicer with all game settings, saves the player
+        score in save file and return to menu_game_over
+    """
     sounds = Sounds()
     sounds.play_slice_sound()
     pygame.mixer.init()
     pygame.mixer.set_num_channels(16)
-    current_player = Player_attributes(player)
 
     game_scores = Scores()
 
     all_letters = list(string.ascii_uppercase)
     if game_mode == 'easy_mode':
+        current_player = Player_attributes(player, 1)
         life = 7
         spawn_delay = 40
         devel = 9
@@ -40,15 +33,17 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
             all_letters.remove(letters[-1])
 
     elif game_mode == 'normal_mode':
+        current_player = Player_attributes(player, 2)
         life = 5
         spawn_delay = 35
-        devel = 7
+        devel = 8
         letters = []
         for letter in range(0,7):
             letters.append(random.choice(all_letters))
             all_letters.remove(letters[-1])
 
     elif game_mode == 'nightmare_mode':
+        current_player = Player_attributes(player, 3)
         life = 3
         spawn_delay = 30
         devel = 5
@@ -117,8 +112,10 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
                 for fruit in fruits:
                     if fruit.letter == current_player.played_key:
                         index = fruits.index(fruit)
-                        fruit_slices_1 = Fruit_slices(fruit.x, fruit.y, fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, 'half_1')
-                        fruit_slices_2 = Fruit_slices(fruit.x, fruit.y, fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, 'half_2')
+                        fruit_slices_1 = Fruit_slices(fruit.x, fruit.y,\
+                                fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, 'half_1')
+                        fruit_slices_2 = Fruit_slices(fruit.x, fruit.y,\
+                                fruit.vel_x, fruit.vel_y, fruit.width, fruit.name, 'half_2')
                         fruits_slices.append(fruit_slices_1)
                         fruits_slices.append(fruit_slices_2)
                         fruit_pop_list.append(index)
@@ -164,13 +161,11 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
                 pass
             else:
                 spawn_delay -=1
-                devel -= 0.25
+                devel -= 0.5
         
         if bool(fruit_pop_list):
             fruit_pop_list.sort(reverse= True)
             for a_fruit in fruit_pop_list:
-                # print(f"l'index à pop : {a_fruit}")
-                # print(f"longueur fruits list : {len(fruits)}")
                 fruits.pop(a_fruit)
 
         if bool(slice_pop_list):
@@ -187,6 +182,10 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
 
 
 def create_element(screen, devel, dictionary, letters=None):
+    """
+        spawn an element on screen with randomized attributes pushed as parameters into
+        the Fruits class
+    """
     element_list= list(dictionary.keys())
     index = secrets.randbelow(len(element_list))
     
@@ -201,6 +200,7 @@ def create_element(screen, devel, dictionary, letters=None):
         random_letter = random.choice(string.ascii_letters).upper()
     else:
         random_letter = random.choice(letters).upper()
-    element = Fruits(random_x_position, (screen.height+1), random_size, image, random_rotation, devel, random_letter, color, element_list[index])
+    element = Fruits(random_x_position, (screen.height+1), random_size, image,\
+                     random_rotation, devel, random_letter, color, element_list[index])
 
     return element
