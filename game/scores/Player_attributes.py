@@ -19,7 +19,7 @@ class Player_attributes:
             lower the player's life based on events
         '''
         if mistake == 'dropped':
-            if frame - self.invicibility > 40:
+            if frame - self.invicibility > self.multiplicator*20:
                 self.strike += 1
                 self.invicibility = frame
         elif mistake == 'bomb':
