@@ -11,7 +11,6 @@ from game.game_functions import init_game_functions, clock_tick
 from game.game_round import run_new_game
 from game.game_set_up import run_set_up_game
 
-
 translate_all = TranslationManager()
 
 def main():

@@ -11,12 +11,11 @@ class Fruit_slices():
         self.surface = (self.width, self.height)
         self.name = name
         self.image_path = FRUIT_DICT[self.name]["slice"]
-
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
-
         self.image = pygame.transform.smoothscale(self.image_path.convert_alpha(), (self.surface))
         self.rotation = random.randrange(-100, 100)
         self.fruit_half = fruit_half
+        
         if -1 < abs(vel_y) < 1:
             self.vel_y = 1
         else:

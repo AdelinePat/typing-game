@@ -11,7 +11,6 @@ def display_hearts(life, strike):
             hearts.append(heart)
 
         spacing = 0
-        # for index in range(life_count):
         for heart in hearts:
             heart_rect = heart.get_rect(center = (40 + spacing, life_rect.center[1]), top=20)
             SCREEN.screen.blit(heart, heart_rect)

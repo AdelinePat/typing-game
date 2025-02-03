@@ -4,8 +4,6 @@ from display.display_models.__settings__ import BACKGROUND_IMAGE
 from display.display_menu import get_buttons
 from game.game_functions import clock_tick
 
-# from display.display_menu import get_buttons
-
 def in_main_menu(clock, fps, translator):
     main_button_list = get_buttons(translator)
 

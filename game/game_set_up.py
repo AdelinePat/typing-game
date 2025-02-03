@@ -32,7 +32,6 @@ def run_set_up_game(screen, clock, fps, player, translator):
         info_button = Button(info_button_text, "info_start_game", 24, MAIN_FONT, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2 + SCREEN.height // 4.5))
         info_button.draw(TEXT_COLOR_LIGHT)
 
-
         player_name_button = Button_image(600, 150, user_input, "player_input", BUTTON_IMAGE3, SCREEN.screen, (SCREEN.width//2, SCREEN.height//2))
         player_name_button.font = MAIN_FONT
         player_name_button.draw(TEXT_COLOR_DARK)

@@ -23,11 +23,6 @@ class TranslationManager:
     def translate(self, need_translation):
 
         data = self.translations.get(self.default_lang, {})
-        # for word in need_translation:
-            # if word in data:
-            #     translation = data[word]
-            # else:
-            #     return word
         if need_translation in data:
             translation = data[need_translation]
         else:
