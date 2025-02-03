@@ -4,17 +4,11 @@ from display.display_models.Button import Button
 from __settings__ import SCREEN, BUTTON_IMAGE3, BUTTON_IMAGE2, BUTTON_IMAGE4, MAIN_FONT,\
     STYLE_FONT, TEXT_COLOR, TEXT_COLOR_LIGHT, TEXT_COLOR_DARK, PLANK_ARROW_RIGHT, PLANK_ARROW_LEFT
 
-def get_scores_menu_page(scores, translator):
-    if not scores:
-        display_empty_score(translator)
-    else:
-        all_player = list(scores.keys())
-        if len(all_player)%8 != 0:
-            number_pages = len(all_player)//8 + 1
-        else:
-            number_pages = len(all_player)//8
-
-    return all_player, number_pages
+def create_score_title(translator):
+    score_text = translator.translate("score_menu")
+    in_score_button = Button_image(450, 100, score_text, "in_score", BUTTON_IMAGE3,\
+                                    SCREEN.screen, ((SCREEN.width // 2), 70))
+    in_score_button.draw(TEXT_COLOR)
 
 def create_arrows():
     arrow_right = Button_image(150, 75, "", "button_next", PLANK_ARROW_RIGHT,\
@@ -23,11 +17,16 @@ def create_arrows():
                                SCREEN.screen, (SCREEN.width //2 - 100, 7* SCREEN.height //8))
     return arrow_left, arrow_right
 
-def create_score_title(translator):
-    score_text = translator.translate("score_menu")
-    in_score_button = Button_image(450, 100, score_text, "in_score", BUTTON_IMAGE3,\
-                                    SCREEN.screen, ((SCREEN.width // 2), 70))
-    in_score_button.draw(TEXT_COLOR)
+def draw_arrows(page, number_pages):
+    arrow_left, arrow_right = create_arrows()
+    if page == 0:
+        arrow_right.draw(TEXT_COLOR_DARK)
+    elif page < number_pages-1:
+        arrow_left.draw(TEXT_COLOR_DARK)
+        arrow_right.draw(TEXT_COLOR_DARK)
+    else:
+        arrow_left.draw(TEXT_COLOR_DARK)
+    return arrow_left, arrow_right
 
 def display_empty_score(translator):
     create_score_title(translator)
@@ -52,6 +51,18 @@ def create_footer_buttons(translator):
 
     return reset_score_button, escape_button
 
+def get_scores_menu_page(scores, translator):
+    if not scores:
+        display_empty_score(translator)
+    else:
+        all_player = list(scores.keys())
+        if len(all_player)%8 != 0:
+            number_pages = len(all_player)//8 + 1
+        else:
+            number_pages = len(all_player)//8
+
+    return all_player, number_pages
+
 def range_pages(number_pages, all_player):
     index_start_list = []
     index_end_list = []
@@ -69,17 +80,6 @@ def range_pages(number_pages, all_player):
 
     return index_start_list, index_end_list
 
-def draw_arrows(page, number_pages):
-    arrow_left, arrow_right = create_arrows()
-    if page == 0:
-        arrow_right.draw(TEXT_COLOR_DARK)
-    elif page < number_pages-1:
-        arrow_left.draw(TEXT_COLOR_DARK)
-        arrow_right.draw(TEXT_COLOR_DARK)
-    else:
-        arrow_left.draw(TEXT_COLOR_DARK)
-    return arrow_left, arrow_right
-
 def display_scores(scores, page, translator):   
     all_player, number_pages = get_scores_menu_page(scores, translator)
     index_start_list, index_end_list = range_pages(number_pages, all_player)
@@ -96,7 +96,7 @@ def display_scores(scores, page, translator):
             position_y += SCREEN.height // 4 + 20
             display_player_score(scores, all_player[index], position_x, position_y, translator)
             position_x += SCREEN.width // 4
-            
+
     return arrow_left, arrow_right, number_pages
 
 def display_player_score(scores, player, position_x, position_y, translator):

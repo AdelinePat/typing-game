@@ -15,8 +15,8 @@ class Fruit_slices():
         self.image = pygame.transform.smoothscale(self.image_path.convert_alpha(), (self.surface))
         self.rotation = random.randrange(-100, 100)
         self.fruit_half = fruit_half
-        
-        if -1 < abs(vel_y) < 1:
+
+        if abs(vel_y) <= 1:
             self.vel_y = 1
         else:
             self.vel_y = abs(vel_y)
