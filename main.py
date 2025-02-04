@@ -58,6 +58,7 @@ def main():
                                             game_mode, player, translate_all)
 
                 case "menu_game_over":
+                    sounds.stop_background_music() 
                     game_menu = game_over_screen(player_score, translate_all)
 
                 case "exit_menu":
