@@ -4,7 +4,10 @@ from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
 from game.game_functions import clock_tick
 
 def in_start_menu(clock, fps, main_menu_button, translator):
-
+    """
+        initiate start menu with background and button and check
+        mouse input to return chosen option
+    """
     title = translator.translate("fruit_slicer")
 
     new_background = SCREEN.background(BACKGROUND_IMAGE_MENU, title)

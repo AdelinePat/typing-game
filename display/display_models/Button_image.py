@@ -16,6 +16,10 @@ class Button_image(Button):
         self.clicked = False
 
     def draw(self, color):
+        """
+            blit button object based on attributes and text with supper class Button
+            and return the collision
+        """
         self.screen.blit(self.image, self.image_rect)
         super().draw(color)
         return self.image_rect

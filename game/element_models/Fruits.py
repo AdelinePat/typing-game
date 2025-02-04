@@ -3,6 +3,9 @@ from __settings__ import MAIN_FONT, SCREEN
 
 class Fruits():
     def __init__(self, x, y, size, image, rotation, devel, letter, color, name):
+        """
+            receive randomly generated data for variety sake and assign them to object
+        """
         self.name = name
         self.x = x
         self.y = y
@@ -21,6 +24,10 @@ class Fruits():
         self.weight = self.vel_y
 
     def fall(self, frame, devel):
+        """
+            change object's coordinates based on set velocity and evolving devel based
+            on game's progression
+        """
         if self.y > (SCREEN.height + 2):
             return "dropped"
         else:
@@ -35,6 +42,10 @@ class Fruits():
                 self.vel_y += abs(self.weight * (0.2 - (devel*0.01)))
 
     def text_render(self):
+        """
+            generate text over fruit with its coordinates and assigned letter
+            and return rendered text with its shadow
+        """
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         font_size = round(self.width // 3)
         font = pygame.font.Font(MAIN_FONT, font_size)
@@ -44,11 +55,17 @@ class Fruits():
         return text, text_shadow
 
     def rotate_element(self, element):
+        """
+            assign object's rotation for display sake
+        """
         element_rotate = pygame.transform.rotate(element, self.rotation)
         element_rect = element_rotate.get_rect(center = self.box_center)
         return element_rotate, element_rect
 
     def draw(self):
+        """
+            call text, assign rotation and blit all object's related display on screen
+        """
         text, text_shadow = self.text_render()
 
         image_rotate, rect_image = self.rotate_element(self.image)
@@ -57,9 +74,9 @@ class Fruits():
 
         SCREEN.screen.blit(image_rotate, rect_image)
 
-        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]+2))
-        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]-2, text_box_shadow_rotate[1]-2))
-        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]-2, text_box_shadow_rotate[1]+2))
-        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0]+2, text_box_shadow_rotate[1]-2))
+        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0] - 2, text_box_shadow_rotate[1] - 2))
+        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0] + 2, text_box_shadow_rotate[1] + 2))
+        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0] - 2, text_box_shadow_rotate[1] + 2))
+        SCREEN.screen.blit(text_shadow_rotate, (text_box_shadow_rotate[0] + 2, text_box_shadow_rotate[1] - 2))
 
         SCREEN.screen.blit(text_rotate, text_box_rotate)

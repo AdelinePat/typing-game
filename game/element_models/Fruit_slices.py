@@ -26,6 +26,10 @@ class Fruit_slices():
             self.vel_x = abs(vel_x) + random.randrange(1, 5)
 
     def fall(self, frame):
+        """
+            change object coordinates based on set velocity and check for dropped
+            state if object leaves screen
+        """
         if self.y > (SCREEN.height + 2):
             return "dropped"
         else:
@@ -41,6 +45,9 @@ class Fruit_slices():
             return None
 
     def rotate_element(self, element):
+        """
+            assign a changing-over-time rotation to object for display purposes
+        """
         self.rotation += random.randrange(10)
         
         if self.fruit_half == "half_1":
@@ -51,6 +58,9 @@ class Fruit_slices():
         return element_rotate, element_rect
     
     def draw(self):
+        """
+            blit object on screen with its collision based on self attributes
+        """
         image_rotate, image_rect = self.rotate_element(self.image)
         self.box_center = (self.x + self.width //2, self.y + self.height // 2)
         self.rect = self.image.get_rect(center = self.box_center)

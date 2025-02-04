@@ -90,7 +90,6 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
                     index = props.index(prop)
                     prop_pop_list.append(index)
         
-
         display_score_in_game(current_player.score)
         display_hearts(life, current_player.strike)
 
@@ -144,8 +143,6 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
                     index = fruits_slices.index(fruit_slice)
                     slice_pop_list.append(index)
 
-        
-        
         if frame % spawn_delay == 0:
             if not current_player.is_frozen() and current_player.is_alive(life):
                 if secrets.randbelow(100) > spawn_delay:

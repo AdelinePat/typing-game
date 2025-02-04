@@ -5,6 +5,11 @@ from display.display_menu import get_buttons
 from game.game_functions import clock_tick
 
 def in_main_menu(clock, fps, translator):
+    """
+        generate main_menu assets for caption, background and
+        launch for event loop to handle mouse click and return
+        chosen option
+    """
     main_button_list = get_buttons(translator)
 
     title = translator.translate("fruit_slicer")

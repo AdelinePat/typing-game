@@ -1,13 +1,17 @@
 import pygame
 import string
-from __settings__ import BUTTON_IMAGE3, SCREEN, MAIN_FONT, TEXT_COLOR_DARK, \
+from __settings__ import BUTTON_IMAGE3, MAIN_FONT, TEXT_COLOR_DARK, \
     STYLE_FONT, TEXT_COLOR_LIGHT
 from display.display_models.__settings__ import BACKGROUND_IMAGE_MENU
 from display.display_models.Button import Button
 from display.display_models.Button_image import Button_image
 from game.game_functions import clock_tick
 
-def run_set_up_game(screen, clock, fps, player, translator):
+def run_set_up_game(SCREEN, clock, fps, player, translator):
+    """
+        run set_up state to host user's input and check for its status
+        (done, clear, back)
+    """
     if player != '':
         user_input = player
     else: 
@@ -48,6 +52,10 @@ def run_set_up_game(screen, clock, fps, player, translator):
         clock_tick(clock,fps)
 
 def input_expression(user_input, max_value):
+    """
+        launch for event.get loop to check keyboard input to increment or decrement
+        returned variable to generate written input
+    """
     for event in pygame.event.get():
         # Handle game quit
         if event.type == pygame.QUIT:

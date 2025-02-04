@@ -18,6 +18,10 @@ sounds = Sounds()
 
 
 def main():
+    """
+        initiate a match case to redirect states into generated menus handling
+        aspects of the game
+    """
     clock, player, game_mode, game_menu, language_mode = init_game_functions()
     current_background = SCREEN.background(BACKGROUND_IMAGE, translate_all.translate("fruit_slicer"))
     
