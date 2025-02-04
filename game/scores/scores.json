@@ -4,20 +4,45 @@
         "slashed_fruits": 893,
         "games_played": 21
     },
+    "adeline": {
+        "highscore": 402,
+        "slashed_fruits": 1916,
+        "games_played": 31
+    },
+    "armelle": {
+        "highscore": 22,
+        "slashed_fruits": 20,
+        "games_played": 1
+    },
+    "magali": {
+        "highscore": 59,
+        "slashed_fruits": 46,
+        "games_played": 1
+    },
+    "thomas": {
+        "highscore": 79,
+        "slashed_fruits": 116,
+        "games_played": 3
+    },
     "test": {
         "highscore": 51,
         "slashed_fruits": 121,
         "games_played": 15
     },
-    "aladin": {
-        "highscore": 1058,
-        "slashed_fruits": 1058,
-        "games_played": 139
-    },
     "baba": {
         "highscore": 282,
         "slashed_fruits": 843,
         "games_played": 16
+    },
+    "booya": {
+        "highscore": 189,
+        "slashed_fruits": 227,
+        "games_played": 6
+    },
+    "aladin": {
+        "highscore": 1058,
+        "slashed_fruits": 1058,
+        "games_played": 139
     },
     "mulan": {
         "highscore": 8,
@@ -50,9 +75,9 @@
         "games_played": 20
     },
     "florence": {
-        "highscore": 114,
-        "slashed_fruits": 67,
-        "games_played": 2
+        "highscore": 17,
+        "slashed_fruits": 16,
+        "games_played": 1
     },
     "vanessa": {
         "highscore": 17,
@@ -65,9 +90,9 @@
         "games_played": 10
     },
     "noa": {
-        "highscore": 33,
-        "slashed_fruits": 33,
-        "games_played": 10
+        "highscore": 123,
+        "slashed_fruits": 72,
+        "games_played": 12
     },
     "maeva": {
         "highscore": 33,
@@ -84,29 +109,19 @@
         "slashed_fruits": 33,
         "games_played": 10
     },
-    "thomas": {
-        "highscore": 79,
-        "slashed_fruits": 116,
-        "games_played": 3
-    },
-    "adeline": {
-        "highscore": 402,
-        "slashed_fruits": 1786,
-        "games_played": 26
-    },
-    "booya": {
-        "highscore": 189,
-        "slashed_fruits": 227,
-        "games_played": 6
-    },
-    "armelle": {
-        "highscore": 22,
-        "slashed_fruits": 20,
+    "boya": {
+        "highscore": 386,
+        "slashed_fruits": 169,
         "games_played": 1
     },
-    "magali": {
-        "highscore": 59,
+    "jolyne disco": {
+        "highscore": 162,
         "slashed_fruits": 46,
-        "games_played": 1
+        "games_played": 2
+    },
+    "jo": {
+        "highscore": 0,
+        "slashed_fruits": 0,
+        "games_played": 2
     }
 }

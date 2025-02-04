@@ -104,6 +104,8 @@ def run_new_game(screen, clock, fps, game_mode, player, translator):
                 return "game_off"
 
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    current_player.life_down(life, 'bomb')
                 try:
                     current_player.played_key = str(event.unicode).upper()
                 except Exception:
