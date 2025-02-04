@@ -107,15 +107,15 @@ JSON file for managing different languages in the game.
 
 ## How to play
 
-1.  _Start the Game_: Run `new_test.py` to launch the game.
+1. _Download the Script_: Access the [download link](https://github.com/AdelinePat/typing-game/archive/refs/heads/main.zip) and unzip the script
 
-2.  _Fruit Slicing_: When the fruits start falling, press the key corresponding to the letter on the fruit to slice it.
+2.  _Start the Game_: Run `new_test.py` to launch the game.
 
-3.  _Avoid Bombs_: Be carful to avoid bomb, or they will cost you a life.
+3.  _Fruit Slicing_: When the fruits start falling, press the key corresponding to the letter on the fruit to slice it.
 
-4.  _Use Power-Ups_: Some fruits will grant power-ups like ice cubes that freeze the screen, allowing you to slice all fruits present during the freeze duration.
+4.  _Avoid Bombs_: Be carful to avoid bomb, or they will cost you a life.
 
-5.  _Game Over Sound_: Plays when the game ends.
+5.  _Use Power-Ups_: Some fruits will grant power-ups like ice cubes that freeze the screen, allowing you to slice all fruits present during the freeze duration.
 
 ## Translations
 
